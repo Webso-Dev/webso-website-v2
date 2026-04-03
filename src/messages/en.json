@@ -1,0 +1,128 @@
+{
+  "nav": {
+    "palvelut": "Services",
+    "yhteistyot": "Work",
+    "meista": "About",
+    "ura": "Careers",
+    "otaYhteytta": "Get in touch"
+  },
+  "hero": {
+    "headline": "An AI-native team delivers more,\nfaster and at higher quality.",
+    "subheadline": "Webso is an AI-native software house. AI codes, tests, and reviews on every project. Faster delivery, fewer bugs, lower cost.",
+    "ctaPrimary": "Get in touch",
+    "ctaSecondary": "Explore services"
+  },
+  "lupaus": {
+    "items": [
+      {
+        "number": "01",
+        "title": "AI-native process",
+        "description": "AI is built into how we work — not added as an afterthought. This means faster development and higher quality."
+      },
+      {
+        "number": "02",
+        "title": "Finland's sharpest talent",
+        "description": "Every consultant has passed a rigorous hiring process. No compromises on expertise."
+      },
+      {
+        "number": "03",
+        "title": "Partner, not vendor",
+        "description": "We don't just execute tickets. We understand your business and build solutions that create competitive advantage."
+      }
+    ]
+  },
+  "palvelut": {
+    "title": "What we do",
+    "pillar1": {
+      "title": "AI-native software development",
+      "description": "We build enterprise systems at the speed of AI. From fullstack to infrastructure — no compromises on quality.",
+      "items": [
+        "Web, mobile & backend",
+        "Enterprise apps",
+        "AI-native tooling",
+        "Fast delivery"
+      ],
+      "cta": "Explore software development"
+    },
+    "pillar2": {
+      "title": "Applied AI Engineering",
+      "description": "We automate repetitive processes with AI agents and integrate AI directly into your business. Measurable value — not just tech.",
+      "items": [
+        "AI agents",
+        "AI integrations",
+        "Process automation",
+        "AI strategy"
+      ],
+      "cta": "Explore AI services"
+    },
+    "pillar3": {
+      "title": "Modernisation & integrations",
+      "description": "We modernise legacy systems for the new era — fast, safe, and within budget.",
+      "items": [
+        "Legacy modernisation",
+        "API & data",
+        "Cloud migrations",
+        "Technical audits"
+      ],
+      "cta": "Explore modernisation"
+    }
+  },
+  "yhteistyot": {
+    "title": "Work",
+    "cta": "See all work"
+  },
+  "luvut": {
+    "items": [
+      { "value": "30", "suffix": "+", "label": "Projects delivered" },
+      { "value": "15", "suffix": "+", "label": "Consultants" },
+      { "value": "2020", "suffix": "", "label": "Founded" },
+      { "value": "98", "suffix": "%", "label": "Client satisfaction" }
+    ]
+  },
+  "ura": {
+    "title": "Want to build software in a way that isn't taught in schools yet?",
+    "items": [
+      {
+        "number": "01",
+        "title": "The latest tools",
+        "description": "AI-native development tools are our everyday. Here you get to use tomorrow's technology today."
+      },
+      {
+        "number": "02",
+        "title": "Demanding team",
+        "description": "Colleagues who raise your bar. Mediocrity doesn't survive here."
+      },
+      {
+        "number": "03",
+        "title": "Growing company",
+        "description": "Shape the direction and culture. This isn't a big machine — this is a growth story."
+      }
+    ],
+    "cta": "See open positions"
+  },
+  "yhteydenotto": {
+    "title": "Tell us about your project.",
+    "subtitle": "We'll get back to you within 24 hours.",
+    "form": {
+      "nimi": "Name",
+      "sahkoposti": "Email",
+      "yritys": "Company",
+      "puhelin": "Phone number",
+      "viesti": "How can we help?",
+      "laheta": "Send"
+    },
+    "pekka": {
+      "name": "Pekka",
+      "role": "CEO, Co-Founder",
+      "email": "pekka@webso.fi",
+      "phone": "+358 44 506 6448",
+      "note": "You can also call directly.",
+      "quote": "We'll tell you straight if we can help. No sales pitch."
+    }
+  },
+  "footer": {
+    "address": "Itämerenkatu 3A, 00180 Helsinki",
+    "ytunnus": "Business ID: 3143089-8",
+    "tietosuoja": "Privacy policy"
+  }
+}

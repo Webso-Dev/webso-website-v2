@@ -1,0 +1,128 @@
+{
+  "nav": {
+    "palvelut": "Palvelut",
+    "yhteistyot": "Yhteistyöt",
+    "meista": "Meistä",
+    "ura": "Ura",
+    "otaYhteytta": "Ota yhteyttä"
+  },
+  "hero": {
+    "headline": "AI-natiivi tiimi toimittaa enemmän,\nnopeammin ja paremmalla laadulla.",
+    "subheadline": "Webso on AI-natiivi ohjelmistotalo. Tekoäly koodaa, testaa ja katselmoi joka projektissa. Tuloksena nopeampi toimitus, vähemmän virheitä, pienempi budjetti.",
+    "ctaPrimary": "Ota yhteyttä",
+    "ctaSecondary": "Tutustu palveluihin"
+  },
+  "lupaus": {
+    "items": [
+      {
+        "number": "01",
+        "title": "AI-natiivi prosessi",
+        "description": "Tekoäly on sisäänrakennettu työtapaamme — ei jälkikäteen lisätty. Tämä tarkoittaa nopeampaa kehitystä ja parempaa laatua."
+      },
+      {
+        "number": "02",
+        "title": "Suomen terävintä osaamista",
+        "description": "Jokainen konsulttimme on läpäissyt vaativan rekrytointiprosessin. Ei kompromisseja osaamisen suhteen."
+      },
+      {
+        "number": "03",
+        "title": "Kumppani, ei toimittaja",
+        "description": "Emme vain toteuta tikettejä. Ymmärrämme liiketoimintaasi ja rakennamme ratkaisuja jotka tuottavat kilpailuetua."
+      }
+    ]
+  },
+  "palvelut": {
+    "title": "Mitä teemme",
+    "pillar1": {
+      "title": "AI-natiivi sovelluskehitys",
+      "description": "Rakennamme tietojärjestelmiä tekoälyn nopeudella. Fullstackista infrastruktuuriin — ilman kompromisseja laadussa.",
+      "items": [
+        "Web, mobile & backend",
+        "Yrityssovellukset",
+        "AI-natiivit työkalut",
+        "Nopea toimitus"
+      ],
+      "cta": "Tutustu sovelluskehitykseen"
+    },
+    "pillar2": {
+      "title": "Applied AI Engineering",
+      "description": "Automatisoimme toistuvat prosessit AI-agenteilla ja integroimme tekoälyn suoraan liiketoimintaasi. Mitattavaa arvoa — ei pelkkää tekniikkaa.",
+      "items": [
+        "AI-agentit",
+        "AI-integraatiot",
+        "Prosessiautomaatio",
+        "AI-strategia"
+      ],
+      "cta": "Tutustu AI-palveluihin"
+    },
+    "pillar3": {
+      "title": "Modernisaatio & integraatiot",
+      "description": "Modernisoinnme vanhat järjestelmät uudelle aikakaudelle — nopeasti, turvallisesti ja budjettiin sopien.",
+      "items": [
+        "Legacy-modernisointi",
+        "API & data",
+        "Pilvimigraatiot",
+        "Tekninen auditointi"
+      ],
+      "cta": "Tutustu modernisointiin"
+    }
+  },
+  "yhteistyot": {
+    "title": "Yhteistyöt",
+    "cta": "Katso kaikki yhteistyöt"
+  },
+  "luvut": {
+    "items": [
+      { "value": "30", "suffix": "+", "label": "Toteutettua projektia" },
+      { "value": "15", "suffix": "+", "label": "Konsulttia" },
+      { "value": "2020", "suffix": "", "label": "Perustettu" },
+      { "value": "98", "suffix": "%", "label": "Asiakastyytyväisyys" }
+    ]
+  },
+  "ura": {
+    "title": "Haluatko rakentaa ohjelmistoja tavalla, jota ei vielä opeteta kouluissa?",
+    "items": [
+      {
+        "number": "01",
+        "title": "Uusimmat työkalut",
+        "description": "AI-natiivit kehitystyökalut ovat arkipäiväämme. Täällä pääset käyttämään huomisen teknologiaa tänään."
+      },
+      {
+        "number": "02",
+        "title": "Vaativa tiimi",
+        "description": "Työkaverit jotka nostavat rimaasi. Meillä ei pärjää keskinkertaisuudella."
+      },
+      {
+        "number": "03",
+        "title": "Kasvava firma",
+        "description": "Pääset vaikuttamaan suuntaan ja kulttuuriin. Tämä ei ole iso koneisto — tämä on kasvutarina."
+      }
+    ],
+    "cta": "Katso avoimet paikat"
+  },
+  "yhteydenotto": {
+    "title": "Kerro meille projektistasi.",
+    "subtitle": "Otamme yhteyttä vuorokauden sisällä.",
+    "form": {
+      "nimi": "Nimi",
+      "sahkoposti": "Sähköposti",
+      "yritys": "Yritys",
+      "puhelin": "Puhelinnumero",
+      "viesti": "Miten voimme auttaa?",
+      "laheta": "Lähetä"
+    },
+    "pekka": {
+      "name": "Pekka",
+      "role": "CEO, Co-Founder",
+      "email": "pekka@webso.fi",
+      "phone": "+358 44 506 6448",
+      "note": "Voit myös soittaa suoraan.",
+      "quote": "Kerrotaan suoraan, pystytäänkö auttamaan. Ei myyntiläppää."
+    }
+  },
+  "footer": {
+    "address": "Itämerenkatu 3A, 00180 Helsinki",
+    "ytunnus": "Y-tunnus: 3143089-8",
+    "tietosuoja": "Tietosuojaseloste"
+  }
+}

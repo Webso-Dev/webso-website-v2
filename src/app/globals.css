@@ -1,26 +1,200 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Near-black with faint blue tint */
+  --color-w-black: #030407;
+  --color-w-white: #FFFFFF;
+  --color-w-accent: #1560D4;
+
+  /* White opacities */
+  --color-w-white-90: rgba(255, 255, 255, 0.9);
+  --color-w-white-70: rgba(255, 255, 255, 0.7);
+  --color-w-white-50: rgba(255, 255, 255, 0.5);
+  --color-w-white-30: rgba(255, 255, 255, 0.3);
+  --color-w-white-15: rgba(255, 255, 255, 0.15);
+  --color-w-white-8: rgba(255, 255, 255, 0.08);
+  --color-w-white-4: rgba(255, 255, 255, 0.04);
+
+  --font-display: var(--font-aspekta);
+  --font-body: var(--font-aspekta);
+  --font-mono: var(--font-supply-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Dash pattern — shared across all dashed lines ── */
+:root {
+  --dash-h: repeating-linear-gradient(to right,  rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 1px, transparent 1px, transparent 2px);
+  --dash-v: repeating-linear-gradient(to bottom, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 1px, transparent 1px, transparent 2px);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-w-black);
+  color: var(--color-w-white);
+  font-family: var(--font-aspekta), system-ui, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-w-accent);
+  color: var(--color-w-white);
+}
+
+/* ── Unified dashed border — Tailwind border-dashed override ── */
+/* Horizontal (top/bottom) borders */
+.border-dashed {
+  border-style: solid;
+  border-image: var(--dash-h) 1;
+}
+
+/* ── Tag ── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  background: var(--color-w-white-4);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-w-white-70);
+  /* Dashed border using background-image (all 4 sides) */
+  background-image:
+    var(--dash-h), var(--dash-h),
+    var(--dash-v), var(--dash-v),
+    linear-gradient(var(--color-w-white-4), var(--color-w-white-4));
+  background-size: 100% 1px, 100% 1px, 1px 100%, 1px 100%, 100% 100%;
+  background-position: top, bottom, left, right, center;
+  background-repeat: no-repeat;
+}
+
+.tag-accent {
+  background-image: none;
+  background: var(--color-w-accent);
+  color: var(--color-w-white);
+}
+
+/* ── Corner brackets ── */
+.corner-brackets { position: relative; }
+.corner-brackets::before,
+.corner-brackets::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: rgba(255,255,255,0.5);
+  border-style: solid;
+  border-width: 0;
+}
+.corner-brackets::before { top: -1px; left: -1px; border-top-width: 1px; border-left-width: 1px; }
+.corner-brackets::after { bottom: -1px; right: -1px; border-bottom-width: 1px; border-right-width: 1px; }
+
+/* ── Dashed box (all 4 sides) ── */
+.dashed-box {
+  position: relative;
+  border: none;
+  background-image:
+    var(--dash-h), var(--dash-h),
+    var(--dash-v), var(--dash-v);
+  background-size: 100% 1px, 100% 1px, 1px 100%, 1px 100%;
+  background-position: top, bottom, left, right;
+  background-repeat: no-repeat;
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-w-accent);
+  color: var(--color-w-white);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.25);
+  transition: filter 0.2s;
+}
+.btn-primary:hover { filter: brightness(1.18); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  color: var(--color-w-white);
+  transition: color 0.22s ease;
+  /* Brighter dashed border — 0.55 opacity */
+  background-image:
+    repeating-linear-gradient(to right,  rgba(255,255,255,0.55) 0px, rgba(255,255,255,0.55) 1px, transparent 1px, transparent 2px),
+    repeating-linear-gradient(to right,  rgba(255,255,255,0.55) 0px, rgba(255,255,255,0.55) 1px, transparent 1px, transparent 2px),
+    repeating-linear-gradient(to bottom, rgba(255,255,255,0.55) 0px, rgba(255,255,255,0.55) 1px, transparent 1px, transparent 2px),
+    repeating-linear-gradient(to bottom, rgba(255,255,255,0.55) 0px, rgba(255,255,255,0.55) 1px, transparent 1px, transparent 2px);
+  background-size: 100% 1px, 100% 1px, 1px 100%, 1px 100%;
+  background-position: top, bottom, left, right;
+  background-repeat: no-repeat;
+}
+/* Slide-in white fill from left */
+.btn-outline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s ease;
+  z-index: 0;
+}
+.btn-outline:hover::before { transform: scaleX(1); }
+.btn-outline:hover { color: var(--color-w-black); }
+.btn-outline .btn-label,
+.btn-outline .btn-arrow { position: relative; z-index: 1; }
+.btn-outline .btn-arrow { color: rgba(255,255,255,1); transition: color 0.22s ease; }
+.btn-outline:hover .btn-arrow { color: var(--color-w-black); }
+
+.btn-label {
+  padding: 0.65rem 1rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.btn-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 0.7rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  line-height: 1;
+  /* Left divider — shared base */
+  background-image: var(--dash-v);
+  background-size: 1px 100%;
+  background-position: left;
+  background-repeat: no-repeat;
+}
+
+/* Outline button arrow uses brighter divider */
+.btn-outline .btn-arrow {
+  background-image: repeating-linear-gradient(to bottom, rgba(255,255,255,0.55) 0px, rgba(255,255,255,0.55) 1px, transparent 1px, transparent 2px);
+}
+
+/* ── Logo carousel ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 60s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

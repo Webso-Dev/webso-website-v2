@@ -30,8 +30,8 @@ export function UraNosto() {
 
   return (
     <section ref={sectionRef} className="border-b border-dashed border-w-white-15 bg-w-black">
-      <div className="mx-auto max-w-[90rem] px-6 md:px-10">
-        <div className="py-28 md:py-36">
+      <div className="mx-auto max-w-[90rem]">
+        <div className="py-16 md:py-36">
           <span className="tag mb-10 inline-block">{locale === "fi" ? "Ura" : "Careers"}</span>
 
           <h2 className="ura-h max-w-3xl font-display text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-[1.12] tracking-[-0.035em] text-w-white">
@@ -43,15 +43,15 @@ export function UraNosto() {
 
           <div className="mt-14 flex flex-col">
             {items.map((item, i) => (
-              <div key={item.number} className={`ura-row group flex items-center justify-between py-8 ${i < items.length - 1 ? "border-b border-dashed border-w-white-15" : ""}`}>
-                <div className="flex items-center gap-5">
+              <div key={item.number} className={`ura-row group flex flex-col gap-4 py-8 md:flex-row md:items-center md:justify-between ${i < items.length - 1 ? "border-b border-dashed border-w-white-15" : ""}`}>
+                <div className="flex items-start gap-5">
                   <span className="tag-accent hidden md:inline-flex">{item.number}</span>
                   <div>
                     <h3 className="font-display text-[1.0625rem] font-bold tracking-[-0.02em] text-w-white">{item.title}</h3>
                     <p className="mt-1.5 text-[0.875rem] leading-[1.6] text-w-white-50">{item.description}</p>
                   </div>
                 </div>
-                <span className="btn-outline shrink-0 opacity-30 transition-opacity duration-200 group-hover:opacity-100">
+                <span className="btn-outline shrink-0 self-start opacity-30 transition-opacity duration-200 group-hover:opacity-100 md:self-center">
                   <span className="btn-label hidden md:block">{locale === "fi" ? "Lue lisää" : "Learn more"}</span>
                   <span className="btn-arrow text-w-white-30">→</span>
                 </span>

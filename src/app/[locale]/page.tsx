@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { LogoMarquee } from "@/components/LogoMarquee";
 import { Lupaus } from "@/components/Lupaus";
 import { Palvelut } from "@/components/Palvelut";
+import { Suosittelijat } from "@/components/Suosittelijat";
 import { Yhteistyot } from "@/components/Yhteistyot";
 import { Luvut } from "@/components/Luvut";
 import { Yhteydenotto } from "@/components/Yhteydenotto";
@@ -17,6 +18,7 @@ export default function Home() {
         <LogoMarquee />
         <Lupaus />
         <Palvelut />
+        <Suosittelijat />
         <Yhteistyot />
         <Luvut />
         <Yhteydenotto />

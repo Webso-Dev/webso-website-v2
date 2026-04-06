@@ -2,7 +2,7 @@
 
 @theme inline {
   /* Near-black with faint blue tint */
-  --color-w-black: #030407;
+  --color-w-black: #03040a;
   --color-w-white: #FFFFFF;
   --color-w-accent: #1560D4;
 
@@ -22,8 +22,8 @@
 
 /* ── Dash pattern — shared across all dashed lines ── */
 :root {
-  --dash-h: repeating-linear-gradient(to right,  rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 1px, transparent 1px, transparent 2px);
-  --dash-v: repeating-linear-gradient(to bottom, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 1px, transparent 1px, transparent 2px);
+  --dash-h: repeating-linear-gradient(to right,  rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 2px);
+  --dash-v: repeating-linear-gradient(to bottom, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 2px);
 }
 
 body {

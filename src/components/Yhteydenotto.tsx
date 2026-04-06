@@ -31,17 +31,17 @@ export function Yhteydenotto() {
     setTimeout(() => setStatus("sent"), 1500);
   };
 
-  const inputCls = "w-full bg-transparent px-3 py-2.5 text-[0.875rem] text-w-white outline-none transition-colors duration-200 placeholder:text-w-white-20 border border-dashed border-w-white-15 focus:border-w-white-50";
+  const inputCls = "w-full bg-transparent px-3 py-2.5 text-[0.875rem] text-w-white outline-none transition-colors duration-200 placeholder:text-w-white-20 dashed-box";
 
   return (
     <section ref={sectionRef} className="overflow-hidden border-b border-dashed border-w-white-15 bg-w-black">
-      <div className="mx-auto max-w-[90rem] px-6 md:px-10">
-        <div className="contact-block py-20 md:py-24">
+      <div className="mx-auto max-w-[90rem]">
+        <div className="contact-block py-10 sm:py-16 md:py-24">
 
           <div className="grid overflow-hidden gap-4 md:grid-cols-[1.75fr_1fr]">
 
             {/* Left: Form box */}
-            <div className="min-w-0 border-w-white-15 p-6 md:p-7" style={{ border: "1px dashed rgba(255,255,255,0.15)" }}>
+            <div className="min-w-0 dashed-box p-4 sm:p-6 md:p-7">
               <span className="tag mb-5 inline-block">Ota yhteyttä</span>
               <h2 className="font-display text-[clamp(1.25rem,2.5vw,1.875rem)] font-bold tracking-[-0.03em] text-w-white">
                 {t("title")}
@@ -81,45 +81,41 @@ export function Yhteydenotto() {
               </form>
             </div>
 
-            {/* Right: Pekka + quote */}
-            <div className="min-w-0 overflow-hidden flex flex-col p-6 md:p-7" style={{ border: "1px dashed rgba(255,255,255,0.15)" }}>
+            {/* Right: Pekka */}
+            <div className="min-w-0 flex flex-col dashed-box">
 
-              {/* Photo — square, left-aligned */}
-              <div className="relative aspect-square w-32 overflow-hidden" style={{ border: "1px dashed rgba(255,255,255,0.15)" }}>
+              {/* Photo — top half */}
+              <div className="relative aspect-[16/9] w-full overflow-hidden md:aspect-[4/3]">
                 <Image
                   src="/images/team/pekka.webp"
                   alt="Pekka"
                   fill
                   className="object-cover object-top"
-                  sizes="128px"
+                  sizes="(max-width: 768px) 100vw, 400px"
                 />
+                <div className="absolute inset-0 bg-w-black/10" />
               </div>
 
-              {/* Name + role + contact */}
-              <div className="mt-5 p-4" style={{ border: "1px dashed rgba(255,255,255,0.15)" }}>
-                <p className="font-display text-[1rem] font-bold tracking-[-0.02em] text-w-white">
+              {/* Info — bottom half */}
+              <div className="flex flex-1 flex-col p-6 md:p-7 border-t border-dashed border-w-white-15">
+                <p className="font-display text-[1.125rem] font-bold tracking-[-0.02em] text-w-white">
                   {t("pekka.name")}
                 </p>
-                <p className="mt-0.5 font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">
+                <p className="mt-1 font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">
                   {t("pekka.role")}
                 </p>
-                <div className="mt-3 pt-3 flex flex-col gap-1.5" style={{ borderTop: "1px dashed rgba(255,255,255,0.15)" }}>
-                  <a href={`mailto:${t("pekka.email")}`} className="font-mono text-[0.75rem] text-w-white-70 transition-colors duration-200 hover:text-w-white">
+
+                <div className="mt-5 flex flex-col gap-1.5">
+                  <a href={`mailto:${t("pekka.email")}`} className="font-mono text-[0.75rem] text-w-white-50 transition-colors duration-200 hover:text-w-white">
                     {t("pekka.email")}
                   </a>
-                  <a href={`tel:${t("pekka.phone").replace(/\s/g, "")}`} className="font-mono text-[0.75rem] text-w-white-70 transition-colors duration-200 hover:text-w-white">
+                  <a href={`tel:${t("pekka.phone").replace(/\s/g, "")}`} className="font-mono text-[0.75rem] text-w-white-50 transition-colors duration-200 hover:text-w-white">
                     {t("pekka.phone")}
                   </a>
                 </div>
-              </div>
 
-              {/* Quote */}
-              <div className="mt-4" style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%)", border: "1px dashed rgba(255,255,255,0.15)", padding: "1.25rem" }}>
-                <p className="text-[0.9375rem] leading-[1.65] text-w-white font-display tracking-[-0.01em]">
-                  "{t("pekka.quote")}"
-                </p>
-                <p className="mt-3 font-mono text-[0.5625rem] uppercase tracking-[0.08em] text-w-white-30">
-                  — {t("pekka.name")}, CEO
+                <p className="mt-auto pt-6 text-[0.875rem] leading-[1.6] text-w-white-30 font-display tracking-[-0.01em]">
+                  &ldquo;{t("pekka.quote")}&rdquo;
                 </p>
               </div>
             </div>

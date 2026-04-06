@@ -56,7 +56,7 @@ export function Yhteistyot() {
 
   return (
     <section ref={sectionRef} className="border-b border-dashed border-w-white-15 bg-w-black">
-      <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+      <div className="mx-auto max-w-[90rem]">
         <div className="py-6 md:py-10">
 
           {/* Header */}
@@ -74,8 +74,7 @@ export function Yhteistyot() {
           {cases.map((c, i) => (
             <div
               key={c.id}
-              className={`case-row group flex flex-col md:flex-row border-dashed border-w-white-15 ${i < cases.length - 1 ? "mb-6" : ""}`}
-              style={{ borderWidth: "1px", borderStyle: "dashed" }}
+              className={`case-row group flex flex-col md:flex-row dashed-box ${i < cases.length - 1 ? "mb-6" : ""}`}
             >
               {/* Image — full card height */}
               <div className="relative h-52 w-full shrink-0 overflow-hidden md:h-auto md:w-[36%] md:self-stretch">
@@ -87,10 +86,11 @@ export function Yhteistyot() {
                   sizes="(max-width: 768px) 100vw, 42vw"
                 />
                 <div className="absolute inset-0 bg-w-black/20 transition-opacity duration-500 group-hover:bg-w-black/10" />
+                <div className="pointer-events-none absolute inset-0 z-10" style={{ border: "1px dashed rgba(255,255,255,0.15)" }} />
               </div>
 
               {/* Content */}
-              <div className="flex flex-1 flex-col justify-between px-8 py-8 md:px-10 md:py-10">
+              <div className="flex flex-1 flex-col justify-between px-5 py-6 sm:px-8 sm:py-8 md:px-10 md:py-10">
                 <div>
                   {/* Logo */}
                   <div className="mb-3">
@@ -99,7 +99,7 @@ export function Yhteistyot() {
                       alt={c.id}
                       width={220}
                       height={72}
-                      className="h-[58px] w-auto brightness-0 invert opacity-70"
+                      className="h-[40px] w-auto brightness-0 invert opacity-70 md:h-[58px]"
                     />
                   </div>
 

@@ -46,7 +46,7 @@ function WebsoScramble() {
 
   return (
     <div ref={ref} className="overflow-hidden p-6 md:p-8">
-      <div className="flex select-none items-end leading-none">
+      <div className="flex select-none items-end justify-center leading-none">
         {"WEBSO".split("").map((ch, i) => (
           <span
             key={i}
@@ -70,10 +70,13 @@ export function Footer() {
       <div className="mx-auto max-w-[90rem]">
 
         {/* Main footer row */}
-        <div className="grid grid-cols-1 gap-0 md:grid-cols-[1fr_1px_auto_1px_auto]">
+        <div className="grid grid-cols-1 gap-0 md:grid-cols-[1px_1fr_1px_auto_1px_auto_1px]">
+
+          {/* Left border */}
+          <div className="hidden self-stretch md:block" style={{ background: "var(--dash-v)" }} />
 
           {/* Brand column */}
-          <div className="px-6 py-14 md:px-10 md:py-16">
+          <div className="py-10 md:pl-10 md:py-16">
             <Image
               src="/images/webso-logo.svg"
               alt="Webso"
@@ -84,20 +87,20 @@ export function Footer() {
             <p className="mt-5 max-w-[17rem] text-[0.8125rem] leading-[1.65] text-w-white-30">
               AI-native software house. We build faster and better than traditional vendors.
             </p>
-            <div className="mt-6 flex flex-col gap-1">
-              <p className="font-mono text-[0.625rem] text-w-white-15">{t("footer.address")}</p>
-              <p className="font-mono text-[0.625rem] text-w-white-15">{t("footer.ytunnus")}</p>
+            <div className="mt-6 flex flex-col gap-1.5">
+              <p className="font-mono text-[0.75rem] text-w-white-30">{t("footer.address")}</p>
+              <p className="font-mono text-[0.75rem] text-w-white-30">{t("footer.ytunnus")}</p>
             </div>
           </div>
 
           {/* Dashed vertical divider */}
           <div
             className="hidden self-stretch md:block"
-            style={{ background: "repeating-linear-gradient(to bottom, rgba(255,255,255,0.15) 0, rgba(255,255,255,0.15) 4px, transparent 4px, transparent 8px)" }}
+            style={{ background: "var(--dash-v)" }}
           />
 
           {/* Navigation */}
-          <div className="border-t border-dashed border-w-white-15 px-6 py-14 md:border-t-0 md:px-14 md:py-16">
+          <div className="border-t border-dashed border-w-white-15 py-10 md:border-t-0 md:px-14 md:py-16">
             <p className="tag mb-6">Sivut</p>
             <nav className="flex flex-col gap-2.5">
               {[
@@ -122,11 +125,11 @@ export function Footer() {
           {/* Dashed vertical divider */}
           <div
             className="hidden self-stretch md:block"
-            style={{ background: "repeating-linear-gradient(to bottom, rgba(255,255,255,0.15) 0, rgba(255,255,255,0.15) 4px, transparent 4px, transparent 8px)" }}
+            style={{ background: "var(--dash-v)" }}
           />
 
           {/* Contact */}
-          <div className="border-t border-dashed border-w-white-15 px-6 py-14 md:border-t-0 md:px-14 md:py-16">
+          <div className="border-t border-dashed border-w-white-15 py-10 md:border-t-0 md:px-14 md:py-16">
             <p className="tag mb-6">Yhteystiedot</p>
             <div className="flex flex-col gap-2">
               <a
@@ -143,11 +146,14 @@ export function Footer() {
               </a>
             </div>
             <div className="mt-8">
-              <p className="font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-15">
+              <p className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-30">
                 © {new Date().getFullYear()} Webso Oy
               </p>
             </div>
           </div>
+
+          {/* Right border */}
+          <div className="hidden self-stretch md:block" style={{ background: "var(--dash-v)" }} />
 
         </div>
 

@@ -107,12 +107,11 @@ export function WaveCanvas({
         ampScale = 0.7;
       }
       return {
-        xGap: 10 * scale,
         yGap: 36 * scale,
         ampX: 20 * ampScale,
         ampY: 20 * ampScale,
         lineWidth: w < 480 ? 1.6 : 2,
-        maxLines: 130,
+        lineCount: 6,
         maxPoints: 90,
         speedX: 0.04,
         speedY: 0.01,
@@ -144,7 +143,8 @@ export function WaveCanvas({
       canvas.style.height = `${rect.height}px`;
       ctx.scale(dpr, dpr);
 
-      const cols = Math.min(Math.ceil(rect.width / params.xGap), params.maxLines);
+      const cols = params.lineCount;
+      const xGap = rect.width / (cols - 1);
       const rows = Math.min(Math.ceil(rect.height / params.yGap) + 2, params.maxPoints);
 
       lines = [];
@@ -152,9 +152,9 @@ export function WaveCanvas({
         const line: Point[] = [];
         for (let j = 0; j < rows; j++) {
           line.push({
-            baseX: i * params.xGap,
+            baseX: i * xGap,
             baseY: j * params.yGap,
-            x: i * params.xGap,
+            x: i * xGap,
             y: j * params.yGap,
             dx: 0,
             dy: 0,

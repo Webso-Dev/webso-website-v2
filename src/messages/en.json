@@ -8,7 +8,7 @@
   },
   "hero": {
     "headline": "An AI-native team delivers more,\nfaster and at higher quality.",
-    "subheadline": "Webso is an AI-native software house. AI codes, tests, and reviews on every project. Faster delivery, fewer bugs, lower cost.",
+    "subheadline": "Webso is an AI-native software house. We deliver Finland's best software consultants supercharged with AI — AI codes, tests, and reviews on every project. Faster delivery, fewer bugs, lower cost.",
     "ctaPrimary": "Get in touch",
     "ctaSecondary": "Explore services"
   },
@@ -35,18 +35,17 @@
     "title": "What we do",
     "pillar1": {
       "title": "AI-native software development",
-      "description": "We build enterprise systems at the speed of AI. From fullstack to infrastructure — no compromises on quality.",
+      "description": "We build enterprise information systems. From e-commerce to backend infrastructure — no compromises on quality.",
       "items": [
         "Web, mobile & backend",
-        "Enterprise apps",
-        "AI-native tooling",
-        "Fast delivery"
+        "Information systems",
+        "AI tooling"
       ],
       "cta": "Explore software development"
     },
     "pillar2": {
       "title": "Applied AI Engineering",
-      "description": "We automate repetitive processes with AI agents and integrate AI directly into your business. Measurable value — not just tech.",
+      "description": "We help companies integrate AI into their existing systems, products and services.",
       "items": [
         "AI agents",
         "AI integrations",
@@ -57,7 +56,7 @@
     },
     "pillar3": {
       "title": "Modernisation & integrations",
-      "description": "We modernise legacy systems for the new era — fast, safe, and within budget.",
+      "description": "Technical debt is cheap to accumulate and many have it — we help pay it down. We modernise legacy information systems for the new era.",
       "items": [
         "Legacy modernisation",
         "API & data",
@@ -73,10 +72,10 @@
   },
   "luvut": {
     "items": [
-      { "value": "30", "suffix": "+", "label": "Projects delivered" },
+      { "value": "60", "suffix": "+", "label": "Projects delivered" },
       { "value": "15", "suffix": "+", "label": "Consultants" },
       { "value": "2020", "suffix": "", "label": "Founded" },
-      { "value": "98", "suffix": "%", "label": "Client satisfaction" }
+      { "value": "98", "suffix": "%", "label": "Client retention" }
     ]
   },
   "ura": {
@@ -117,7 +116,7 @@
       "email": "pekka@webso.fi",
       "phone": "+358 44 506 6448",
       "note": "You can also call directly.",
-      "quote": "We'll tell you straight if we can help. No sales pitch."
+      "quote": "Let's skip the formalities — just drop me a message."
     }
   },
   "footer": {

@@ -40,13 +40,13 @@ export function Luvut() {
           {items.map((item, i) => (
             <div
               key={item.label}
-              className={`luvut-item flex flex-col items-center justify-center p-16 md:p-20 text-center
+              className={`luvut-item flex flex-col items-center justify-center p-8 sm:p-12 md:p-20 text-center
                 ${i > 0 ? "border-l border-dashed border-w-white-15" : ""}
                 ${i < 2 ? "border-b border-dashed border-w-white-15 md:border-b-0" : ""}
                 ${i === 2 ? "md:border-l border-dashed border-w-white-15" : ""}
               `}
             >
-              <div className="font-mono text-[3.25rem] font-normal tracking-[-0.07em] text-w-white md:text-[4.5rem]">
+              <div className="font-mono text-[2.5rem] font-normal tracking-[-0.07em] text-w-white sm:text-[3.25rem] md:text-[4.5rem]">
                 <span className="luvut-value" data-value={item.value}>0</span>
                 {item.suffix && <span className="text-w-white">{item.suffix}</span>}
               </div>

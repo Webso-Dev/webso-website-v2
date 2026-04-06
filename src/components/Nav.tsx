@@ -32,7 +32,7 @@ export function Nav() {
   return (
     <>
       <nav className="sticky top-0 z-50 border-b border-dashed border-w-white-15 bg-w-black/95 backdrop-blur-sm">
-        <div className="mx-auto flex h-[4.25rem] max-w-[90rem] items-center justify-between px-6 md:px-10">
+        <div className="mx-auto flex h-[4.25rem] max-w-[90rem] items-center justify-between">
           <Link href={`/${locale}`}>
             <Image
               src="/images/webso-logo.svg"
@@ -50,8 +50,7 @@ export function Nav() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-4 py-1.5 font-mono text-[0.6875rem] uppercase tracking-[0.04em] text-w-white-50 transition-colors duration-200 hover:text-w-white"
-                style={{ border: "1px dashed rgba(255,255,255,0.15)" }}
+                className="dashed-box px-4 py-1.5 font-mono text-[0.6875rem] uppercase tracking-[0.04em] text-w-white-50 transition-colors duration-200 hover:text-w-white"
               >
                 {link.label}
               </Link>
@@ -61,8 +60,7 @@ export function Nav() {
             <div className="relative">
               <button
                 onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1.5 px-3 py-1.5 font-mono text-[0.6875rem] uppercase tracking-[0.04em] text-w-white-30 transition-colors duration-200 hover:text-w-white"
-              style={{ border: "1px dashed rgba(255,255,255,0.15)" }}
+                className="dashed-box flex items-center gap-1.5 px-3 py-1.5 font-mono text-[0.6875rem] uppercase tracking-[0.04em] text-w-white-30 transition-colors duration-200 hover:text-w-white"
               >
                 {locale}
                 <span className={`text-[0.5rem] transition-transform duration-200 ${langOpen ? "rotate-180" : ""}`}>▾</span>
@@ -118,34 +116,59 @@ export function Nav() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 flex flex-col justify-center bg-w-black px-8 md:hidden"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 flex flex-col bg-w-black md:hidden"
           >
-            <div className="flex flex-col gap-5">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.05 * i, duration: 0.3 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="font-display text-[2rem] font-bold tracking-[-0.04em] text-w-white"
+            {/* Top spacing to clear nav bar */}
+            <div className="h-[4.25rem] shrink-0" />
+
+            <div className="flex flex-1 flex-col justify-between px-4 sm:px-8 pb-10">
+              {/* Links */}
+              <div className="flex flex-col">
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.04 * i, duration: 0.25 }}
                   >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="group flex items-center gap-5 border-b border-dashed border-w-white-15 py-5"
+                    >
+                      <span className="font-mono text-[0.625rem] tracking-[0.06em] text-w-white-30">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="font-mono text-[1.125rem] uppercase tracking-[0.02em] text-w-white-70 transition-colors duration-200 group-hover:text-w-white">
+                        {link.label}
+                      </span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* CTA + language */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+                className="mt-10 flex items-center justify-between"
+              >
                 <Link
                   href={`/${locale}/ota-yhteytta`}
                   onClick={() => setMobileOpen(false)}
-                  className="font-display text-[2rem] font-bold tracking-[-0.04em] text-w-accent"
+                  className="btn-primary"
                 >
-                  {t("otaYhteytta")}
+                  <span className="btn-label">{t("otaYhteytta")}</span>
+                  <span className="btn-arrow text-w-black/40">→</span>
                 </Link>
+                <button
+                  onClick={() => { setMobileOpen(false); switchLocale(); }}
+                  className="dashed-box px-4 py-2 font-mono text-[0.6875rem] uppercase tracking-[0.04em] text-w-white-30"
+                >
+                  {otherLocale === "fi" ? "Suomeksi" : "In English"}
+                </button>
               </motion.div>
             </div>
           </motion.div>

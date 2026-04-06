@@ -21,9 +21,12 @@ const supplyMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Webso — AI-natiivi ohjelmistotalo",
+  title: "Webso",
   description:
     "Rakennamme yritysten tietojärjestelmiä hyödyntäen tekoälyn koko potentiaalin.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default async function LocaleLayout({
@@ -47,13 +50,13 @@ export default async function LocaleLayout({
       className={`${aspekta.variable} ${supplyMono.variable}`}
     >
       <body className="min-h-screen antialiased">
-        {/* Vertical wireframe guide lines — fixed overlay */}
-        <div className="pointer-events-none fixed inset-0 z-[999]" aria-hidden="true">
-          <div className="absolute inset-y-0 left-[100px]" style={{ width: "1px", background: "repeating-linear-gradient(to bottom, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 1px, transparent 1px, transparent 2px)" }} />
-          <div className="absolute inset-y-0 right-[100px]" style={{ width: "1px", background: "repeating-linear-gradient(to bottom, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 1px, transparent 1px, transparent 2px)" }} />
+        {/* Vertical wireframe guide lines — fixed overlay, hidden on mobile */}
+        <div className="pointer-events-none fixed inset-y-0 left-0 right-0 z-[999] mx-auto hidden max-w-[1800px] md:block" aria-hidden="true">
+          <div className="absolute inset-y-0 left-[100px]" style={{ width: "1px", background: "var(--dash-v)" }} />
+          <div className="absolute inset-y-0 right-[100px]" style={{ width: "1px", background: "var(--dash-v)" }} />
         </div>
         {/* Content box — bounded between the vertical lines */}
-        <div className="mx-[100px]">
+        <div className="mx-auto max-w-[1800px] px-4 sm:px-8 md:px-[100px]">
           <NextIntlClientProvider locale={locale} messages={messages}>
             {children}
           </NextIntlClientProvider>

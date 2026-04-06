@@ -1,65 +1,177 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import Link from "next/link";
-import { WaveCanvas } from "../WaveCanvas";
+
+gsap.registerPlugin(ScrollTrigger);
+
+function HeroArcs() {
+  const ref = useRef<SVGSVGElement>(null);
+  useEffect(() => {
+    const paths = Array.from(ref.current?.querySelectorAll<SVGPathElement>("path") ?? []);
+    paths.forEach((p, i) => {
+      const len = p.getTotalLength();
+      gsap.fromTo(p,
+        { strokeDasharray: len, strokeDashoffset: len, opacity: 0 },
+        { strokeDashoffset: 0, opacity: 1, duration: 0.9 + i * 0.1, ease: "power2.out", delay: 0.05 + i * 0.07 }
+      );
+    });
+  }, []);
+  const W = 520, H = 320;
+  return (
+    <svg ref={ref} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMaxYMin slice"
+      fill="none" className="pointer-events-none absolute inset-0 h-full w-full">
+      <defs>
+        <linearGradient id="ug-grad" x1={W} y1="0" x2="0" y2={H} gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#1560D4" stopOpacity="0.45" />
+          <stop offset="40%" stopColor="#ffffff" stopOpacity="0.25" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      {[70, 140, 210, 280, 350].map((r) => (
+        <path key={r} d={`M ${W},${r} A ${r},${r} 0 0,1 ${W - r},0`}
+          stroke="url(#ug-grad)" strokeWidth="0.85" />
+      ))}
+    </svg>
+  );
+}
 
 export function UraPage() {
   const t = useTranslations("ura");
   const locale = useLocale();
+  const sectionRef = useRef<HTMLElement>(null);
   const items = t.raw("items") as Array<{ number: string; title: string; description: string }>;
 
+  useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray<HTMLElement>(".ura-card").forEach((el, i) => {
+        gsap.from(el, {
+          opacity: 0, y: 28, duration: 0.65, ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 88%" }, delay: i * 0.1,
+        });
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <>
-      {/* Hero with wave */}
-      <section className="relative overflow-hidden" style={{ height: "55vh", minHeight: "22rem" }}>
-        <WaveCanvas lineColor="#AEA6B6" bgColor="#01060D" />
-        <div className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(200deg, rgba(8,68,161,0) 20%, rgba(8,68,161,0.85) 75%)" }} />
-        <div className="relative z-10 flex h-full items-end">
-          <div className="mx-auto w-full max-w-[90rem] px-6 pb-12 md:px-10 md:pb-16">
-            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+    <main ref={sectionRef} className="bg-w-black">
+
+      {/* Header */}
+      <section className="border-b border-dashed border-w-white-15">
+        <div className="relative overflow-hidden">
+          <HeroArcs />
+          <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+            <div className="py-24 md:py-32">
               <span className="tag mb-8 inline-block">{locale === "fi" ? "Ura" : "Careers"}</span>
-              <h1 className="max-w-3xl font-display text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.035em] text-w-white">
-                {locale === "fi" ? "Tule rakentamaan tulevaisuutta." : "Come build the future."}
+              <h1 className="font-display text-[clamp(2rem,3.8vw,3.75rem)] font-normal leading-[1.05] tracking-[-0.03em] text-w-white">
+                {t("title")}
               </h1>
-              <p className="mt-4 max-w-2xl font-body text-[clamp(0.875rem,1.5vw,1.125rem)] leading-[1.55] text-w-white-50">
-                {locale === "fi" ? "Etsimme huippuosaajia jotka haluavat tehdä ohjelmistokehitystä tavalla, joka määrittelee alan suunnan." : "We're looking for top talent who want to do software engineering in a way that defines the direction of the industry."}
+              <p className="mt-5 max-w-lg text-[1rem] leading-[1.7] text-white/70">
+                {locale === "fi"
+                  ? "Etsimme huippuosaajia jotka haluavat tehdä ohjelmistokehitystä tavalla, joka määrittelee alan suunnan."
+                  : "We're looking for top talent who want to do software engineering in a way that defines the direction of the industry."}
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Reasons */}
-      <section className="bg-w-black">
+      {/* Reasons — matches homepage Palvelut two-column pattern */}
+      <section className="border-b border-dashed border-w-white-15">
         <div className="mx-auto max-w-[90rem] px-6 md:px-10">
-          <div className="border-b border-w-white-8 py-20 md:py-28">
-            {items.map((item, i) => (
-              <motion.div key={item.number} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.08 }} viewport={{ once: true }} className={`group flex items-center justify-between py-7 ${i < items.length - 1 ? "border-b border-w-white-8" : ""}`}>
-                <div className="flex items-center gap-5">
-                  <span className="tag-accent hidden md:inline-flex">{item.number}</span>
-                  <div>
-                    <h3 className="font-display text-[1rem] font-bold tracking-[-0.02em] text-w-white">{item.title}</h3>
-                    <p className="mt-1 font-body text-[0.8125rem] leading-[1.5] text-w-white-50">{item.description}</p>
+          <div className="flex flex-col md:flex-row">
+            <div className="shrink-0 border-b border-dashed border-w-white-15 py-10 md:sticky md:top-[4.25rem] md:w-[36%] md:self-start md:border-b-0 md:py-0 md:pb-24 md:pt-10 md:pr-14">
+              <span className="tag mb-8 inline-block">{locale === "fi" ? "Miksi Webso" : "Why Webso"}</span>
+              <h2 className="font-display text-[clamp(1.5rem,3vw,2.75rem)] font-normal leading-[1.1] tracking-[-0.03em] text-w-white">
+                {locale === "fi" ? "Rakennetaan ohjelmistoja tavalla, jota ei vielä opeteta kouluissa." : "Build software in a way not yet taught in schools."}
+              </h2>
+              <p className="mt-5 text-[1rem] leading-[1.7] text-w-white-50">
+                {locale === "fi"
+                  ? "Täällä tekoäly ei ole tulossa — se on jo täällä."
+                  : "Here AI isn't coming — it's already here."}
+              </p>
+            </div>
+
+            <div className="hidden shrink-0 self-stretch md:block" style={{ width: "1px", background: "var(--dash-v)" }} />
+
+            <div className="flex-1 py-10 md:pb-24 md:pt-10 md:pl-10">
+              {items.map((item, i) => (
+                <div key={item.number} className={`ura-card dashed-box p-5 sm:p-8 md:p-10 ${i < items.length - 1 ? "mb-4" : ""}`}>
+                  <div className="flex items-center gap-4 mb-5">
+                    <span className="h-px w-5 bg-w-accent block shrink-0" />
+                    <span className="font-mono text-[0.75rem] tracking-[0.05em] text-w-accent">{item.number}</span>
                   </div>
+                  <h3 className="font-mono text-[clamp(1.125rem,2vw,1.5rem)] font-normal uppercase leading-[1.15] tracking-[0.01em] text-w-white">{item.title}</h3>
+                  <p className="mt-3 text-[0.9375rem] leading-[1.7] text-white/70">{item.description}</p>
                 </div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Open positions */}
-      <section className="bg-w-black">
-        <div className="mx-auto max-w-[90rem] px-6 py-24 text-center md:px-10 md:py-32">
-          <p className="font-body text-[0.875rem] text-w-white-50">{locale === "fi" ? "Emme löytäneet sopivaa roolia? Lähetä avoin hakemus." : "Don't see a fitting role? Send an open application."}</p>
-          <Link href={`/${locale}/ota-yhteytta`} className="btn-primary mt-8 inline-flex">
-            <span className="btn-label">{locale === "fi" ? "Lähetä hakemus" : "Send application"}</span>
-            <span className="btn-arrow border-w-white-15 text-w-black/40">→</span>
-          </Link>
+      {/* Team image — visual weight */}
+      <section className="border-b border-dashed border-w-white-15">
+        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+          <div className="group relative h-52 w-full overflow-hidden sm:h-64 md:h-80">
+            <Image src="/images/ura-team.jpg" alt={locale === "fi" ? "Webso-tiimi" : "Webso team"} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.02]" sizes="100vw" />
+            <div className="absolute inset-0 bg-w-black/30" />
+            <div className="pointer-events-none absolute inset-0 z-10" style={{ border: "1px dashed rgba(255,255,255,0.15)" }} />
+            <span className="pointer-events-none absolute left-0 top-0 z-10 h-px w-8 bg-w-accent" />
+            <span className="pointer-events-none absolute left-0 top-0 z-10 h-8 w-px bg-w-accent" />
+            <span className="pointer-events-none absolute bottom-0 right-0 z-10 h-px w-8 bg-w-accent/40" />
+            <span className="pointer-events-none absolute bottom-0 right-0 z-10 h-8 w-px bg-w-accent/40" />
+          </div>
         </div>
       </section>
-    </>
+
+      {/* Open application */}
+      <section className="border-b border-dashed border-w-white-15">
+        <div className="mx-auto max-w-[90rem] px-6 md:px-10 py-16 md:py-20">
+          <div className="ura-card dashed-box p-5 sm:p-8 md:p-10">
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div>
+                <span className="tag mb-4 inline-block">{locale === "fi" ? "Avoin hakemus" : "Open application"}</span>
+                <h3 className="font-mono text-[clamp(1.125rem,2vw,1.5rem)] font-normal uppercase leading-[1.15] tracking-[0.01em] text-w-white">
+                  {locale === "fi" ? "Kaikki roolit" : "All roles"}
+                </h3>
+                <p className="mt-3 max-w-lg text-[0.9375rem] leading-[1.7] text-white/70">
+                  {locale === "fi"
+                    ? "Emme löytäneet sopivaa roolia? Lähetä avoin hakemus — otamme yhteyttä kun sopiva paikka aukeaa."
+                    : "Don't see a fitting role? Send an open application — we'll reach out when the right position opens."}
+                </p>
+              </div>
+              <Link href={`/${locale}/ota-yhteytta`} className="btn-outline shrink-0 inline-flex">
+                <span className="btn-label">{t("cta")}</span>
+                <span className="btn-arrow text-w-white-30">→</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-b border-dashed border-w-white-15">
+        <div className="mx-auto max-w-[90rem] px-6 md:px-10 py-16 md:py-28">
+          <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+            <h2 className="font-display text-[clamp(1.25rem,3vw,2rem)] font-bold tracking-[-0.03em] text-w-white">
+              {locale === "fi" ? "Kuulostaako hyvältä?" : "Sound good?"}
+            </h2>
+            <Link href={`/${locale}/ota-yhteytta`} className="btn-primary shrink-0">
+              <span className="btn-label">{locale === "fi" ? "Ota yhteyttä" : "Get in touch"}</span>
+              <span className="btn-arrow text-w-black/40">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+    </main>
   );
 }

@@ -8,7 +8,7 @@
   },
   "hero": {
     "headline": "AI-natiivi tiimi toimittaa enemmän,\nnopeammin ja paremmalla laadulla.",
-    "subheadline": "Webso on AI-natiivi ohjelmistotalo. Tekoäly koodaa, testaa ja katselmoi joka projektissa. Tuloksena nopeampi toimitus, vähemmän virheitä, pienempi budjetti.",
+    "subheadline": "Webso on AI-natiivi ohjelmistotalo. Meiltä saat suomen parhaat softakonsultit tekoäly höystettynä, tekoäly koodaa, testaa ja katselmoi joka projektissa. Tuloksena nopeampi toimitus, vähemmän virheitä, pienempi budjetti.",
     "ctaPrimary": "Ota yhteyttä",
     "ctaSecondary": "Tutustu palveluihin"
   },
@@ -35,18 +35,17 @@
     "title": "Mitä teemme",
     "pillar1": {
       "title": "AI-natiivi sovelluskehitys",
-      "description": "Rakennamme tietojärjestelmiä tekoälyn nopeudella. Fullstackista infrastruktuuriin — ilman kompromisseja laadussa.",
+      "description": "Rakennamme yritysten tietojärjestelmiä. Verkkokaupoista taustajärjestelmä infrastruktuuriin - ilman kompromisseja laadussa.",
       "items": [
         "Web, mobile & backend",
-        "Yrityssovellukset",
-        "AI-natiivit työkalut",
-        "Nopea toimitus"
+        "Tietojärjestelmät",
+        "AI työkalut"
       ],
       "cta": "Tutustu sovelluskehitykseen"
     },
     "pillar2": {
       "title": "Applied AI Engineering",
-      "description": "Automatisoimme toistuvat prosessit AI-agenteilla ja integroimme tekoälyn suoraan liiketoimintaasi. Mitattavaa arvoa — ei pelkkää tekniikkaa.",
+      "description": "Autamme yrityksiä integroimaan AI:n osaksi olemassa olevia järjestelmiä, tuotteita ja palveluita.",
       "items": [
         "AI-agentit",
         "AI-integraatiot",
@@ -57,7 +56,7 @@
     },
     "pillar3": {
       "title": "Modernisaatio & integraatiot",
-      "description": "Modernisoinnme vanhat järjestelmät uudelle aikakaudelle — nopeasti, turvallisesti ja budjettiin sopien.",
+      "description": "Tekninen velka on halpaa, monella on sitä, me autamme teknisen velan purkamisessa. Modernisoinnme vanhat tietojärjestelmät uudelle aikakaudelle.",
       "items": [
         "Legacy-modernisointi",
         "API & data",
@@ -73,10 +72,10 @@
   },
   "luvut": {
     "items": [
-      { "value": "30", "suffix": "+", "label": "Toteutettua projektia" },
+      { "value": "60", "suffix": "+", "label": "Toteutettua projektia" },
       { "value": "15", "suffix": "+", "label": "Konsulttia" },
       { "value": "2020", "suffix": "", "label": "Perustettu" },
-      { "value": "98", "suffix": "%", "label": "Asiakastyytyväisyys" }
+      { "value": "98", "suffix": "%", "label": "Asiakas retentio" }
     ]
   },
   "ura": {
@@ -117,7 +116,7 @@
       "email": "pekka@webso.fi",
       "phone": "+358 44 506 6448",
       "note": "Voit myös soittaa suoraan.",
-      "quote": "Kerrotaan suoraan, pystytäänkö auttamaan. Ei myyntiläppää."
+      "quote": "Hypätään suoraan asiaan, nakkaa mulle viestiä."
     }
   },
   "footer": {

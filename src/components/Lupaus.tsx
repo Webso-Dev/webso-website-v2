@@ -40,7 +40,7 @@ export function Lupaus() {
             {items.map((item, idx) => {
               const Illust = illustrations[idx];
               return (
-                <div key={item.number} className="lupaus-card dashed-box p-4 sm:p-6 md:p-8" style={{ backgroundColor: "rgba(255,255,255,0.03)" }}>
+                <div key={item.number} className="lupaus-card dashed-box p-4 sm:p-6 md:p-8 bg-w-black">
                   {/* Illustration */}
                   <div className="mb-6 max-w-[11rem] mx-auto md:mx-0">
                     <Illust />

@@ -1,84 +1,30 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
-
-gsap.registerPlugin(ScrollTrigger);
-
-function HeroArcs() {
-  const ref = useRef<SVGSVGElement>(null);
-  useEffect(() => {
-    const paths = Array.from(ref.current?.querySelectorAll<SVGPathElement>("path") ?? []);
-    paths.forEach((p, i) => {
-      const len = p.getTotalLength();
-      gsap.fromTo(p,
-        { strokeDasharray: len, strokeDashoffset: len, opacity: 0 },
-        { strokeDashoffset: 0, opacity: 1, duration: 0.9 + i * 0.1, ease: "power2.out", delay: 0.05 + i * 0.07 }
-      );
-    });
-  }, []);
-  const W = 520, H = 320;
-  return (
-    <svg ref={ref} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMaxYMin slice"
-      fill="none" className="pointer-events-none absolute inset-0 h-full w-full">
-      <defs>
-        <linearGradient id="ug-grad" x1={W} y1="0" x2="0" y2={H} gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#1560D4" stopOpacity="0.45" />
-          <stop offset="40%" stopColor="#ffffff" stopOpacity="0.25" />
-          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      {[70, 140, 210, 280, 350].map((r) => (
-        <path key={r} d={`M ${W},${r} A ${r},${r} 0 0,1 ${W - r},0`}
-          stroke="url(#ug-grad)" strokeWidth="0.85" />
-      ))}
-    </svg>
-  );
-}
 
 export function UraPage() {
   const t = useTranslations("ura");
   const locale = useLocale();
-  const sectionRef = useRef<HTMLElement>(null);
   const items = t.raw("items") as Array<{ number: string; title: string; description: string }>;
 
-  useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>(".ura-card").forEach((el, i) => {
-        gsap.from(el, {
-          opacity: 0, y: 28, duration: 0.65, ease: "power2.out",
-          scrollTrigger: { trigger: el, start: "top 88%" }, delay: i * 0.1,
-        });
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <main ref={sectionRef} className="bg-w-black">
+    <main className="bg-w-black">
 
       {/* Header */}
       <section className="border-b border-dashed border-w-white-15">
-        <div className="relative overflow-hidden">
-          <HeroArcs />
-          <div className="mx-auto max-w-[90rem] px-6 md:px-10">
-            <div className="py-24 md:py-32">
-              <span className="tag mb-8 inline-block">{locale === "fi" ? "Ura" : "Careers"}</span>
-              <h1 className="font-display text-[clamp(2rem,3.8vw,3.75rem)] font-normal leading-[1.05] tracking-[-0.03em] text-w-white">
-                {t("title")}
-              </h1>
-              <p className="mt-5 max-w-lg text-[1rem] leading-[1.7] text-white/70">
-                {locale === "fi"
-                  ? "Etsimme huippuosaajia jotka haluavat tehdä ohjelmistokehitystä tavalla, joka määrittelee alan suunnan."
-                  : "We're looking for top talent who want to do software engineering in a way that defines the direction of the industry."}
-              </p>
-            </div>
+        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+          <div className="py-24 md:py-32">
+            <span className="tag mb-8 inline-block">{locale === "fi" ? "Ura" : "Careers"}</span>
+            <h1 className="font-display text-[clamp(2rem,3.8vw,3.75rem)] font-normal leading-[1.05] tracking-[-0.03em] text-w-white">
+              {t("title")}
+            </h1>
+            <p className="mt-5 max-w-lg text-[1rem] leading-[1.7] text-white/70">
+              {locale === "fi"
+                ? "Etsimme huippuosaajia jotka haluavat tehdä ohjelmistokehitystä tavalla, joka määrittelee alan suunnan."
+                : "We're looking for top talent who want to do software engineering in a way that defines the direction of the industry."}
+            </p>
           </div>
         </div>
       </section>
@@ -103,7 +49,7 @@ export function UraPage() {
 
             <div className="flex-1 py-10 md:pb-24 md:pt-10 md:pl-10">
               {items.map((item, i) => (
-                <div key={item.number} className={`ura-card dashed-box p-5 sm:p-8 md:p-10 ${i < items.length - 1 ? "mb-4" : ""}`}>
+                <div key={item.number} className={`dashed-box p-5 sm:p-8 md:p-10 ${i < items.length - 1 ? "mb-4" : ""}`}>
                   <div className="flex items-center gap-4 mb-5">
                     <span className="h-px w-5 bg-w-accent block shrink-0" />
                     <span className="font-mono text-[0.75rem] tracking-[0.05em] text-w-accent">{item.number}</span>
@@ -121,7 +67,7 @@ export function UraPage() {
       <section className="border-b border-dashed border-w-white-15">
         <div className="mx-auto max-w-[90rem] px-6 md:px-10">
           <div className="group relative h-52 w-full overflow-hidden sm:h-64 md:h-80">
-            <Image src="/images/ura-team.jpg" alt={locale === "fi" ? "Webso-tiimi" : "Webso team"} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.02]" sizes="100vw" />
+            <Image src="/images/ura-team.jpg" alt={locale === "fi" ? "Webso-tiimi" : "Webso team"} fill className="object-cover" sizes="100vw" />
             <div className="absolute inset-0 bg-w-black/30" />
             <div className="pointer-events-none absolute inset-0 z-10" style={{ border: "1px dashed rgba(255,255,255,0.15)" }} />
             <span className="pointer-events-none absolute left-0 top-0 z-10 h-px w-8 bg-w-accent" />
@@ -135,7 +81,7 @@ export function UraPage() {
       {/* Open application */}
       <section className="border-b border-dashed border-w-white-15">
         <div className="mx-auto max-w-[90rem] px-6 md:px-10 py-16 md:py-20">
-          <div className="ura-card dashed-box p-5 sm:p-8 md:p-10">
+          <div className="dashed-box p-5 sm:p-8 md:p-10">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
                 <span className="tag mb-4 inline-block">{locale === "fi" ? "Avoin hakemus" : "Open application"}</span>

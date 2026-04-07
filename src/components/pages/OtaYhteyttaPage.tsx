@@ -25,10 +25,10 @@ export function OtaYhteyttaPage() {
     viesti: (v) => v.trim().length >= 10,
   };
 
-  const fieldOk = (k: string) => touched[k] && validators[k]?.(values[k] ?? "");
-  const fieldErr = (k: string) => touched[k] && validators[k] && !validators[k](values[k] ?? "");
+  const fieldOk = (k: string) => touched[k] && validators[k]?.(values[k as keyof typeof values] ?? "");
+  const fieldErr = (k: string) => touched[k] && validators[k] && !validators[k](values[k as keyof typeof values] ?? "");
 
-  const isComplete = Object.entries(validators).every(([k, fn]) => fn(values[k] ?? ""));
+  const isComplete = Object.entries(validators).every(([k, fn]) => fn(values[k as keyof typeof values] ?? ""));
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -20,15 +20,16 @@ const vals = {
 };
 
 const team = [
-  { name: "Pekka", role: "CEO", image: "/images/team/pekka.avif" },
-  { name: "Aleksi", role: "Lead Engineer", image: null },
-  { name: "Mikko", role: "Full Stack Developer", image: null },
-  { name: "Sami", role: "AI Engineer", image: null },
-  { name: "Joonas", role: "Full Stack Developer", image: null },
-  { name: "Lauri", role: "Backend Engineer", image: null },
-  { name: "Tommi", role: "DevOps Engineer", image: null },
-  { name: "Antti", role: "Frontend Developer", image: null },
-  { name: "Ville", role: "Software Engineer", image: null },
+  { name: "Pekka Mattinen",  role: { fi: "CEO, Co-Founder",               en: "CEO, Co-Founder" },               image: "/images/team/pekka.avif" },
+  { name: "Vellu",           role: { fi: "Senior ohjelmistokehittäjä",     en: "Senior Software Developer" },     image: "/images/team/vellu.webp" },
+  { name: "Miikka",          role: { fi: "Ohjelmistokehittäjä",            en: "Software Developer" },            image: "/images/team/miikka.webp" },
+  { name: "Leevi",           role: { fi: "Ohjelmistokehittäjä",            en: "Software Developer" },            image: "/images/team/leevi.webp" },
+  { name: "Roope",           role: { fi: "Myynti",                         en: "Sales" },                         image: "/images/team/roope.webp" },
+  { name: "Aleksi",          role: { fi: "Design",                         en: "Design" },                        image: "/images/team/aleksi.webp" },
+  { name: "Paavo",           role: { fi: "Ohjelmistokehittäjä",            en: "Software Developer" },            image: "/images/team/paavo.webp" },
+  { name: "Paulus",          role: { fi: "Ohjelmistokehittäjä",            en: "Software Developer" },            image: "/images/team/paulus.webp" },
+  { name: "Pekko Pesonen",   role: { fi: "Senior ohjelmistokehittäjä",     en: "Senior Software Developer" },     image: "/images/team/pekko.webp" },
+  { name: "Juuso",           role: { fi: "Junior ohjelmistokehittäjä",     en: "Junior Software Developer" },     image: "/images/team/pekko.webp" },
 ];
 
 export function MeistaPage() {
@@ -126,22 +127,22 @@ export function MeistaPage() {
             <div className="mb-10 flex items-center justify-between border-b border-dashed border-w-white-15 pb-8">
               <span className="tag">{locale === "fi" ? "Tiimi" : "Team"}</span>
               <span className="font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">
-                {team.length} {locale === "fi" ? "henkilöä" : "people"}
+                {team.filter(p => p.image).length}+ {locale === "fi" ? "henkilöä" : "people"}
               </span>
             </div>
 
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-5">
               {team.map((person) => (
                 <div key={person.name} className="dashed-box flex flex-col overflow-hidden">
-                  {/* Photo or placeholder */}
-                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-w-white-4">
+                  {/* Square photo or placeholder */}
+                  <div className="relative aspect-square w-full overflow-hidden bg-w-white-4">
                     {person.image ? (
                       <>
                         <Image
                           src={person.image}
                           alt={person.name}
                           fill
-                          className="object-cover object-top"
+                          className="object-cover object-center grayscale"
                           sizes="(max-width: 640px) 50vw, 33vw"
                         />
                         <div className="absolute inset-0 bg-w-black/10" />
@@ -158,7 +159,7 @@ export function MeistaPage() {
                   {/* Info */}
                   <div className="border-t border-dashed border-w-white-15 px-4 py-4 sm:px-5 sm:py-5">
                     <p className="font-mono text-[0.875rem] font-normal uppercase tracking-[0.01em] text-w-white">{person.name}</p>
-                    <p className="mt-1 font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">{person.role}</p>
+                    <p className="mt-1 font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">{person.role[locale === "fi" ? "fi" : "en"]}</p>
                   </div>
                 </div>
               ))}

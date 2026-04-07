@@ -69,8 +69,9 @@ export function Palvelut() {
             {pillars.map((p, i) => (
               <div
                 key={p.num}
-                className={`pillar dashed-box p-6 sm:p-8 md:p-10 ${i < pillars.length - 1 ? "mb-4" : ""}`}
+                className={`pillar dashed-box relative p-6 sm:p-8 md:p-10 ${i < pillars.length - 1 ? "mb-4" : ""}`}
               >
+                <div className="pointer-events-none absolute inset-0" style={{ background: "rgba(255,255,255,0.04)" }} />
                 <h3 className="font-mono text-[clamp(1.125rem,2vw,1.5rem)] font-normal uppercase leading-[1.15] tracking-[0.01em] text-w-white">
                   {p.title}
                 </h3>

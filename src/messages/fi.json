@@ -123,5 +123,63 @@
     "address": "Itämerenkatu 3A, 00180 Helsinki",
     "ytunnus": "Y-tunnus: 3143089-8",
     "tietosuoja": "Tietosuojaseloste"
+  },
+  "funnel": {
+    "tag": "Ilmainen konsultaatio",
+    "step1": {
+      "headline": "Rakennetaan parempi järjestelmä yhdessä.",
+      "sub": "Varaa 30 minuutin maksuton kartoituspuhelu. Ei sitoumuksia, ei myyntipuhetta — vain rehellinen keskustelu siitä, miten voimme auttaa.",
+      "cta": "Varaa maksuton aika",
+      "stat1value": "60+",
+      "stat1label": "Toteutettua projektia",
+      "stat2value": "98%",
+      "stat2label": "Asiakas retentio",
+      "stat3value": "24h",
+      "stat3label": "Vastausaika"
+    },
+    "step2": {
+      "headline": "Mikä on päähaaste?",
+      "sub": "Valitse sopivin — räätälöimme kartoituksen sen mukaan.",
+      "options": [
+        { "id": "new-system", "label": "Tarvitsen uuden tietojärjestelmän", "desc": "Web, mobile tai backend-sovellus" },
+        { "id": "ai-integration", "label": "Haluan AI:n osaksi toimintaani", "desc": "Agentit, integraatiot tai automaatio" },
+        { "id": "legacy", "label": "Vanha järjestelmä hidastaa kasvua", "desc": "Legacy-modernisointi tai migraatio" },
+        { "id": "other", "label": "Muu haaste", "desc": "Kerron lisää puhelimessa" }
+      ],
+      "cta": "Jatka",
+      "back": "Takaisin"
+    },
+    "step3": {
+      "headline": "Varaa aika",
+      "sub": "Otamme yhteyttä vuorokauden sisällä sovitaksemme puhelun.",
+      "nimi": "Nimi",
+      "sahkoposti": "Sähköposti",
+      "puhelin": "Puhelinnumero",
+      "yritys": "Yritys",
+      "yritysOptional": "valinnainen",
+      "nimiPlaceholder": "Etunimi Sukunimi",
+      "sahkopostiPlaceholder": "sinä@yritys.fi",
+      "puhelinPlaceholder": "+358 40 000 0000",
+      "yritysPlaceholder": "Yrityksen nimi",
+      "nimiError": "Syötä nimesi",
+      "sahkopostiError": "Tarkista sähköpostiosoite",
+      "puhelinError": "Syötä puhelinnumero",
+      "cta": "Lähetä pyyntö",
+      "sending": "Lähetetään...",
+      "back": "Takaisin",
+      "trust": "Ei sitoumuksia. Vastaamme 24h sisällä."
+    },
+    "step4": {
+      "tag": "Lähetetty",
+      "headline": "Kiitos! Palaamme pian.",
+      "sub": "Pekka ottaa yhteyttä vuorokauden sisällä sopivimman ajan löytämiseksi.",
+      "nextTitle": "Mitä seuraavaksi",
+      "next1": "Pekka soittaa sovittuna aikana",
+      "next2": "30 min maksuton kartoituspuhelu",
+      "next3": "Selkeä ehdotus seuraavista askeleista",
+      "calendarCta": "Tai varaa aika suoraan kalenterista",
+      "pekkaRole": "CEO, Co-Founder",
+      "home": "Palaa etusivulle"
+    }
   }
 }

@@ -123,5 +123,63 @@
     "address": "Itämerenkatu 3A, 00180 Helsinki",
     "ytunnus": "Business ID: 3143089-8",
     "tietosuoja": "Privacy policy"
+  },
+  "funnel": {
+    "tag": "Free consultation",
+    "step1": {
+      "headline": "Let's build something better, together.",
+      "sub": "Book a free 30-minute discovery call. No commitment, no pitch — just an honest conversation about how we can help.",
+      "cta": "Book your free call",
+      "stat1value": "60+",
+      "stat1label": "Projects delivered",
+      "stat2value": "98%",
+      "stat2label": "Client retention",
+      "stat3value": "24h",
+      "stat3label": "Response time"
+    },
+    "step2": {
+      "headline": "What's your main challenge?",
+      "sub": "Pick the closest match — we'll tailor the call to your situation.",
+      "options": [
+        { "id": "new-system", "label": "I need a new software system", "desc": "Web, mobile or backend application" },
+        { "id": "ai-integration", "label": "I want AI integrated into my business", "desc": "Agents, integrations or automation" },
+        { "id": "legacy", "label": "Legacy system is slowing us down", "desc": "Modernization or migration" },
+        { "id": "other", "label": "Something else", "desc": "I'll explain on the call" }
+      ],
+      "cta": "Continue",
+      "back": "Back"
+    },
+    "step3": {
+      "headline": "Book your call",
+      "sub": "We'll reach out within 24 hours to schedule the call.",
+      "nimi": "Name",
+      "sahkoposti": "Email",
+      "puhelin": "Phone number",
+      "yritys": "Company",
+      "yritysOptional": "optional",
+      "nimiPlaceholder": "First Last",
+      "sahkopostiPlaceholder": "you@company.com",
+      "puhelinPlaceholder": "+1 000 000 0000",
+      "yritysPlaceholder": "Company name",
+      "nimiError": "Enter your name",
+      "sahkopostiError": "Check your email address",
+      "puhelinError": "Enter your phone number",
+      "cta": "Send request",
+      "sending": "Sending...",
+      "back": "Back",
+      "trust": "No commitment. We respond within 24 hours."
+    },
+    "step4": {
+      "tag": "Sent",
+      "headline": "Thanks! We'll be in touch soon.",
+      "sub": "Pekka will reach out within 24 hours to find a time that works.",
+      "nextTitle": "What happens next",
+      "next1": "Pekka calls at the agreed time",
+      "next2": "Free 30-minute discovery call",
+      "next3": "Clear proposal on next steps",
+      "calendarCta": "Or book directly in the calendar",
+      "pekkaRole": "CEO, Co-Founder",
+      "home": "Back to homepage"
+    }
   }
 }

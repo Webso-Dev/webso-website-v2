@@ -49,6 +49,10 @@ export function Luvut() {
               {i > 0 && (
                 <div className="absolute left-0 inset-y-0 w-px hidden md:block" style={{ background: "var(--dash-v)" }} />
               )}
+              {/* Top divider: on mobile show for bottom row (items 2 & 3) */}
+              {i >= 2 && (
+                <div className="absolute top-0 inset-x-0 h-px md:hidden" style={{ background: "var(--dash-h)" }} />
+              )}
               <div className="font-mono text-[2.5rem] font-normal tracking-[-0.07em] text-w-white sm:text-[3.25rem] md:text-[4.5rem]">
                 <span className="luvut-value" data-value={item.value}>0</span>
                 {item.suffix && <span className="text-w-white">{item.suffix}</span>}

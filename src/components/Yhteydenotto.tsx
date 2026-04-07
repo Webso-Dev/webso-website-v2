@@ -57,8 +57,56 @@ export function Yhteydenotto() {
 
           <div className="grid overflow-hidden gap-4 md:grid-cols-2">
 
+            {/* Left: Pekka — photo fills full column, quote overlaid at bottom */}
+            <div className="min-w-0 relative overflow-hidden min-h-[520px] md:min-h-0">
+
+              {/* Photo — fills entire column */}
+              <Image
+                src="/images/team/pekka_no_bg.avif"
+                alt="Pekka"
+                fill
+                className="object-contain"
+                style={{ objectPosition: "center calc(100% - 100px)" }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+
+              {/* Bottom gradient so text is readable */}
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to top, rgba(3,4,10,1) 0%, rgba(3,4,10,0.95) 18%, rgba(3,4,10,0.4) 38%, rgba(3,4,10,0) 55%)" }}
+              />
+
+              {/* Quote overlaid at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 z-10 p-6 md:p-8">
+                <div className="flex flex-col gap-4">
+                  <p className="font-display text-[clamp(1.5rem,2.8vw,2.5rem)] font-normal leading-[1.25] tracking-[-0.03em] text-w-white">
+                    Hypätään suoraan asiaan,<br />nakkaa mulle viestiä.
+                  </p>
+                  <div>
+                    <p className="font-mono text-[0.8125rem] uppercase tracking-[0.04em] text-w-white-70">
+                      {t("pekka.name")}
+                    </p>
+                    <p className="mt-0.5 font-mono text-[0.625rem] uppercase tracking-[0.06em] text-w-white-30">
+                      {t("pekka.role")}
+                    </p>
+                    <div className="mt-3 flex flex-col gap-1">
+                      <a href={`mailto:${t("pekka.email")}`}
+                        className="font-mono text-[0.75rem] text-w-white-30 transition-colors duration-200 hover:text-w-white">
+                        {t("pekka.email")}
+                      </a>
+                      <a href={`tel:${t("pekka.phone").replace(/\s/g, "")}`}
+                        className="font-mono text-[0.75rem] text-w-white-30 transition-colors duration-200 hover:text-w-white">
+                        {t("pekka.phone")}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
             {/* Right: Form box */}
-            <div className="min-w-0 dashed-box p-4 sm:p-6 md:p-7 md:order-last">
+            <div className="min-w-0 dashed-box p-4 sm:p-6 md:p-7">
               <span className="tag mb-5 inline-block">Ota yhteyttä</span>
               <h2 className="font-display text-[clamp(1.25rem,2.5vw,1.875rem)] font-bold tracking-[-0.03em] text-w-white">
                 {t("title")}
@@ -180,54 +228,6 @@ export function Yhteydenotto() {
 
                 </form>
               )}
-            </div>
-
-            {/* Left: Pekka — photo fills full column, quote overlaid at bottom */}
-            <div className="min-w-0 relative overflow-hidden min-h-[520px] md:min-h-0 md:order-first">
-
-              {/* Photo — fills entire column */}
-              <Image
-                src="/images/team/pekka_no_bg.avif"
-                alt="Pekka"
-                fill
-                className="object-contain"
-                style={{ objectPosition: "center calc(100% - 100px)" }}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-
-              {/* Bottom gradient so text is readable */}
-              <div
-                className="absolute inset-0"
-                style={{ background: "linear-gradient(to top, rgba(3,4,10,1) 0%, rgba(3,4,10,0.95) 18%, rgba(3,4,10,0.4) 38%, rgba(3,4,10,0) 55%)" }}
-              />
-
-              {/* Quote overlaid at bottom */}
-              <div className="absolute bottom-0 left-0 right-0 z-10 p-6 md:p-8">
-                <div className="flex flex-col gap-4">
-                  <p className="font-display text-[clamp(1.5rem,2.8vw,2.5rem)] font-normal leading-[1.25] tracking-[-0.03em] text-w-white">
-                    Hypätään suoraan asiaan,<br />nakkaa mulle viestiä.
-                  </p>
-                  <div>
-                    <p className="font-mono text-[0.8125rem] uppercase tracking-[0.04em] text-w-white-70">
-                      {t("pekka.name")}
-                    </p>
-                    <p className="mt-0.5 font-mono text-[0.625rem] uppercase tracking-[0.06em] text-w-white-30">
-                      {t("pekka.role")}
-                    </p>
-                    <div className="mt-3 flex flex-col gap-1">
-                      <a href={`mailto:${t("pekka.email")}`}
-                        className="font-mono text-[0.75rem] text-w-white-30 transition-colors duration-200 hover:text-w-white">
-                        {t("pekka.email")}
-                      </a>
-                      <a href={`tel:${t("pekka.phone").replace(/\s/g, "")}`}
-                        className="font-mono text-[0.75rem] text-w-white-30 transition-colors duration-200 hover:text-w-white">
-                        {t("pekka.phone")}
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
             </div>
 
           </div>

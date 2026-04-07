@@ -32,14 +32,14 @@ export function Nav() {
   return (
     <>
       <nav className="sticky top-0 z-50 border-b border-dashed border-w-white-15 bg-w-black/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-[90rem] items-center justify-between px-8 py-8">
+        <div className="mx-auto flex max-w-[90rem] items-center justify-between px-4 py-6 sm:px-8 md:px-10">
           <Link href={`/${locale}`}>
             <Image
               src="/images/webso-logo.svg"
               alt="Webso"
               width={88}
               height={26}
-              className="h-[1.35rem] w-auto brightness-0 invert"
+              className="h-[1.625rem] w-auto brightness-0 invert"
               priority
             />
           </Link>

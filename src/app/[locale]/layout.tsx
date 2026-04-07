@@ -55,8 +55,8 @@ export default async function LocaleLayout({
           <div className="absolute inset-y-0 left-[100px]" style={{ width: "1px", background: "var(--dash-v)" }} />
           <div className="absolute inset-y-0 right-[100px]" style={{ width: "1px", background: "var(--dash-v)" }} />
         </div>
-        {/* Content box — bounded between the vertical lines */}
-        <div className="mx-auto max-w-[1800px] px-4 sm:px-8 md:px-[100px]">
+        {/* Content box — slab that slides up to reveal fixed WEBSO behind it */}
+        <div className="relative z-10 bg-w-black mx-auto max-w-[1800px] md:px-[100px]">
           <NextIntlClientProvider locale={locale} messages={messages}>
             {children}
           </NextIntlClientProvider>

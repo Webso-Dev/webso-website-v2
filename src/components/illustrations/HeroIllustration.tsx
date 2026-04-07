@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 
 const VW = 900, VH = 560;
-// Shift arc center past viewBox edges so arcs get clipped naturally
-const CX = VW + 50, CY = VH + 50;
+// Arc center exactly at the bottom-right corner
+const CX = VW, CY = VH;
 
 function arcPath(r: number) {
   return `M ${CX - r},${CY} A ${r},${r} 0 0,0 ${CX},${CY - r}`;
@@ -14,15 +14,15 @@ function arcLen(r: number) {
   return (Math.PI / 2) * r;
 }
 
-const RADII = [200, 285, 370, 455, 540, 625];
+const RADII = [220, 320, 430, 540, 660, 780];
 
 const BEAMS = [
-  { r: 200,  beamFrac: 0.26, duration: 1.8, delay: 0.4,  width: 2.5 },
-  { r: 285,  beamFrac: 0.22, duration: 2.2, delay: 0.0,  width: 3.0 },
-  { r: 370,  beamFrac: 0.19, duration: 2.9, delay: 2.3,  width: 2.0 },
-  { r: 455,  beamFrac: 0.16, duration: 2.8, delay: 0.9,  width: 3.0 },
-  { r: 540,  beamFrac: 0.14, duration: 2.6, delay: 1.2,  width: 2.0 },
-  { r: 625,  beamFrac: 0.13, duration: 2.4, delay: 1.7,  width: 3.0 },
+  { r: 220,  beamFrac: 0.26, duration: 1.8, delay: 0.4,  width: 2.5 },
+  { r: 320,  beamFrac: 0.22, duration: 2.2, delay: 0.0,  width: 3.0 },
+  { r: 430,  beamFrac: 0.19, duration: 2.9, delay: 2.3,  width: 2.0 },
+  { r: 540,  beamFrac: 0.16, duration: 2.8, delay: 0.9,  width: 3.0 },
+  { r: 660,  beamFrac: 0.14, duration: 2.6, delay: 1.2,  width: 2.0 },
+  { r: 780,  beamFrac: 0.13, duration: 2.4, delay: 1.7,  width: 3.0 },
 ];
 
 export function HeroIllustration({ className = "" }: { className?: string }) {
@@ -38,8 +38,8 @@ export function HeroIllustration({ className = "" }: { className?: string }) {
         <defs>
           {/* Arc stroke: blue at bottom → white mid → transparent at top */}
           <linearGradient id="arc-grad" x1="0" y1={VH} x2="0" y2="0" gradientUnits="userSpaceOnUse">
-            <stop offset="0%"   stopColor="#1560D4" stopOpacity="0.5" />
-            <stop offset="28%"  stopColor="#ffffff" stopOpacity="0.5" />
+            <stop offset="0%"   stopColor="#1560D4" stopOpacity="0.7" />
+            <stop offset="30%"  stopColor="#ffffff" stopOpacity="0.6" />
             <stop offset="100%" stopColor="#ffffff" stopOpacity="0"   />
           </linearGradient>
 
@@ -59,7 +59,7 @@ export function HeroIllustration({ className = "" }: { className?: string }) {
             key={r}
             d={arcPath(r)}
             stroke="url(#arc-grad)"
-            strokeWidth="0.85"
+            strokeWidth="1.1"
             fill="none"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}

@@ -34,7 +34,7 @@ export function Luvut() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="border-b border-dashed border-w-white-15">
+    <section ref={sectionRef} className="border-b border-dashed border-w-white-15 bg-w-black">
       <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
         <div className="grid grid-cols-2 md:grid-cols-4">
           {items.map((item, i) => (

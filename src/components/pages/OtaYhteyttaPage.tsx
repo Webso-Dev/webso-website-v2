@@ -3,121 +3,412 @@
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
+import { Lupaus } from "@/components/Lupaus";
+import { Yhteistyot } from "@/components/Yhteistyot";
+import { Suosittelijat } from "@/components/Suosittelijat";
 
 export function OtaYhteyttaPage() {
   const t = useTranslations("yhteydenotto");
   const locale = useLocale();
+  const fi = locale === "fi";
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [values, setValues] = useState({ nimi: "", sahkoposti: "", viesti: "", yritys: "" });
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [modalOpen, setModalOpen] = useState(false);
+  const [mValues, setMValues] = useState({ nimi: "", sahkoposti: "", viesti: "" });
+  const [mTouched, setMTouched] = useState<Record<string, boolean>>({});
+  const [mStatus, setMStatus] = useState<"idle" | "sending" | "sent">("idle");
+
+  const validators: Record<string, (v: string) => boolean> = {
+    nimi: (v) => v.trim().length >= 2,
+    sahkoposti: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+    viesti: (v) => v.trim().length >= 10,
+  };
+
+  const fieldOk = (k: string) => touched[k] && validators[k]?.(values[k] ?? "");
+  const fieldErr = (k: string) => touched[k] && validators[k] && !validators[k](values[k] ?? "");
+
+  const isComplete = Object.entries(validators).every(([k, fn]) => fn(values[k] ?? ""));
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setTouched({ nimi: true, sahkoposti: true, viesti: true });
+    if (!isComplete) return;
     setStatus("sending");
     setTimeout(() => setStatus("sent"), 1500);
   };
 
-  const inputCls = "w-full bg-transparent px-3 py-2.5 text-[0.875rem] text-w-white outline-none transition-colors duration-200 placeholder:text-w-white-20 dashed-box";
+  const mIsComplete = Object.entries(validators).every(([k, fn]) => fn(mValues[k as keyof typeof mValues] ?? ""));
+  const mFieldOk = (k: string) => mTouched[k] && validators[k]?.(mValues[k as keyof typeof mValues] ?? "");
+  const mFieldErr = (k: string) => mTouched[k] && validators[k] && !validators[k](mValues[k as keyof typeof mValues] ?? "");
+  const mInputCls = (k: string) =>
+    `w-full bg-transparent px-3 py-2.5 text-[0.875rem] text-w-white outline-none transition-all duration-200 placeholder:text-white/25 dashed-box${mFieldErr(k) ? " opacity-80" : ""}`;
+
+  const handleModalSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setMTouched({ nimi: true, sahkoposti: true, viesti: true });
+    if (!mIsComplete) return;
+    setMStatus("sending");
+    setTimeout(() => setMStatus("sent"), 1500);
+  };
+
+  const inputCls = (k: string) =>
+    `w-full bg-transparent px-3 py-2.5 text-[0.875rem] text-w-white outline-none transition-all duration-200 placeholder:text-white/25 dashed-box${fieldErr(k) ? " opacity-80" : ""}`;
 
   return (
     <main className="bg-w-black">
 
-      {/* Header */}
-      <section className="border-b border-dashed border-w-white-15">
+      {/* ── Hero ────────────────────────────────────────────────────────────── */}
+      <section id="yhteys" className="border-b border-dashed border-w-white-15">
         <div className="mx-auto max-w-[90rem] px-6 md:px-10">
-          <div className="py-24 md:py-32">
-            <span className="tag mb-8 inline-block">{locale === "fi" ? "Yhteydenotto" : "Contact"}</span>
-            <h1 className="font-display text-[clamp(2rem,3.8vw,3.75rem)] font-normal leading-[1.05] tracking-[-0.03em] text-w-white">
-              {t("title")}
-            </h1>
-            <p className="mt-5 max-w-lg text-[1rem] leading-[1.7] text-white/70">{t("subtitle")}</p>
+          <div className="grid gap-8 py-10 md:grid-cols-2 md:gap-12 md:py-14 lg:py-16">
+
+            {/* Left: text */}
+            <div className="flex flex-col justify-center">
+              <h1 className="font-display text-[clamp(2rem,4vw,3.75rem)] font-normal leading-[1.05] tracking-[-0.03em] text-w-white whitespace-pre-line">
+                {fi
+                  ? "Kerro projektistasi.\nAloitamme viikkojen sisällä."
+                  : "Tell us about your project.\nWe start within weeks."}
+              </h1>
+              <p className="mt-6 text-[1rem] leading-[1.65] text-w-white-50">
+                {fi
+                  ? "Ei pitkiä myyntiputkia. Vastaamme 24 tunnin sisällä, tarjous viidessä arkipäivässä."
+                  : "No lengthy sales cycles. We respond within 24 hours, proposal in five business days."}
+              </p>
+              <div className="mt-8 flex flex-col gap-2">
+                <a href="mailto:pekka@webso.fi" className="font-mono text-[0.75rem] text-w-white-30 transition-colors hover:text-w-white">
+                  pekka@webso.fi
+                </a>
+                <a href="tel:+358445066448" className="font-mono text-[0.75rem] text-w-white-30 transition-colors hover:text-w-white">
+                  +358 44 506 6448
+                </a>
+              </div>
+            </div>
+
+            {/* Right: form */}
+            <div className="dashed-box p-5 sm:p-7">
+              {status === "sent" ? (
+                <div className="flex h-full min-h-[18rem] flex-col items-start justify-center gap-4">
+                  <span className="tag-accent">{fi ? "Lähetetty" : "Sent"}</span>
+                  <p className="font-display text-[1.5rem] font-normal tracking-[-0.025em] text-w-white">
+                    {fi ? "Kiitos! Palaamme asiaan pian." : "Thanks! We'll be in touch soon."}
+                  </p>
+                  <p className="text-[0.875rem] leading-[1.65] text-w-white-30">
+                    {fi ? "Vastaamme yleensä saman päivän aikana." : "We typically respond the same day."}
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+
+                  {/* Name */}
+                  <div>
+                    <div className="mb-1.5 flex items-center justify-between">
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
+                        {t("form.nimi")} *
+                      </label>
+                      {fieldOk("nimi") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
+                    </div>
+                    <input
+                      name="nimi" type="text" autoFocus autoComplete="name"
+                      placeholder={fi ? "Etunimi Sukunimi" : "First Last"}
+                      value={values.nimi}
+                      onChange={(e) => setValues((v) => ({ ...v, nimi: e.target.value }))}
+                      onBlur={() => setTouched((t) => ({ ...t, nimi: true }))}
+                      className={inputCls("nimi")}
+                    />
+                    {fieldErr("nimi") && (
+                      <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">
+                        {fi ? "Syötä nimesi" : "Enter your name"}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <div className="mb-1.5 flex items-center justify-between">
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
+                        {t("form.sahkoposti")} *
+                      </label>
+                      {fieldOk("sahkoposti") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
+                    </div>
+                    <input
+                      name="sahkoposti" type="email" autoComplete="email"
+                      placeholder={fi ? "sinä@yritys.fi" : "you@company.com"}
+                      value={values.sahkoposti}
+                      onChange={(e) => setValues((v) => ({ ...v, sahkoposti: e.target.value }))}
+                      onBlur={() => setTouched((t) => ({ ...t, sahkoposti: true }))}
+                      className={inputCls("sahkoposti")}
+                    />
+                    {fieldErr("sahkoposti") && (
+                      <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">
+                        {fi ? "Tarkista sähköpostiosoite" : "Check your email address"}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <div className="mb-1.5 flex items-center justify-between">
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
+                        {t("form.viesti")} *
+                      </label>
+                      {fieldOk("viesti") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
+                    </div>
+                    <textarea
+                      name="message" rows={4}
+                      placeholder={fi ? "Kerro lyhyesti projektistasi tai haasteestasi..." : "Briefly describe your project or challenge..."}
+                      value={values.viesti}
+                      onChange={(e) => setValues((v) => ({ ...v, viesti: e.target.value }))}
+                      onBlur={() => setTouched((t) => ({ ...t, viesti: true }))}
+                      className={`${inputCls("viesti")} resize-none`}
+                    />
+                    {fieldErr("viesti") && (
+                      <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">
+                        {fi ? "Kirjoita ainakin muutama sana" : "Write at least a few words"}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Company — optional, shown last */}
+                  <div>
+                    <label className="mb-1.5 block font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
+                      {t("form.yritys")} — <span className="normal-case">{fi ? "valinnainen" : "optional"}</span>
+                    </label>
+                    <input
+                      name="yritys" type="text" autoComplete="organization"
+                      placeholder={fi ? "Yrityksen nimi" : "Company name"}
+                      value={values.yritys}
+                      onChange={(e) => setValues((v) => ({ ...v, yritys: e.target.value }))}
+                      className={inputCls("yritys")}
+                    />
+                  </div>
+
+                  {/* Submit */}
+                  <div className="mt-1 flex items-center gap-4">
+                    <button
+                      type="submit"
+                      disabled={status === "sending"}
+                      className="btn-primary disabled:opacity-40"
+                    >
+                      <span className="btn-label">
+                        {status === "sending"
+                          ? "..."
+                          : fi ? "Lähetä viesti" : "Send message"}
+                      </span>
+                      <span className="btn-arrow text-w-black/40">→</span>
+                    </button>
+                    <span className="font-mono text-[0.5625rem] tracking-[0.04em] text-w-white-30">
+                      {fi ? "Vastaamme 24h sisällä." : "We respond within 24h."}
+                    </span>
+                  </div>
+
+                </form>
+              )}
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* Form + Pekka — matches homepage Yhteydenotto */}
+      <Lupaus />
+      <Yhteistyot />
+      <Suosittelijat />
+
+      {/* ── How it works ────────────────────────────────────────────────────── */}
       <section className="border-b border-dashed border-w-white-15">
         <div className="mx-auto max-w-[90rem] px-6 md:px-10">
-          <div className="py-10 sm:py-16 md:py-24">
-            <div className="grid overflow-hidden gap-4 md:grid-cols-[1.75fr_1fr]">
+          <div className="py-12 md:py-16">
+            <span className="tag mb-10 inline-block">
+              {fi ? "Miten se toimii" : "How it works"}
+            </span>
+            <div className="grid gap-4 md:grid-cols-3">
+              {/* Step 1 */}
+              <div className="dashed-box p-6 md:p-7 flex flex-col gap-4">
+                <span className="tag-accent self-start">01</span>
+                <p className="font-display text-[1.125rem] font-bold tracking-[-0.025em] text-w-white">
+                  {fi ? "Lähetä viesti" : "Send a message"}
+                </p>
+                <p className="text-[0.875rem] leading-[1.65] text-w-white-50">
+                  {fi
+                    ? "Täytä lomake tai soita suoraan. Kerro lyhyesti mistä on kyse."
+                    : "Fill in the form or call directly. Briefly describe what it's about."}
+                </p>
+              </div>
+              {/* Step 2 */}
+              <div className="dashed-box p-6 md:p-7 flex flex-col gap-4">
+                <span className="tag-accent self-start">02</span>
+                <p className="font-display text-[1.125rem] font-bold tracking-[-0.025em] text-w-white">
+                  {fi ? "Discovery-puhelu" : "Discovery call"}
+                </p>
+                <p className="text-[0.875rem] leading-[1.65] text-w-white-50">
+                  {fi
+                    ? "Sovitaan 30 minuutin puhelu. Käymme läpi tarpeesi ja katsomme sopiiko yhteistyö."
+                    : "We schedule a 30-minute call. We go through your needs and see if we're a good fit."}
+                </p>
+              </div>
+              {/* Step 3 */}
+              <div className="dashed-box p-6 md:p-7 flex flex-col gap-4">
+                <span className="tag-accent self-start">03</span>
+                <p className="font-display text-[1.125rem] font-bold tracking-[-0.025em] text-w-white">
+                  {fi ? "Projekti käynnissä" : "Project kicks off"}
+                </p>
+                <p className="text-[0.875rem] leading-[1.65] text-w-white-50">
+                  {fi
+                    ? "Tarjous viiden arkipäivän sisällä. Aloitamme heti kun sopimus on allekirjoitettu."
+                    : "Proposal within five business days. We start as soon as the contract is signed."}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              {/* Left: Form box */}
-              <div className="min-w-0 dashed-box p-4 sm:p-6 md:p-7">
-                <span className="tag mb-5 inline-block">{locale === "fi" ? "Ota yhteyttä" : "Get in touch"}</span>
-                <h2 className="font-display text-[clamp(1.25rem,2.5vw,1.875rem)] font-bold tracking-[-0.03em] text-w-white">
-                  {t("title")}
-                </h2>
-                <p className="mt-1.5 text-[0.8125rem] text-w-white-30">{t("subtitle")}</p>
+      {/* ── Why Webso ───────────────────────────────────────────────────────── */}
+      <section className="border-b border-dashed border-w-white-15">
+        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+          <div className="py-12 md:py-16">
+            <span className="tag mb-10 inline-block">
+              {fi ? "Miksi Webso" : "Why Webso"}
+            </span>
+            <div className="grid gap-4 md:grid-cols-3">
+              {/* Reason 1 */}
+              <div className="dashed-box p-6 md:p-7 flex flex-col gap-4">
+                <p className="font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-accent">
+                  01
+                </p>
+                <p className="font-display text-[1.125rem] font-bold tracking-[-0.025em] text-w-white">
+                  {fi ? "3× nopeampi toimitus" : "3× faster delivery"}
+                </p>
+                <p className="text-[0.875rem] leading-[1.65] text-w-white-50">
+                  {fi
+                    ? "AI-natiivi prosessi tarkoittaa, että toimitetaan enemmän lyhyemmässä ajassa. Ei bullshittiä."
+                    : "AI-native process means we ship more in less time. No bullshit."}
+                </p>
+              </div>
+              {/* Reason 2 */}
+              <div className="dashed-box p-6 md:p-7 flex flex-col gap-4">
+                <p className="font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-accent">
+                  02
+                </p>
+                <p className="font-display text-[1.125rem] font-bold tracking-[-0.025em] text-w-white">
+                  {fi ? "Läpinäkyvä hinnoittelu" : "Transparent pricing"}
+                </p>
+                <p className="text-[0.875rem] leading-[1.65] text-w-white-50">
+                  {fi
+                    ? "Tiedät aina mihin rahat menevät. Kiinteä hinta tai tuntiveloitus — sinä päätät."
+                    : "You always know where your money goes. Fixed price or time & materials — you decide."}
+                </p>
+              </div>
+              {/* Reason 3 */}
+              <div className="dashed-box p-6 md:p-7 flex flex-col gap-4">
+                <p className="font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-accent">
+                  03
+                </p>
+                <p className="font-display text-[1.125rem] font-bold tracking-[-0.025em] text-w-white">
+                  {fi ? "Vastaus 24 tunnissa" : "Response in 24 hours"}
+                </p>
+                <p className="text-[0.875rem] leading-[1.65] text-w-white-50">
+                  {fi
+                    ? "Ei kuukausia odottelua. Vastaamme nopeasti ja aloitamme projektin viikkojen sisällä."
+                    : "No months of waiting. We respond quickly and start the project within weeks."}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-3">
-                  <div className="grid gap-3 md:grid-cols-2">
-                    {(["nimi", "sahkoposti", "yritys", "puhelin"] as const).map((f) => (
-                      <div key={f}>
-                        <label className="mb-1.5 block font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">
-                          {t(`form.${f}`)}{f !== "puhelin" && " *"}
-                        </label>
-                        <input
-                          name={f}
-                          type={f === "sahkoposti" ? "email" : f === "puhelin" ? "tel" : "text"}
-                          required={f !== "puhelin"}
-                          className={inputCls}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div>
-                    <label className="mb-1.5 block font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">
-                      {t("form.viesti")}
-                    </label>
-                    <textarea name="message" rows={4} className={`${inputCls} resize-none`} />
-                  </div>
-                  <div className="mt-1">
-                    <button type="submit" disabled={status !== "idle"} className="btn-primary disabled:opacity-40">
-                      <span className="btn-label">
-                        {status === "idle" ? t("form.laheta") : status === "sending" ? "..." : "✓"}
-                      </span>
-                      <span className="btn-arrow border-w-white-15 text-w-black/40">→</span>
-                    </button>
-                  </div>
-                </form>
+      {/* ── Pekka ───────────────────────────────────────────────────────────── */}
+      <section className="border-b border-dashed border-w-white-15">
+        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+          <div className="py-10 md:py-16">
+            <div className="flex flex-col sm:flex-row gap-6 items-start max-w-lg">
+              <div className="relative h-20 w-20 shrink-0 overflow-hidden">
+                <Image
+                  src="/images/team/pekka.webp"
+                  alt="Pekka"
+                  fill
+                  className="object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-w-black/10" />
+                <span className="pointer-events-none absolute left-0 top-0 z-10 h-px w-4 bg-w-accent" />
+                <span className="pointer-events-none absolute left-0 top-0 z-10 h-4 w-px bg-w-accent" />
+              </div>
+              <div>
+                <p className="font-display text-[1rem] font-bold tracking-[-0.02em] text-w-white">
+                  {t("pekka.name")}
+                </p>
+                <p className="mt-0.5 font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
+                  {t("pekka.role")}
+                </p>
+                <p className="mt-4 text-[0.875rem] leading-[1.6] text-w-white-30 font-display tracking-[-0.01em]">
+                  &ldquo;{t("pekka.quote")}&rdquo;
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ─────────────────────────────────────────────────────────────── */}
+      <section className="border-b border-dashed border-w-white-15">
+        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+          <div className="py-12 md:py-16">
+            <span className="tag mb-10 inline-block">
+              {fi ? "Usein kysyttyä" : "FAQ"}
+            </span>
+            <div className="flex flex-col gap-4 max-w-3xl">
+
+              {/* Q1 */}
+              <div className="dashed-box p-6 md:p-7">
+                <p className="font-display text-[1rem] font-bold tracking-[-0.02em] text-w-white">
+                  {fi
+                    ? "Kuinka nopeasti voitte aloittaa?"
+                    : "How quickly can you start?"}
+                </p>
+                <p className="mt-3 text-[0.875rem] leading-[1.65] text-w-white-50">
+                  {fi
+                    ? "Useimmiten aloitamme projektin 2–4 viikon sisällä yhteydenotosta. Kiireellisissä tapauksissa jopa nopeammin."
+                    : "We typically start a project within 2–4 weeks of first contact. In urgent cases, even faster."}
+                </p>
               </div>
 
-              {/* Right: Pekka — matches homepage layout */}
-              <div className="min-w-0 flex flex-col dashed-box">
-                {/* Photo — top */}
-                <div className="relative aspect-[16/9] w-full overflow-hidden md:aspect-[4/3]">
-                  <Image
-                    src="/images/team/pekka.webp"
-                    alt="Pekka"
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 768px) 100vw, 400px"
-                  />
-                  <div className="absolute inset-0 bg-w-black/10" />
-                  <span className="pointer-events-none absolute left-0 top-0 z-10 h-px w-5 bg-w-accent" />
-                  <span className="pointer-events-none absolute left-0 top-0 z-10 h-5 w-px bg-w-accent" />
-                </div>
+              {/* Q2 */}
+              <div className="dashed-box p-6 md:p-7">
+                <p className="font-display text-[1rem] font-bold tracking-[-0.02em] text-w-white">
+                  {fi ? "Mitä projektit maksavat?" : "What do projects cost?"}
+                </p>
+                <p className="mt-3 text-[0.875rem] leading-[1.65] text-w-white-50">
+                  {fi
+                    ? "Projektit vaihtelevat pienistä muutamasta tuhannesta eurosta laajoihin toimeksiantoihin. Tarjous aina viiden arkipäivän sisällä."
+                    : "Projects range from a few thousand euros for smaller work to larger engagements. We always provide a quote within five business days."}
+                </p>
+              </div>
 
-                {/* Info — bottom */}
-                <div className="flex flex-1 flex-col p-6 md:p-7 border-t border-dashed border-w-white-15">
-                  <p className="font-display text-[1.125rem] font-bold tracking-[-0.02em] text-w-white">
-                    {t("pekka.name")}
-                  </p>
-                  <p className="mt-1 font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">
-                    {t("pekka.role")}
-                  </p>
+              {/* Q3 */}
+              <div className="dashed-box p-6 md:p-7">
+                <p className="font-display text-[1rem] font-bold tracking-[-0.02em] text-w-white">
+                  {fi
+                    ? "Teettekö myös pieniä projekteja?"
+                    : "Do you take on small projects?"}
+                </p>
+                <p className="mt-3 text-[0.875rem] leading-[1.65] text-w-white-50">
+                  {fi
+                    ? "Kyllä. Minimiprojektimme on noin kahden viikon työ. Olemme myös tehneet kasvavien yritysten kanssa jatkuvia retainer-sopimuksia."
+                    : "Yes. Our minimum project is roughly two weeks of work. We also do ongoing retainer agreements with growing companies."}
+                </p>
+              </div>
 
-                  <div className="mt-5 flex flex-col gap-1.5">
-                    <a href={`mailto:${t("pekka.email")}`} className="font-mono text-[0.75rem] text-w-white-50 transition-colors duration-200 hover:text-w-white">
-                      {t("pekka.email")}
-                    </a>
-                    <a href={`tel:${t("pekka.phone").replace(/\s/g, "")}`} className="font-mono text-[0.75rem] text-w-white-50 transition-colors duration-200 hover:text-w-white">
-                      {t("pekka.phone")}
-                    </a>
-                  </div>
-
-                  <p className="mt-auto pt-6 text-[0.875rem] leading-[1.6] text-w-white-30 font-display tracking-[-0.01em]">
-                    &ldquo;{t("pekka.quote")}&rdquo;
-                  </p>
-                </div>
+              {/* Q4 */}
+              <div className="dashed-box p-6 md:p-7">
+                <p className="font-display text-[1rem] font-bold tracking-[-0.02em] text-w-white">
+                  {fi ? "Työskentelettekö etänä?" : "Do you work remotely?"}
+                </p>
+                <p className="mt-3 text-[0.875rem] leading-[1.65] text-w-white-50">
+                  {fi
+                    ? "Pääsääntöisesti etänä, mutta tulemme mielellämme paikan päälle Helsinkiin tai muualle. Asiakkaitamme on ympäri Suomea."
+                    : "Primarily remote, but we're happy to come on-site in Helsinki or elsewhere. Our clients are all across Finland."}
+                </p>
               </div>
 
             </div>
@@ -125,15 +416,126 @@ export function OtaYhteyttaPage() {
         </div>
       </section>
 
-      {/* Address */}
+      {/* ── Address ─────────────────────────────────────────────────────────── */}
       <section className="border-b border-dashed border-w-white-15">
         <div className="mx-auto max-w-[90rem] px-6 md:px-10 py-12">
           <div className="flex flex-col gap-1">
-            <p className="font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-15">{locale === "fi" ? "Osoite" : "Address"}</p>
-            <p className="font-mono text-[0.8125rem] text-w-white-30">Itämerenkatu 3A, 00180 Helsinki</p>
+            <p className="font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-15">
+              {fi ? "Osoite" : "Address"}
+            </p>
+            <p className="font-mono text-[0.8125rem] text-w-white-30">
+              Itämerenkatu 3A, 00180 Helsinki
+            </p>
           </div>
         </div>
       </section>
+
+      {/* ── CTA ─────────────────────────────────────────────────────────────── */}
+      <section className="border-b border-dashed border-w-white-15">
+        <div className="mx-auto max-w-[90rem] px-6 md:px-10 py-16 md:py-24">
+          <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+            <h2 className="font-display text-[clamp(1.5rem,3vw,2.5rem)] font-normal tracking-[-0.03em] text-w-white">
+              {fi ? "Rakennetaan jotain merkittävää." : "Let's build something significant."}
+            </h2>
+            <button onClick={() => setModalOpen(true)} className="btn-primary shrink-0">
+              <span className="btn-label">{fi ? "Ota yhteyttä" : "Get in touch"}</span>
+              <span className="btn-arrow text-w-black/40">→</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Modal ───────────────────────────────────────────────────────────── */}
+      {modalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ background: "rgba(3,4,10,0.85)", backdropFilter: "blur(4px)" }}
+          onClick={(e) => { if (e.target === e.currentTarget) setModalOpen(false); }}
+        >
+          <div className="dashed-box bg-w-black w-full max-w-lg p-6 sm:p-8 relative">
+            <button
+              onClick={() => setModalOpen(false)}
+              className="absolute right-4 top-4 font-mono text-[0.75rem] text-w-white-30 hover:text-w-white transition-colors"
+            >
+              ✕
+            </button>
+
+            {mStatus === "sent" ? (
+              <div className="flex flex-col items-start gap-4 py-6">
+                <span className="tag-accent">{fi ? "Lähetetty" : "Sent"}</span>
+                <p className="font-display text-[1.5rem] font-normal tracking-[-0.025em] text-w-white">
+                  {fi ? "Kiitos! Palaamme asiaan pian." : "Thanks! We'll be in touch soon."}
+                </p>
+                <p className="text-[0.875rem] leading-[1.65] text-w-white-30">
+                  {fi ? "Vastaamme yleensä saman päivän aikana." : "We typically respond the same day."}
+                </p>
+              </div>
+            ) : (
+              <>
+                <p className="font-display text-[1.25rem] font-normal tracking-[-0.025em] text-w-white mb-6">
+                  {fi ? "Kerro projektistasi" : "Tell us about your project"}
+                </p>
+                <form onSubmit={handleModalSubmit} className="flex flex-col gap-4">
+                  <div>
+                    <div className="mb-1.5 flex items-center justify-between">
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">{fi ? "Nimi" : "Name"} *</label>
+                      {mFieldOk("nimi") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
+                    </div>
+                    <input
+                      type="text" autoFocus autoComplete="name"
+                      placeholder={fi ? "Etunimi Sukunimi" : "First Last"}
+                      value={mValues.nimi}
+                      onChange={(e) => setMValues((v) => ({ ...v, nimi: e.target.value }))}
+                      onBlur={() => setMTouched((t) => ({ ...t, nimi: true }))}
+                      className={mInputCls("nimi")}
+                    />
+                    {mFieldErr("nimi") && <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">{fi ? "Syötä nimesi" : "Enter your name"}</p>}
+                  </div>
+                  <div>
+                    <div className="mb-1.5 flex items-center justify-between">
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">{fi ? "Sähköposti" : "Email"} *</label>
+                      {mFieldOk("sahkoposti") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
+                    </div>
+                    <input
+                      type="email" autoComplete="email"
+                      placeholder={fi ? "sinä@yritys.fi" : "you@company.com"}
+                      value={mValues.sahkoposti}
+                      onChange={(e) => setMValues((v) => ({ ...v, sahkoposti: e.target.value }))}
+                      onBlur={() => setMTouched((t) => ({ ...t, sahkoposti: true }))}
+                      className={mInputCls("sahkoposti")}
+                    />
+                    {mFieldErr("sahkoposti") && <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">{fi ? "Tarkista sähköpostiosoite" : "Check your email address"}</p>}
+                  </div>
+                  <div>
+                    <div className="mb-1.5 flex items-center justify-between">
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">{fi ? "Viesti" : "Message"} *</label>
+                      {mFieldOk("viesti") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
+                    </div>
+                    <textarea
+                      rows={3}
+                      placeholder={fi ? "Kerro lyhyesti projektistasi..." : "Briefly describe your project..."}
+                      value={mValues.viesti}
+                      onChange={(e) => setMValues((v) => ({ ...v, viesti: e.target.value }))}
+                      onBlur={() => setMTouched((t) => ({ ...t, viesti: true }))}
+                      className={`${mInputCls("viesti")} resize-none`}
+                    />
+                    {mFieldErr("viesti") && <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">{fi ? "Kirjoita ainakin muutama sana" : "Write at least a few words"}</p>}
+                  </div>
+                  <div className="mt-1 flex items-center gap-4">
+                    <button type="submit" disabled={mStatus === "sending"} className="btn-primary disabled:opacity-40">
+                      <span className="btn-label">{mStatus === "sending" ? "..." : fi ? "Lähetä" : "Send"}</span>
+                      <span className="btn-arrow text-w-black/40">→</span>
+                    </button>
+                    <span className="font-mono text-[0.5625rem] tracking-[0.04em] text-w-white-30">
+                      {fi ? "Vastaamme 24h sisällä." : "We respond within 24h."}
+                    </span>
+                  </div>
+                </form>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
     </main>
   );

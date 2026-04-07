@@ -83,7 +83,7 @@ export function MeistaPage() {
                   { value: "98%", label: locale === "fi" ? "Asiakastyytyväisyys" : "Client satisfaction" },
                 ].map((s) => (
                   <div key={s.label} className="dashed-box p-5 sm:p-8">
-                    <p className="font-mono text-[clamp(2rem,4vw,3rem)] font-bold leading-none tracking-[-0.04em] text-w-white">{s.value}</p>
+                    <p className="font-mono text-[clamp(2rem,4vw,3rem)] font-normal leading-none tracking-[-0.04em] text-w-white">{s.value}</p>
                     <p className="mt-3 font-mono text-[0.625rem] uppercase tracking-[0.06em] text-w-white-30">{s.label}</p>
                   </div>
                 ))}

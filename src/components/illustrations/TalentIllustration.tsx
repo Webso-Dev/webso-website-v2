@@ -45,11 +45,8 @@ export function TalentIllustration({ className = "" }: { className?: string }) {
           return (
             <g key={i}>
               {/* Static background line */}
-              <motion.line x1={s.x} y1={s.y} x2={ex} y2={ey}
+              <line x1={s.x} y1={s.y} x2={ex} y2={ey}
                 stroke="rgba(255,255,255,0.22)" strokeWidth="1"
-                initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: s.delay }}
-                viewport={{ once: true }}
               />
               {/* Traveling beam */}
               <motion.line x1={s.x} y1={s.y} x2={ex} y2={ey}
@@ -60,7 +57,6 @@ export function TalentIllustration({ className = "" }: { className?: string }) {
                   duration: 2.2, repeat: Infinity,
                   ease: "linear", delay: s.beamDelay,
                 }}
-                filter="url(#tal-glow)"
               />
             </g>
           );

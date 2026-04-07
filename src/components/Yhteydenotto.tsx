@@ -35,7 +35,7 @@ export function Yhteydenotto() {
 
   return (
     <section ref={sectionRef} className="overflow-hidden border-b border-dashed border-w-white-15 bg-w-black">
-      <div className="mx-auto max-w-[90rem]">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
         <div className="contact-block py-10 sm:py-16 md:py-24">
 
           <div className="grid overflow-hidden gap-4 md:grid-cols-[1.75fr_1fr]">

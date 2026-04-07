@@ -20,17 +20,20 @@ const logos = [
 export function LogoMarquee() {
   return (
     <section className="border-b border-dashed border-w-white-15 bg-w-black">
-      <div className="mx-auto max-w-[90rem] py-6 sm:py-10">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10 py-6 sm:py-10">
         <p className="mb-8 font-mono text-[0.6rem] uppercase tracking-[0.12em] text-w-white-30">
           Yhteistyössä
         </p>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+        <div
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4"
+          style={{ backgroundImage: "var(--dash-h), var(--dash-v)", backgroundSize: "100% 1px, 1px 100%", backgroundPosition: "top, left", backgroundRepeat: "no-repeat" }}
+        >
           {logos.map((logo) => (
             <div
               key={logo.src}
               className="flex items-center justify-center p-5 sm:p-7"
-              style={{ border: "1px dashed rgba(255,255,255,0.06)", marginTop: "-1px", marginLeft: "-1px" }}
+              style={{ backgroundImage: "var(--dash-v), var(--dash-h)", backgroundSize: "1px 100%, 100% 1px", backgroundPosition: "right, bottom", backgroundRepeat: "no-repeat" }}
             >
               <Image
                 src={logo.src}

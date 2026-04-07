@@ -66,17 +66,14 @@ export function Footer() {
   const locale = useLocale();
 
   return (
-    <footer className="border-t border-dashed border-w-white-15 bg-w-black">
-      <div className="mx-auto max-w-[90rem]">
+    <footer className="bg-w-black">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
 
         {/* Main footer row */}
-        <div className="grid grid-cols-1 gap-0 md:grid-cols-[1px_1fr_1px_auto_1px_auto_1px]">
-
-          {/* Left border */}
-          <div className="hidden self-stretch md:block" style={{ background: "var(--dash-v)" }} />
+        <div className="grid grid-cols-1 gap-0 md:grid-cols-[1fr_1px_auto_1px_auto]">
 
           {/* Brand column */}
-          <div className="py-10 md:pl-10 md:py-16">
+          <div className="py-10 md:pl-0 md:py-16">
             <Image
               src="/images/webso-logo.svg"
               alt="Webso"
@@ -100,7 +97,7 @@ export function Footer() {
           />
 
           {/* Navigation */}
-          <div className="border-t border-dashed border-w-white-15 py-10 md:border-t-0 md:px-14 md:py-16">
+          <div className="border-t border-dashed border-w-white-15 -mx-4 sm:-mx-8 md:mx-0 px-4 sm:px-8 py-10 md:border-t-0 md:px-8 md:py-16">
             <p className="tag mb-6">Sivut</p>
             <nav className="flex flex-col gap-2.5">
               {[
@@ -129,7 +126,7 @@ export function Footer() {
           />
 
           {/* Contact */}
-          <div className="border-t border-dashed border-w-white-15 py-10 md:border-t-0 md:px-14 md:py-16">
+          <div className="border-t border-dashed border-w-white-15 -mx-4 sm:-mx-8 md:mx-0 px-4 sm:px-8 py-10 md:border-t-0 md:px-8 md:py-16">
             <p className="tag mb-6">Yhteystiedot</p>
             <div className="flex flex-col gap-2">
               <a
@@ -152,16 +149,13 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Right border */}
-          <div className="hidden self-stretch md:block" style={{ background: "var(--dash-v)" }} />
-
         </div>
 
-        {/* WEBSO — own box, nothing below */}
-        <div className="border-t border-dashed border-w-white-15">
-          <WebsoScramble />
-        </div>
+      </div>
 
+      {/* WEBSO — full width, border extends to section edges */}
+      <div className="border-t border-dashed border-w-white-15">
+        <WebsoScramble />
       </div>
     </footer>
   );

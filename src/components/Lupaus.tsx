@@ -31,7 +31,7 @@ export function Lupaus() {
 
   return (
     <section ref={sectionRef} className="border-b border-dashed border-w-white-15 bg-w-black">
-      <div className="mx-auto max-w-[90rem]">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
         <div className="py-6 md:py-10">
           <p className="mb-10 font-display text-[clamp(1.5rem,3vw,2.75rem)] font-normal leading-[1.1] tracking-[-0.03em] text-w-white">
             Miksi Webso

@@ -18,8 +18,8 @@ export default function Home() {
         <LogoMarquee />
         <Lupaus />
         <Palvelut />
-        <Suosittelijat />
         <Yhteistyot />
+        <Suosittelijat />
         <Luvut />
         <Yhteydenotto />
       </main>

@@ -40,12 +40,12 @@ export function Palvelut() {
 
   return (
     <section ref={sectionRef} className="border-b border-dashed border-w-white-15 bg-w-black">
-      <div className="mx-auto max-w-[90rem]">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
         <div className="flex flex-col md:flex-row">
 
           {/* Left column — gradient spans full height, content is sticky */}
           <div className="shrink-0 border-b border-dashed border-w-white-15 md:w-[36%] md:border-b-0">
-            <div className="py-10 md:sticky md:top-[4.25rem] md:py-0 md:pb-24 md:pt-10 md:pr-14">
+            <div className="py-10 md:sticky md:top-[4.25rem] md:py-0 md:pb-24 md:pt-10 md:pr-8">
               <h2 className="font-display text-[clamp(1.5rem,3vw,2.75rem)] font-normal leading-[1.1] tracking-[-0.03em] text-w-white">
                 {locale === "fi" ? "Mitä me teemme" : "What we do"}
               </h2>
@@ -65,11 +65,11 @@ export function Palvelut() {
           <div className="hidden shrink-0 self-stretch md:block" style={{ width: "1px", background: "var(--dash-v)" }} />
 
           {/* Right column — three pillars */}
-          <div className="flex-1 py-10 md:pb-24 md:pt-10 md:pl-10">
+          <div className="flex-1 py-10 md:pb-24 md:pt-10 md:pl-8">
             {pillars.map((p, i) => (
               <div
                 key={p.num}
-                className={`pillar dashed-box p-5 sm:p-8 md:p-10 ${i < pillars.length - 1 ? "mb-4" : ""}`}
+                className={`pillar dashed-box p-6 sm:p-8 md:p-10 ${i < pillars.length - 1 ? "mb-4" : ""}`}
               >
                 <h3 className="font-mono text-[clamp(1.125rem,2vw,1.5rem)] font-normal uppercase leading-[1.15] tracking-[0.01em] text-w-white">
                   {p.title}

@@ -57,15 +57,13 @@ export function ProcessIllustration({ className = "" }: { className?: string }) 
         {/* ── Command line (human → AI) ─────────────────────────── */}
         <motion.path d={CMD}
           stroke="rgba(255,255,255,0.3)" strokeWidth="1" fill="none"
-          initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.4, delay: 0.2 }} viewport={{ once: true }}
+          initial={{ opacity: 1 }}
         />
         <motion.path d={CMD}
           stroke="#1560D4" strokeWidth="2.5" strokeLinecap="round" fill="none"
           strokeDasharray={`${BEAM_CMD} ${CMD_LEN + BEAM_CMD + 2}`}
           animate={{ strokeDashoffset: [BEAM_CMD, -CMD_LEN] }}
           transition={{ duration: 1.4, repeat: Infinity, ease: "linear" }}
-          filter="url(#proc-glow)"
         />
 
         {/* ── AI core ───────────────────────────────────────────── */}
@@ -83,10 +81,8 @@ export function ProcessIllustration({ className = "" }: { className?: string }) 
 
         {/* ── Output fan (AI → world) ───────────────────────────── */}
         {[FAN_T, FAN_M, FAN_B].map((d, i) => (
-          <motion.path key={i} d={d}
+          <path key={i} d={d}
             stroke="rgba(255,255,255,0.25)" strokeWidth="1" fill="none"
-            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.45 + i * 0.05 }} viewport={{ once: true }}
           />
         ))}
 
@@ -96,21 +92,18 @@ export function ProcessIllustration({ className = "" }: { className?: string }) 
           strokeDasharray={`${BEAM_FAN} ${FAN_DIAG_LEN + BEAM_FAN + 2}`}
           animate={{ strokeDashoffset: [BEAM_FAN, -FAN_DIAG_LEN] }}
           transition={{ duration: 1.1, repeat: Infinity, ease: "linear", delay: 0.7 }}
-          filter="url(#proc-glow)"
         />
         <motion.path d={FAN_M}
           stroke="#1560D4" strokeWidth="2" strokeLinecap="round" fill="none"
           strokeDasharray={`${BEAM_FAN} ${FAN_MID_LEN + BEAM_FAN + 2}`}
           animate={{ strokeDashoffset: [BEAM_FAN, -FAN_MID_LEN] }}
           transition={{ duration: 0.9, repeat: Infinity, ease: "linear", delay: 0.85 }}
-          filter="url(#proc-glow)"
         />
         <motion.path d={FAN_B}
           stroke="#1560D4" strokeWidth="2" strokeLinecap="round" fill="none"
           strokeDasharray={`${BEAM_FAN} ${FAN_DIAG_LEN + BEAM_FAN + 2}`}
           animate={{ strokeDashoffset: [BEAM_FAN, -FAN_DIAG_LEN] }}
           transition={{ duration: 1.1, repeat: Infinity, ease: "linear", delay: 1.0 }}
-          filter="url(#proc-glow)"
         />
       </svg>
     </div>

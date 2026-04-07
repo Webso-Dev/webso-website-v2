@@ -20,7 +20,7 @@ const vals = {
 };
 
 const team = [
-  { name: "Pekka", role: "CEO", image: "/images/team/pekka.webp" },
+  { name: "Pekka", role: "CEO", image: "/images/team/pekka.avif" },
   { name: "Aleksi", role: "Lead Engineer", image: null },
   { name: "Mikko", role: "Full Stack Developer", image: null },
   { name: "Sami", role: "AI Engineer", image: null },

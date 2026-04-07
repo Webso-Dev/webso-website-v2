@@ -85,9 +85,9 @@ export function Yhteydenotto() {
             <div className="min-w-0 flex flex-col dashed-box">
 
               {/* Photo — top half */}
-              <div className="relative aspect-[16/9] w-full overflow-hidden md:aspect-[4/3]">
+              <div className="relative aspect-square w-full max-w-[280px] overflow-hidden">
                 <Image
-                  src="/images/team/pekka.webp"
+                  src="/images/team/pekka.avif"
                   alt="Pekka"
                   fill
                   className="object-cover object-top"

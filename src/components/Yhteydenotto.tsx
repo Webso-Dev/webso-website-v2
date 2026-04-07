@@ -55,10 +55,10 @@ export function Yhteydenotto() {
       <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
         <div className="contact-block py-10 sm:py-16 md:py-24">
 
-          <div className="grid overflow-hidden gap-4 md:grid-cols-[1.75fr_1fr]">
+          <div className="grid overflow-hidden gap-4 md:grid-cols-2">
 
-            {/* Left: Form box */}
-            <div className="min-w-0 dashed-box p-4 sm:p-6 md:p-7">
+            {/* Right: Form box */}
+            <div className="min-w-0 dashed-box p-4 sm:p-6 md:p-7 md:order-last">
               <span className="tag mb-5 inline-block">Ota yhteyttä</span>
               <h2 className="font-display text-[clamp(1.25rem,2.5vw,1.875rem)] font-bold tracking-[-0.03em] text-w-white">
                 {t("title")}
@@ -182,66 +182,50 @@ export function Yhteydenotto() {
               )}
             </div>
 
-            {/* Right: Pekka — testimonial style */}
-            <div className="min-w-0 relative dashed-box overflow-hidden">
+            {/* Left: Pekka — photo fills full column, quote overlaid at bottom */}
+            <div className="min-w-0 relative overflow-hidden min-h-[520px] md:min-h-0 md:order-first">
 
-              {/* Mobile: photo at top */}
-              <div className="relative aspect-[4/3] w-full overflow-hidden md:hidden">
-                <Image
-                  src="/images/team/pekka_no_bg.avif"
-                  alt="Pekka"
-                  fill
-                  className="object-cover object-top"
-                  sizes="100vw"
-                />
-                <div className="absolute inset-0 bg-w-black/10" />
-              </div>
+              {/* Photo — fills entire column */}
+              <Image
+                src="/images/team/pekka_no_bg.avif"
+                alt="Pekka"
+                fill
+                className="object-contain"
+                style={{ objectPosition: "center calc(100% - 100px)" }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
 
-              {/* Text content — left side */}
-              <div className="relative z-10 flex flex-col gap-5 p-6 md:p-7 md:w-[58%] md:min-h-full md:justify-center">
-                <span className="tag self-start">{fi ? "Yhteyshenkilö" : "Contact"}</span>
+              {/* Bottom gradient so text is readable */}
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to top, rgba(3,4,10,1) 0%, rgba(3,4,10,0.95) 18%, rgba(3,4,10,0.4) 38%, rgba(3,4,10,0) 55%)" }}
+              />
 
-                <div className="flex items-stretch gap-4">
-                  <div className="shrink-0 w-px bg-w-accent" />
-                  <div className="flex flex-col gap-5">
-                    <p className="font-display text-[clamp(0.9375rem,1.4vw,1.125rem)] font-normal leading-[1.45] tracking-[-0.02em] text-w-white">
-                      &ldquo;{t("pekka.quote")}&rdquo;
+              {/* Quote overlaid at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 z-10 p-6 md:p-8">
+                <div className="flex flex-col gap-4">
+                  <p className="font-display text-[clamp(1.5rem,2.8vw,2.5rem)] font-normal leading-[1.25] tracking-[-0.03em] text-w-white">
+                    Hypätään suoraan asiaan,<br />nakkaa mulle viestiä.
+                  </p>
+                  <div>
+                    <p className="font-mono text-[0.8125rem] uppercase tracking-[0.04em] text-w-white-70">
+                      {t("pekka.name")}
                     </p>
-                    <div>
-                      <p className="font-mono text-[0.6875rem] uppercase tracking-[0.04em] text-w-white-70">
-                        {t("pekka.name")}
-                      </p>
-                      <p className="mt-0.5 font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">
-                        {t("pekka.role")}
-                      </p>
-                      <div className="mt-3 flex flex-col gap-1">
-                        <a href={`mailto:${t("pekka.email")}`}
-                          className="font-mono text-[0.6875rem] text-w-white-30 transition-colors duration-200 hover:text-w-white">
-                          {t("pekka.email")}
-                        </a>
-                        <a href={`tel:${t("pekka.phone").replace(/\s/g, "")}`}
-                          className="font-mono text-[0.6875rem] text-w-white-30 transition-colors duration-200 hover:text-w-white">
-                          {t("pekka.phone")}
-                        </a>
-                      </div>
+                    <p className="mt-0.5 font-mono text-[0.625rem] uppercase tracking-[0.06em] text-w-white-30">
+                      {t("pekka.role")}
+                    </p>
+                    <div className="mt-3 flex flex-col gap-1">
+                      <a href={`mailto:${t("pekka.email")}`}
+                        className="font-mono text-[0.75rem] text-w-white-30 transition-colors duration-200 hover:text-w-white">
+                        {t("pekka.email")}
+                      </a>
+                      <a href={`tel:${t("pekka.phone").replace(/\s/g, "")}`}
+                        className="font-mono text-[0.75rem] text-w-white-30 transition-colors duration-200 hover:text-w-white">
+                        {t("pekka.phone")}
+                      </a>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              {/* Photo — absolute right side, desktop only */}
-              <div className="hidden md:block absolute inset-y-0 right-0 w-[48%] overflow-hidden">
-                <Image
-                  src="/images/team/pekka_no_bg.avif"
-                  alt="Pekka"
-                  fill
-                  className="object-cover object-top"
-                  sizes="25vw"
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{ background: "linear-gradient(to right, rgba(3,4,10,1) 0px, rgba(3,4,10,0.7) 40%, rgba(3,4,10,0) 100%)" }}
-                />
               </div>
 
             </div>

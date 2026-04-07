@@ -45,7 +45,7 @@ export function Hero() {
 
         const makeWordSpan = (w: string) => {
           const outer = doc.createElement("span");
-          outer.className = "inline-block overflow-hidden";
+          outer.className = "inline-block overflow-hidden pb-[0.2em] -mb-[0.2em]";
           const inner = doc.createElement("span");
           inner.className = "hw inline-block translate-y-full";
           inner.textContent = w;

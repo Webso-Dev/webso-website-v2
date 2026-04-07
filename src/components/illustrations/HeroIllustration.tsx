@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 
 const VW = 900, VH = 560;
-// Arc center exactly at the bottom-right corner
-const CX = VW, CY = VH;
+// Arc center pushed 40px beyond the corner so both endpoints fall outside the viewBox and are clipped
+const CX = VW + 40, CY = VH + 40;
 
 function arcPath(r: number) {
   return `M ${CX - r},${CY} A ${r},${r} 0 0,0 ${CX},${CY - r}`;

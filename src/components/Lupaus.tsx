@@ -4,13 +4,13 @@ import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ProcessIllustration } from "./illustrations/ProcessIllustration";
-import { TalentIllustration } from "./illustrations/TalentIllustration";
-import { PartnerIllustration } from "./illustrations/PartnerIllustration";
+import { AINativeIllustration } from "./illustrations/AINativeIllustration";
+import { TalentFilterIllustration } from "./illustrations/TalentFilterIllustration";
+import { CollaborationIllustration } from "./illustrations/CollaborationIllustration";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const illustrations = [ProcessIllustration, TalentIllustration, PartnerIllustration];
+const illustrations = [AINativeIllustration, TalentFilterIllustration, CollaborationIllustration];
 
 export function Lupaus() {
   const t = useTranslations("lupaus");

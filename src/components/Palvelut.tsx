@@ -35,15 +35,15 @@ export function Palvelut() {
   ];
 
   const subtitle = locale === "fi"
-    ? "Rakennamme ohjelmistoja tekoälyn täydellä potentiaalilla — nopeammin ja laadukkaammin kuin perinteiset toimittajat."
-    : "We build software with the full potential of AI — faster and better than traditional vendors.";
+    ? "Rakennamme ohjelmistoja tekoälyn täydellä potentiaalilla nopeammin ja laadukkaammin kuin perinteiset toimittajat."
+    : "We build software with the full potential of AI faster and better than traditional vendors.";
 
   return (
     <section ref={sectionRef} className="border-b border-dashed border-w-white-15 bg-w-black">
       <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
         <div className="flex flex-col md:flex-row">
 
-          {/* Left column — gradient spans full height, content is sticky */}
+          {/* Left column gradient spans full height, content is sticky */}
           <div className="shrink-0 border-b border-dashed border-w-white-15 md:w-[36%] md:border-b-0">
             <div className="py-10 md:sticky md:top-[4.25rem] md:py-0 md:pb-24 md:pt-10 md:pr-8">
               <h2 className="font-display text-[clamp(1.5rem,3vw,2.75rem)] font-normal leading-[1.1] tracking-[-0.03em] text-w-white">
@@ -64,7 +64,7 @@ export function Palvelut() {
           {/* Full-height vertical separator */}
           <div className="hidden shrink-0 self-stretch md:block" style={{ width: "1px", background: "var(--dash-v)" }} />
 
-          {/* Right column — three pillars */}
+          {/* Right column three pillars */}
           <div className="flex-1 py-10 md:pb-24 md:pt-10 md:pl-8">
             {pillars.map((p, i) => (
               <div

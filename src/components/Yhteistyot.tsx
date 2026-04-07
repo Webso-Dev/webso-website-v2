@@ -14,8 +14,8 @@ const cases = [
     id: "dieta",
     titleFi: "Composable commerce -järjestelmä",
     titleEn: "Composable commerce system",
-    descFi: "Modulaarinen verkkokauppajärjestelmä joka korvasi vanhentuneen alustan — nopeampi toimitus, alhaisemmat ylläpitokustannukset.",
-    descEn: "Modular e-commerce system replacing an outdated platform — faster delivery, lower maintenance costs.",
+    descFi: "Modulaarinen verkkokauppajärjestelmä joka korvasi vanhentuneen alustan nopeampi toimitus, alhaisemmat ylläpitokustannukset.",
+    descEn: "Modular e-commerce system replacing an outdated platform faster delivery, lower maintenance costs.",
     image: "/images/cases/dieta-hero.webp",
     logo: "/images/logos/dieta.avif",
     tag: "Sovelluskehitys",
@@ -25,8 +25,8 @@ const cases = [
     id: "bongariliitto",
     titleFi: "Lintuhavaintojärjestelmän modernisointi",
     titleEn: "Birdwatching system modernisation",
-    descFi: "Havaintojärjestelmä uudelleenrakennettu modernilla teknologiapinolla — suorituskyky moninkertaistui.",
-    descEn: "Observation system rebuilt on a modern stack — performance multiplied.",
+    descFi: "Havaintojärjestelmä uudelleenrakennettu modernilla teknologiapinolla suorituskyky moninkertaistui.",
+    descEn: "Observation system rebuilt on a modern stack performance multiplied.",
     image: "/images/cases/bongariliitto-hero.webp",
     logo: "/images/logos/bongariliitto.avif",
     tag: "Sovelluskehitys",
@@ -76,7 +76,7 @@ export function Yhteistyot() {
               key={c.id}
               className={`case-row group flex flex-col md:flex-row dashed-box ${i < cases.length - 1 ? "mb-6" : ""}`}
             >
-              {/* Image — full card height */}
+              {/* Image full card height */}
               <div className="relative h-52 w-full shrink-0 overflow-hidden md:h-auto md:w-[36%] md:self-stretch">
                 <Image
                   src={c.image}

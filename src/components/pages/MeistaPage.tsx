@@ -55,7 +55,7 @@ export function MeistaPage() {
         </div>
       </section>
 
-      {/* Story — sticky two-column with stats */}
+      {/* Story sticky two-column with stats */}
       <section className="border-b border-dashed border-w-white-15">
         <div className="mx-auto max-w-[90rem] px-6 md:px-10">
           <div className="flex flex-col md:flex-row">
@@ -66,8 +66,8 @@ export function MeistaPage() {
               </h2>
               <p className="mt-5 text-[1rem] leading-[1.75] text-w-white-50">
                 {locale === "fi"
-                  ? "Webso syntyi tarpeesta tehdä ohjelmistokehitystä paremmin. Tekoäly ei ole meillä trendi — se on integroitu kaikkeen."
-                  : "Webso was born from the need to do software development better. AI isn't a trend here — it's integrated into everything."}
+                  ? "Webso syntyi tarpeesta tehdä ohjelmistokehitystä paremmin. Tekoäly ei ole meillä trendi se on integroitu kaikkeen."
+                  : "Webso was born from the need to do software development better. AI isn't a trend here it's integrated into everything."}
               </p>
             </div>
 
@@ -93,7 +93,7 @@ export function MeistaPage() {
         </div>
       </section>
 
-      {/* Principles — card grid */}
+      {/* Principles card grid */}
       <section className="border-b border-dashed border-w-white-15">
         <div className="mx-auto max-w-[90rem] px-6 md:px-10">
           <div className="py-10 md:py-20">
@@ -119,7 +119,7 @@ export function MeistaPage() {
         </div>
       </section>
 
-      {/* Team — 3x3 grid */}
+      {/* Team 3x3 grid */}
       <section className="border-b border-dashed border-w-white-15">
         <div className="mx-auto max-w-[90rem] px-6 md:px-10">
           <div className="py-10 md:pb-24 md:pt-10">

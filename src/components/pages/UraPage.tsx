@@ -29,7 +29,7 @@ export function UraPage() {
         </div>
       </section>
 
-      {/* Reasons — matches homepage Palvelut two-column pattern */}
+      {/* Reasons matches homepage Palvelut two-column pattern */}
       <section className="border-b border-dashed border-w-white-15">
         <div className="mx-auto max-w-[90rem] px-6 md:px-10">
           <div className="flex flex-col md:flex-row">
@@ -40,8 +40,8 @@ export function UraPage() {
               </h2>
               <p className="mt-5 text-[1rem] leading-[1.7] text-w-white-50">
                 {locale === "fi"
-                  ? "Täällä tekoäly ei ole tulossa — se on jo täällä."
-                  : "Here AI isn't coming — it's already here."}
+                  ? "Täällä tekoäly ei ole tulossa se on jo täällä."
+                  : "Here AI isn't coming it's already here."}
               </p>
             </div>
 
@@ -63,7 +63,7 @@ export function UraPage() {
         </div>
       </section>
 
-      {/* Team image — visual weight */}
+      {/* Team image visual weight */}
       <section className="border-b border-dashed border-w-white-15">
         <div className="mx-auto max-w-[90rem] px-6 md:px-10">
           <div className="group relative h-52 w-full overflow-hidden sm:h-64 md:h-80">
@@ -90,8 +90,8 @@ export function UraPage() {
                 </h3>
                 <p className="mt-3 max-w-lg text-[0.9375rem] leading-[1.7] text-white/70">
                   {locale === "fi"
-                    ? "Emme löytäneet sopivaa roolia? Lähetä avoin hakemus — otamme yhteyttä kun sopiva paikka aukeaa."
-                    : "Don't see a fitting role? Send an open application — we'll reach out when the right position opens."}
+                    ? "Emme löytäneet sopivaa roolia? Lähetä avoin hakemus otamme yhteyttä kun sopiva paikka aukeaa."
+                    : "Don't see a fitting role? Send an open application we'll reach out when the right position opens."}
                 </p>
               </div>
               <Link href={`/${locale}/ota-yhteytta`} className="btn-outline shrink-0 inline-flex">

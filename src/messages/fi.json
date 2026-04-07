@@ -7,7 +7,7 @@
     "otaYhteytta": "Ota yhteyttä"
   },
   "hero": {
-    "headline": "AI-natiivi tiimi toimittaa enemmän,\nnopeammin ja paremmalla laadulla.",
+    "headline": "AI-natiivi tiimi toimittaa enemmän, \nnopeammin ja paremmalla laadulla.",
     "subheadline": "Tekoäly on osa jokaista projektia. Nopeampi toimitus, parempi laatu, pienempi budjetti.",
     "ctaPrimary": "Ota yhteyttä",
     "ctaSecondary": "Tutustu palveluihin"
@@ -17,7 +17,7 @@
       {
         "number": "01",
         "title": "AI-natiivi prosessi",
-        "description": "Tekoäly on sisäänrakennettu työtapaamme — ei jälkikäteen lisätty. Tämä tarkoittaa nopeampaa kehitystä ja parempaa laatua."
+        "description": "Tekoäly on sisäänrakennettu työtapaamme ei jälkikäteen lisätty. Tämä tarkoittaa nopeampaa kehitystä ja parempaa laatua."
       },
       {
         "number": "02",
@@ -94,7 +94,7 @@
       {
         "number": "03",
         "title": "Kasvava firma",
-        "description": "Pääset vaikuttamaan suuntaan ja kulttuuriin. Tämä ei ole iso koneisto — tämä on kasvutarina."
+        "description": "Pääset vaikuttamaan suuntaan ja kulttuuriin. Tämä ei ole iso koneisto tämä on kasvutarina."
       }
     ],
     "cta": "Katso avoimet paikat"

@@ -15,7 +15,7 @@ export function OtaYhteyttaPage() {
   const [values, setValues] = useState({ nimi: "", sahkoposti: "", viesti: "", yritys: "" });
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [modalOpen, setModalOpen] = useState(false);
-  const [mValues, setMValues] = useState({ nimi: "", sahkoposti: "", viesti: "" });
+  const [mValues, setMValues] = useState({ nimi: "", sahkoposti: "", viesti: "", yritys: "" });
   const [mTouched, setMTouched] = useState<Record<string, boolean>>({});
   const [mStatus, setMStatus] = useState<"idle" | "sending" | "sent">("idle");
 
@@ -187,10 +187,10 @@ export function OtaYhteyttaPage() {
                     )}
                   </div>
 
-                  {/* Company — optional, shown last */}
+                  {/* Company optional, shown last */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
-                      {t("form.yritys")} — <span className="normal-case">{fi ? "valinnainen" : "optional"}</span>
+                      {t("form.yritys")} <span className="normal-case">{fi ? "valinnainen" : "optional"}</span>
                     </label>
                     <input
                       name="yritys" type="text" autoComplete="organization"
@@ -231,222 +231,6 @@ export function OtaYhteyttaPage() {
       <Lupaus />
       <Yhteistyot />
       <Suosittelijat />
-
-      {/* ── How it works ────────────────────────────────────────────────────── */}
-      <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
-          <div className="py-12 md:py-16">
-            <span className="tag mb-10 inline-block">
-              {fi ? "Miten se toimii" : "How it works"}
-            </span>
-            <div className="grid gap-4 md:grid-cols-3">
-              {/* Step 1 */}
-              <div className="dashed-box p-6 md:p-7 flex flex-col gap-4">
-                <span className="tag-accent self-start">01</span>
-                <p className="font-display text-[1.125rem] font-bold tracking-[-0.025em] text-w-white">
-                  {fi ? "Lähetä viesti" : "Send a message"}
-                </p>
-                <p className="text-[0.875rem] leading-[1.65] text-w-white-50">
-                  {fi
-                    ? "Täytä lomake tai soita suoraan. Kerro lyhyesti mistä on kyse."
-                    : "Fill in the form or call directly. Briefly describe what it's about."}
-                </p>
-              </div>
-              {/* Step 2 */}
-              <div className="dashed-box p-6 md:p-7 flex flex-col gap-4">
-                <span className="tag-accent self-start">02</span>
-                <p className="font-display text-[1.125rem] font-bold tracking-[-0.025em] text-w-white">
-                  {fi ? "Discovery-puhelu" : "Discovery call"}
-                </p>
-                <p className="text-[0.875rem] leading-[1.65] text-w-white-50">
-                  {fi
-                    ? "Sovitaan 30 minuutin puhelu. Käymme läpi tarpeesi ja katsomme sopiiko yhteistyö."
-                    : "We schedule a 30-minute call. We go through your needs and see if we're a good fit."}
-                </p>
-              </div>
-              {/* Step 3 */}
-              <div className="dashed-box p-6 md:p-7 flex flex-col gap-4">
-                <span className="tag-accent self-start">03</span>
-                <p className="font-display text-[1.125rem] font-bold tracking-[-0.025em] text-w-white">
-                  {fi ? "Projekti käynnissä" : "Project kicks off"}
-                </p>
-                <p className="text-[0.875rem] leading-[1.65] text-w-white-50">
-                  {fi
-                    ? "Tarjous viiden arkipäivän sisällä. Aloitamme heti kun sopimus on allekirjoitettu."
-                    : "Proposal within five business days. We start as soon as the contract is signed."}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Why Webso ───────────────────────────────────────────────────────── */}
-      <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
-          <div className="py-12 md:py-16">
-            <span className="tag mb-10 inline-block">
-              {fi ? "Miksi Webso" : "Why Webso"}
-            </span>
-            <div className="grid gap-4 md:grid-cols-3">
-              {/* Reason 1 */}
-              <div className="dashed-box p-6 md:p-7 flex flex-col gap-4">
-                <p className="font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-accent">
-                  01
-                </p>
-                <p className="font-display text-[1.125rem] font-bold tracking-[-0.025em] text-w-white">
-                  {fi ? "3× nopeampi toimitus" : "3× faster delivery"}
-                </p>
-                <p className="text-[0.875rem] leading-[1.65] text-w-white-50">
-                  {fi
-                    ? "AI-natiivi prosessi tarkoittaa, että toimitetaan enemmän lyhyemmässä ajassa. Ei bullshittiä."
-                    : "AI-native process means we ship more in less time. No bullshit."}
-                </p>
-              </div>
-              {/* Reason 2 */}
-              <div className="dashed-box p-6 md:p-7 flex flex-col gap-4">
-                <p className="font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-accent">
-                  02
-                </p>
-                <p className="font-display text-[1.125rem] font-bold tracking-[-0.025em] text-w-white">
-                  {fi ? "Läpinäkyvä hinnoittelu" : "Transparent pricing"}
-                </p>
-                <p className="text-[0.875rem] leading-[1.65] text-w-white-50">
-                  {fi
-                    ? "Tiedät aina mihin rahat menevät. Kiinteä hinta tai tuntiveloitus — sinä päätät."
-                    : "You always know where your money goes. Fixed price or time & materials — you decide."}
-                </p>
-              </div>
-              {/* Reason 3 */}
-              <div className="dashed-box p-6 md:p-7 flex flex-col gap-4">
-                <p className="font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-accent">
-                  03
-                </p>
-                <p className="font-display text-[1.125rem] font-bold tracking-[-0.025em] text-w-white">
-                  {fi ? "Vastaus 24 tunnissa" : "Response in 24 hours"}
-                </p>
-                <p className="text-[0.875rem] leading-[1.65] text-w-white-50">
-                  {fi
-                    ? "Ei kuukausia odottelua. Vastaamme nopeasti ja aloitamme projektin viikkojen sisällä."
-                    : "No months of waiting. We respond quickly and start the project within weeks."}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Pekka ───────────────────────────────────────────────────────────── */}
-      <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
-          <div className="py-10 md:py-16">
-            <div className="flex flex-col sm:flex-row gap-6 items-start max-w-lg">
-              <div className="relative h-20 w-20 shrink-0 overflow-hidden">
-                <Image
-                  src="/images/team/pekka.avif"
-                  alt="Pekka"
-                  fill
-                  className="object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-w-black/10" />
-                <span className="pointer-events-none absolute left-0 top-0 z-10 h-px w-4 bg-w-accent" />
-                <span className="pointer-events-none absolute left-0 top-0 z-10 h-4 w-px bg-w-accent" />
-              </div>
-              <div>
-                <p className="font-display text-[1rem] font-bold tracking-[-0.02em] text-w-white">
-                  {t("pekka.name")}
-                </p>
-                <p className="mt-0.5 font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
-                  {t("pekka.role")}
-                </p>
-                <p className="mt-4 text-[0.875rem] leading-[1.6] text-w-white-30 font-display tracking-[-0.01em]">
-                  &ldquo;{t("pekka.quote")}&rdquo;
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── FAQ ─────────────────────────────────────────────────────────────── */}
-      <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
-          <div className="py-12 md:py-16">
-            <span className="tag mb-10 inline-block">
-              {fi ? "Usein kysyttyä" : "FAQ"}
-            </span>
-            <div className="flex flex-col gap-4 max-w-3xl">
-
-              {/* Q1 */}
-              <div className="dashed-box p-6 md:p-7">
-                <p className="font-display text-[1rem] font-bold tracking-[-0.02em] text-w-white">
-                  {fi
-                    ? "Kuinka nopeasti voitte aloittaa?"
-                    : "How quickly can you start?"}
-                </p>
-                <p className="mt-3 text-[0.875rem] leading-[1.65] text-w-white-50">
-                  {fi
-                    ? "Useimmiten aloitamme projektin 2–4 viikon sisällä yhteydenotosta. Kiireellisissä tapauksissa jopa nopeammin."
-                    : "We typically start a project within 2–4 weeks of first contact. In urgent cases, even faster."}
-                </p>
-              </div>
-
-              {/* Q2 */}
-              <div className="dashed-box p-6 md:p-7">
-                <p className="font-display text-[1rem] font-bold tracking-[-0.02em] text-w-white">
-                  {fi ? "Mitä projektit maksavat?" : "What do projects cost?"}
-                </p>
-                <p className="mt-3 text-[0.875rem] leading-[1.65] text-w-white-50">
-                  {fi
-                    ? "Projektit vaihtelevat pienistä muutamasta tuhannesta eurosta laajoihin toimeksiantoihin. Tarjous aina viiden arkipäivän sisällä."
-                    : "Projects range from a few thousand euros for smaller work to larger engagements. We always provide a quote within five business days."}
-                </p>
-              </div>
-
-              {/* Q3 */}
-              <div className="dashed-box p-6 md:p-7">
-                <p className="font-display text-[1rem] font-bold tracking-[-0.02em] text-w-white">
-                  {fi
-                    ? "Teettekö myös pieniä projekteja?"
-                    : "Do you take on small projects?"}
-                </p>
-                <p className="mt-3 text-[0.875rem] leading-[1.65] text-w-white-50">
-                  {fi
-                    ? "Kyllä. Minimiprojektimme on noin kahden viikon työ. Olemme myös tehneet kasvavien yritysten kanssa jatkuvia retainer-sopimuksia."
-                    : "Yes. Our minimum project is roughly two weeks of work. We also do ongoing retainer agreements with growing companies."}
-                </p>
-              </div>
-
-              {/* Q4 */}
-              <div className="dashed-box p-6 md:p-7">
-                <p className="font-display text-[1rem] font-bold tracking-[-0.02em] text-w-white">
-                  {fi ? "Työskentelettekö etänä?" : "Do you work remotely?"}
-                </p>
-                <p className="mt-3 text-[0.875rem] leading-[1.65] text-w-white-50">
-                  {fi
-                    ? "Pääsääntöisesti etänä, mutta tulemme mielellämme paikan päälle Helsinkiin tai muualle. Asiakkaitamme on ympäri Suomea."
-                    : "Primarily remote, but we're happy to come on-site in Helsinki or elsewhere. Our clients are all across Finland."}
-                </p>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Address ─────────────────────────────────────────────────────────── */}
-      <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10 py-12">
-          <div className="flex flex-col gap-1">
-            <p className="font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-15">
-              {fi ? "Osoite" : "Address"}
-            </p>
-            <p className="font-mono text-[0.8125rem] text-w-white-30">
-              Itämerenkatu 3A, 00180 Helsinki
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* ── CTA ─────────────────────────────────────────────────────────────── */}
       <section className="border-b border-dashed border-w-white-15">
@@ -496,7 +280,7 @@ export function OtaYhteyttaPage() {
                 <form onSubmit={handleModalSubmit} className="flex flex-col gap-4">
                   <div>
                     <div className="mb-1.5 flex items-center justify-between">
-                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">{fi ? "Nimi" : "Name"} *</label>
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">{t("form.nimi")} *</label>
                       {mFieldOk("nimi") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
                     </div>
                     <input
@@ -511,7 +295,7 @@ export function OtaYhteyttaPage() {
                   </div>
                   <div>
                     <div className="mb-1.5 flex items-center justify-between">
-                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">{fi ? "Sähköposti" : "Email"} *</label>
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">{t("form.sahkoposti")} *</label>
                       {mFieldOk("sahkoposti") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
                     </div>
                     <input
@@ -526,7 +310,7 @@ export function OtaYhteyttaPage() {
                   </div>
                   <div>
                     <div className="mb-1.5 flex items-center justify-between">
-                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">{fi ? "Viesti" : "Message"} *</label>
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">{t("form.viesti")} *</label>
                       {mFieldOk("viesti") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
                     </div>
                     <textarea
@@ -539,9 +323,21 @@ export function OtaYhteyttaPage() {
                     />
                     {mFieldErr("viesti") && <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">{fi ? "Kirjoita ainakin muutama sana" : "Write at least a few words"}</p>}
                   </div>
+                  <div>
+                    <label className="mb-1.5 block font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
+                      {t("form.yritys")} <span className="normal-case">{fi ? "valinnainen" : "optional"}</span>
+                    </label>
+                    <input
+                      type="text" autoComplete="organization"
+                      placeholder={fi ? "Yrityksen nimi" : "Company name"}
+                      value={mValues.yritys}
+                      onChange={(e) => setMValues((v) => ({ ...v, yritys: e.target.value }))}
+                      className={mInputCls("yritys")}
+                    />
+                  </div>
                   <div className="mt-1 flex items-center gap-4">
                     <button type="submit" disabled={mStatus === "sending"} className="btn-primary disabled:opacity-40">
-                      <span className="btn-label">{mStatus === "sending" ? "..." : fi ? "Lähetä" : "Send"}</span>
+                      <span className="btn-label">{mStatus === "sending" ? "..." : fi ? "Lähetä viesti" : "Send message"}</span>
                       <span className="btn-arrow text-w-black/40">→</span>
                     </button>
                     <span className="font-mono text-[0.5625rem] tracking-[0.04em] text-w-white-30">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -10,8 +10,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Yhteydenotto() {
   const t = useTranslations("yhteydenotto");
+  const locale = useLocale();
+  const fi = locale === "fi";
   const sectionRef = useRef<HTMLElement>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [values, setValues] = useState({ nimi: "", sahkoposti: "", viesti: "", yritys: "" });
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -25,13 +29,26 @@ export function Yhteydenotto() {
     return () => ctx.revert();
   }, []);
 
+  const validators: Record<string, (v: string) => boolean> = {
+    nimi: (v) => v.trim().length >= 2,
+    sahkoposti: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+    viesti: (v) => v.trim().length >= 10,
+  };
+
+  const fieldOk = (k: string) => touched[k] && validators[k]?.(values[k] ?? "");
+  const fieldErr = (k: string) => touched[k] && validators[k] && !validators[k](values[k] ?? "");
+  const isComplete = Object.entries(validators).every(([k, fn]) => fn(values[k] ?? ""));
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setTouched({ nimi: true, sahkoposti: true, viesti: true });
+    if (!isComplete) return;
     setStatus("sending");
     setTimeout(() => setStatus("sent"), 1500);
   };
 
-  const inputCls = "w-full bg-transparent px-3 py-2.5 text-[0.875rem] text-w-white outline-none transition-colors duration-200 placeholder:text-w-white-20 dashed-box";
+  const inputCls = (k: string) =>
+    `w-full bg-transparent px-3 py-2.5 text-[0.875rem] text-w-white outline-none transition-all duration-200 placeholder:text-white/25 dashed-box${fieldErr(k) ? " opacity-80" : ""}`;
 
   return (
     <section ref={sectionRef} className="overflow-hidden border-b border-dashed border-w-white-15 bg-w-black">
@@ -48,43 +65,127 @@ export function Yhteydenotto() {
               </h2>
               <p className="mt-1.5 text-[0.8125rem] text-w-white-30">{t("subtitle")}</p>
 
-              <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-3">
-                <div className="grid gap-3 md:grid-cols-2">
-                  {(["nimi", "sahkoposti", "yritys", "puhelin"] as const).map((f) => (
-                    <div key={f}>
-                      <label className="mb-1.5 block font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">
-                        {t(`form.${f}`)}{f !== "puhelin" && " *"}
+              {status === "sent" ? (
+                <div className="mt-10 flex flex-col items-start gap-4">
+                  <span className="tag-accent">{fi ? "Lähetetty" : "Sent"}</span>
+                  <p className="font-display text-[1.5rem] font-normal tracking-[-0.025em] text-w-white">
+                    {fi ? "Kiitos! Palaamme asiaan pian." : "Thanks! We'll be in touch soon."}
+                  </p>
+                  <p className="text-[0.875rem] leading-[1.65] text-w-white-30">
+                    {fi ? "Vastaamme yleensä saman päivän aikana." : "We typically respond the same day."}
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-4">
+
+                  {/* Name */}
+                  <div>
+                    <div className="mb-1.5 flex items-center justify-between">
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
+                        {t("form.nimi")} *
                       </label>
-                      <input
-                        name={f}
-                        type={f === "sahkoposti" ? "email" : f === "puhelin" ? "tel" : "text"}
-                        required={f !== "puhelin"}
-                        className={inputCls}
-                      />
+                      {fieldOk("nimi") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
                     </div>
-                  ))}
-                </div>
-                <div>
-                  <label className="mb-1.5 block font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">
-                    {t("form.viesti")}
-                  </label>
-                  <textarea name="message" rows={4} className={`${inputCls} resize-none`} />
-                </div>
-                <div className="mt-1">
-                  <button type="submit" disabled={status !== "idle"} className="btn-primary disabled:opacity-40">
-                    <span className="btn-label">
-                      {status === "idle" ? t("form.laheta") : status === "sending" ? "..." : "✓"}
+                    <input
+                      name="nimi" type="text" autoComplete="name"
+                      placeholder={fi ? "Etunimi Sukunimi" : "First Last"}
+                      value={values.nimi}
+                      onChange={(e) => setValues((v) => ({ ...v, nimi: e.target.value }))}
+                      onBlur={() => setTouched((t) => ({ ...t, nimi: true }))}
+                      className={inputCls("nimi")}
+                    />
+                    {fieldErr("nimi") && (
+                      <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">
+                        {fi ? "Syötä nimesi" : "Enter your name"}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <div className="mb-1.5 flex items-center justify-between">
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
+                        {t("form.sahkoposti")} *
+                      </label>
+                      {fieldOk("sahkoposti") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
+                    </div>
+                    <input
+                      name="sahkoposti" type="email" autoComplete="email"
+                      placeholder={fi ? "sinä@yritys.fi" : "you@company.com"}
+                      value={values.sahkoposti}
+                      onChange={(e) => setValues((v) => ({ ...v, sahkoposti: e.target.value }))}
+                      onBlur={() => setTouched((t) => ({ ...t, sahkoposti: true }))}
+                      className={inputCls("sahkoposti")}
+                    />
+                    {fieldErr("sahkoposti") && (
+                      <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">
+                        {fi ? "Tarkista sähköpostiosoite" : "Check your email address"}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <div className="mb-1.5 flex items-center justify-between">
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
+                        {t("form.viesti")} *
+                      </label>
+                      {fieldOk("viesti") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
+                    </div>
+                    <textarea
+                      name="message" rows={4}
+                      placeholder={fi ? "Kerro lyhyesti projektistasi tai haasteestasi..." : "Briefly describe your project or challenge..."}
+                      value={values.viesti}
+                      onChange={(e) => setValues((v) => ({ ...v, viesti: e.target.value }))}
+                      onBlur={() => setTouched((t) => ({ ...t, viesti: true }))}
+                      className={`${inputCls("viesti")} resize-none`}
+                    />
+                    {fieldErr("viesti") && (
+                      <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">
+                        {fi ? "Kirjoita ainakin muutama sana" : "Write at least a few words"}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Company optional */}
+                  <div>
+                    <label className="mb-1.5 block font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
+                      {t("form.yritys")} <span className="normal-case">{fi ? "valinnainen" : "optional"}</span>
+                    </label>
+                    <input
+                      name="yritys" type="text" autoComplete="organization"
+                      placeholder={fi ? "Yrityksen nimi" : "Company name"}
+                      value={values.yritys}
+                      onChange={(e) => setValues((v) => ({ ...v, yritys: e.target.value }))}
+                      className={inputCls("yritys")}
+                    />
+                  </div>
+
+                  {/* Submit */}
+                  <div className="mt-1 flex items-center gap-4">
+                    <button
+                      type="submit"
+                      disabled={status === "sending"}
+                      className="btn-primary disabled:opacity-40"
+                    >
+                      <span className="btn-label">
+                        {status === "sending" ? "..." : fi ? "Lähetä viesti" : "Send message"}
+                      </span>
+                      <span className="btn-arrow text-w-black/40">→</span>
+                    </button>
+                    <span className="font-mono text-[0.5625rem] tracking-[0.04em] text-w-white-30">
+                      {fi ? "Vastaamme 24h sisällä." : "We respond within 24h."}
                     </span>
-                    <span className="btn-arrow border-w-white-15 text-w-black/40">→</span>
-                  </button>
-                </div>
-              </form>
+                  </div>
+
+                </form>
+              )}
             </div>
 
             {/* Right: Pekka */}
             <div className="min-w-0 flex flex-col dashed-box">
 
-              {/* Photo — top half */}
+              {/* Photo top half */}
               <div className="relative aspect-square w-full max-w-[280px] overflow-hidden">
                 <Image
                   src="/images/team/pekka.avif"
@@ -96,7 +197,7 @@ export function Yhteydenotto() {
                 <div className="absolute inset-0 bg-w-black/10" />
               </div>
 
-              {/* Info — bottom half */}
+              {/* Info bottom half */}
               <div className="flex flex-1 flex-col p-6 md:p-7 border-t border-dashed border-w-white-15">
                 <p className="font-display text-[1.125rem] font-bold tracking-[-0.02em] text-w-white">
                   {t("pekka.name")}

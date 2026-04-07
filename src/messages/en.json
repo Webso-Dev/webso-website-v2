@@ -17,7 +17,7 @@
       {
         "number": "01",
         "title": "AI-native process",
-        "description": "AI is built into how we work — not added as an afterthought. This means faster development and higher quality."
+        "description": "AI is built into how we work not added as an afterthought. This means faster development and higher quality."
       },
       {
         "number": "02",
@@ -35,7 +35,7 @@
     "title": "What we do",
     "pillar1": {
       "title": "AI-native software development",
-      "description": "We build enterprise information systems. From e-commerce to backend infrastructure — no compromises on quality.",
+      "description": "We build enterprise information systems. From e-commerce to backend infrastructure no compromises on quality.",
       "items": [
         "Web, mobile & backend",
         "Information systems",
@@ -56,7 +56,7 @@
     },
     "pillar3": {
       "title": "Modernisation & integrations",
-      "description": "Technical debt is cheap to accumulate and many have it — we help pay it down. We modernise legacy information systems for the new era.",
+      "description": "Technical debt is cheap to accumulate and many have it we help pay it down. We modernise legacy information systems for the new era.",
       "items": [
         "Legacy modernisation",
         "API & data",
@@ -94,7 +94,7 @@
       {
         "number": "03",
         "title": "Growing company",
-        "description": "Shape the direction and culture. This isn't a big machine — this is a growth story."
+        "description": "Shape the direction and culture. This isn't a big machine this is a growth story."
       }
     ],
     "cta": "See open positions"
@@ -116,7 +116,7 @@
       "email": "pekka@webso.fi",
       "phone": "+358 44 506 6448",
       "note": "You can also call directly.",
-      "quote": "Let's skip the formalities — just drop me a message."
+      "quote": "Let's skip the formalities just drop me a message."
     }
   },
   "footer": {

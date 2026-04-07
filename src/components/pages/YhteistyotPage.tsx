@@ -9,8 +9,8 @@ const allCases = [
     id: "dieta",
     titleFi: "Composable commerce -järjestelmä",
     titleEn: "Composable commerce system",
-    descFi: "Modulaarinen verkkokauppajärjestelmä joka korvasi vanhentuneen alustan — nopeampi toimitus, alhaisemmat ylläpitokustannukset.",
-    descEn: "Modular e-commerce system replacing an outdated platform — faster delivery, lower maintenance costs.",
+    descFi: "Modulaarinen verkkokauppajärjestelmä joka korvasi vanhentuneen alustan nopeampi toimitus, alhaisemmat ylläpitokustannukset.",
+    descEn: "Modular e-commerce system replacing an outdated platform faster delivery, lower maintenance costs.",
     image: "/images/cases/dieta-hero.webp",
     logo: "/images/logos/dieta.avif",
     tag: "Sovelluskehitys",
@@ -20,8 +20,8 @@ const allCases = [
     id: "evolver",
     titleFi: "AI-pohjainen prosessiautomaatio",
     titleEn: "AI-powered process automation",
-    descFi: "Rakensimme AI-agentin joka automatisoi manuaalisen datan käsittelyn. Toistuva työ poistui — tiimi pystyi keskittymään olennaiseen.",
-    descEn: "We built an AI agent that automates manual data processing. Repetitive work eliminated — the team could focus on what matters.",
+    descFi: "Rakensimme AI-agentin joka automatisoi manuaalisen datan käsittelyn. Toistuva työ poistui tiimi pystyi keskittymään olennaiseen.",
+    descEn: "We built an AI agent that automates manual data processing. Repetitive work eliminated the team could focus on what matters.",
     image: "/images/cases/dieta-detail.webp",
     logo: null,
     tag: "AI Engineering",
@@ -31,8 +31,8 @@ const allCases = [
     id: "bongariliitto",
     titleFi: "Lintuhavaintojärjestelmän modernisointi",
     titleEn: "Birdwatching system modernisation",
-    descFi: "Havaintojärjestelmä uudelleenrakennettu modernilla teknologiapinolla — suorituskyky moninkertaistui.",
-    descEn: "Observation system rebuilt on a modern stack — performance multiplied.",
+    descFi: "Havaintojärjestelmä uudelleenrakennettu modernilla teknologiapinolla suorituskyky moninkertaistui.",
+    descEn: "Observation system rebuilt on a modern stack performance multiplied.",
     image: "/images/cases/bongariliitto-hero.webp",
     logo: "/images/logos/bongariliitto.avif",
     tag: "Sovelluskehitys",
@@ -72,7 +72,7 @@ export function YhteistyotPage() {
         </div>
       </section>
 
-      {/* Cases — exact same card style as homepage */}
+      {/* Cases exact same card style as homepage */}
       <section className="border-b border-dashed border-w-white-15">
         <div className="mx-auto max-w-[90rem] px-6 md:px-10">
           <div className="py-6 md:py-10">
@@ -81,7 +81,7 @@ export function YhteistyotPage() {
                 key={c.id}
                 className={`group flex flex-col dashed-box md:flex-row ${i < allCases.length - 1 ? "mb-6" : ""}`}
               >
-                {/* Image — full card height */}
+                {/* Image full card height */}
                 <div className="relative h-52 w-full shrink-0 overflow-hidden md:h-auto md:w-[36%] md:self-stretch">
                   <Image
                     src={c.image}

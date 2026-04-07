@@ -26,14 +26,14 @@ export function PalvelutPage() {
             </h1>
             <p className="mt-5 max-w-lg text-[1rem] leading-[1.7] text-white/70">
               {locale === "fi"
-                ? "Tekoäly on integroitu kaikkeen — suunnittelusta, koodauksesta testaukseen. Nopeampi toimitus, parempi laatu."
-                : "AI is integrated into everything — from planning and coding to testing. Faster delivery, better quality."}
+                ? "Tekoäly on integroitu kaikkeen suunnittelusta, koodauksesta testaukseen. Nopeampi toimitus, parempi laatu."
+                : "AI is integrated into everything from planning and coding to testing. Faster delivery, better quality."}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Pillars — matches homepage Palvelut pattern */}
+      {/* Pillars matches homepage Palvelut pattern */}
       <section className="border-b border-dashed border-w-white-15">
         <div className="mx-auto max-w-[90rem] px-6 md:px-10">
           <div className="flex flex-col md:flex-row">
@@ -53,7 +53,7 @@ export function PalvelutPage() {
             {/* Full-height separator */}
             <div className="hidden shrink-0 self-stretch md:block" style={{ width: "1px", background: "var(--dash-v)" }} />
 
-            {/* Right — pillars */}
+            {/* Right pillars */}
             <div className="flex-1 py-10 md:pb-24 md:pt-10 md:pl-10">
               {pillars.map((p, i) => (
                 <div key={p.num} className={`dashed-box p-5 sm:p-8 md:p-10 ${i < pillars.length - 1 ? "mb-4" : ""}`}>

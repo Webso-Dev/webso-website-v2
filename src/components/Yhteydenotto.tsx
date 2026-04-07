@@ -14,7 +14,7 @@ export function Yhteydenotto() {
   const fi = locale === "fi";
   const sectionRef = useRef<HTMLElement>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
-  const [values, setValues] = useState({ nimi: "", sahkoposti: "", viesti: "", yritys: "" });
+  const [values, setValues] = useState<Record<string, string>>({ nimi: "", sahkoposti: "", viesti: "", yritys: "" });
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   useEffect(() => {

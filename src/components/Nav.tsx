@@ -124,7 +124,7 @@ export function Nav() {
 
             <div className="flex flex-1 flex-col justify-between px-4 sm:px-8 pb-10">
               {/* Links */}
-              <div className="flex flex-col">
+              <div className="flex flex-col pt-6">
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.href}

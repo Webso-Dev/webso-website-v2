@@ -41,7 +41,7 @@ export function Yhteistyot() {
 
   useEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
+    if (prefersReduced || window.innerWidth < 768) return;
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>(".case-row").forEach((row, i) => {
         gsap.from(row, {

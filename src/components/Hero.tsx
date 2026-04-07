@@ -57,7 +57,7 @@ export function Hero() {
         words.forEach((w, wi) => {
           if (w.includes("\n")) {
             w.split("\n").forEach((part, pi) => {
-              if (pi > 0) headline.appendChild(doc.createElement("br"));
+              if (pi > 0 && window.innerWidth >= 768) headline.appendChild(doc.createElement("br"));
               if (part) headline.appendChild(makeWordSpan(part));
             });
           } else {

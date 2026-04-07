@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const VW = 900, VH = 560;
@@ -26,8 +27,17 @@ const BEAMS = [
 ];
 
 export function HeroIllustration({ className = "" }: { className?: string }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
+  const visibleRadii = isMobile ? RADII.slice(0, 4) : RADII;
+  const visibleBeams = isMobile ? BEAMS.slice(0, 3) : BEAMS;
+
   return (
-    <div className={`pointer-events-none absolute inset-0 ${className}`}>
+    <div className={`pointer-events-none absolute inset-0 ${className}`} style={{ transform: "translateZ(0)" }}>
       <svg
         viewBox={`0 0 ${VW} ${VH}`}
         preserveAspectRatio="xMaxYMax slice"
@@ -43,18 +53,20 @@ export function HeroIllustration({ className = "" }: { className?: string }) {
             <stop offset="100%" stopColor="#ffffff" stopOpacity="0"   />
           </linearGradient>
 
-          {/* Glow filter for blue rays */}
-          <filter id="ray-glow" x="-300%" y="-10%" width="700%" height="120%">
-            <feGaussianBlur stdDeviation="3.5" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
+          {/* Glow filter for blue rays — desktop only */}
+          {!isMobile && (
+            <filter id="ray-glow" x="-300%" y="-10%" width="700%" height="120%">
+              <feGaussianBlur stdDeviation="3.5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          )}
         </defs>
 
         {/* Curved arcs — gradient stroke, bottom blue → transparent top */}
-        {RADII.map((r, i) => (
+        {visibleRadii.map((r, i) => (
           <motion.path
             key={r}
             d={arcPath(r)}
@@ -68,7 +80,7 @@ export function HeroIllustration({ className = "" }: { className?: string }) {
         ))}
 
         {/* Blue rays — travel from bottom of arc upward, back and forth */}
-        {BEAMS.map(({ r, beamFrac, duration, delay, width }, i) => {
+        {visibleBeams.map(({ r, beamFrac, duration, delay, width }, i) => {
           const C = arcLen(r);
           const beamLen = beamFrac * C;
           const dashArray = `${beamLen} ${C + beamLen}`;
@@ -80,7 +92,7 @@ export function HeroIllustration({ className = "" }: { className?: string }) {
               strokeWidth={width}
               strokeLinecap="round"
               fill="none"
-              filter="url(#ray-glow)"
+              filter={isMobile ? undefined : "url(#ray-glow)"}
               strokeDasharray={dashArray}
               animate={{ strokeDashoffset: [beamLen, -C] }}
               transition={{

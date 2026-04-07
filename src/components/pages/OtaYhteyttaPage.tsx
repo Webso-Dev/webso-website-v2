@@ -75,32 +75,6 @@ export function OtaYhteyttaPage() {
                   ? "Ei pitkiä myyntiputkia. Vastaamme 24 tunnin sisällä, tarjous viidessä arkipäivässä."
                   : "No lengthy sales cycles. We respond within 24 hours, proposal in five business days."}
               </p>
-              <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-30">
-                {fi ? "tai ota suoraan yhteyttä" : "or reach out directly"}
-              </p>
-
-              {/* Mini Pekka card */}
-              <div className="mt-3 flex items-center gap-5 dashed-box p-4 w-full">
-                <div className="relative h-12 w-12 shrink-0 overflow-hidden">
-                  <Image
-                    src="/images/team/pekka.avif"
-                    alt="Pekka"
-                    fill
-                    className="object-cover object-top"
-                    sizes="48px"
-                  />
-                </div>
-                <div className="flex flex-col gap-0">
-                  <p className="font-display text-[0.9375rem] font-bold tracking-[-0.02em] text-w-white">{t("pekka.name")}</p>
-                  <p className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-30">{t("pekka.role")}</p>
-                </div>
-                <div className="ml-auto">
-                  <a href="tel:+358445066448" className="btn-outline inline-flex">
-                    <span className="btn-label">+358 44 506 6448</span>
-                    <span className="btn-arrow text-w-white-30">→</span>
-                  </a>
-                </div>
-              </div>
             </div>
 
             {/* Right: form */}
@@ -225,6 +199,35 @@ export function OtaYhteyttaPage() {
             </div>
 
           </div>
+
+          {/* Pekka card — below form on all screen sizes */}
+          <div className="pt-8 border-t border-dashed border-w-white-15">
+            <p className="mb-3 font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-30">
+              {fi ? "tai ota suoraan yhteyttä" : "or reach out directly"}
+            </p>
+            <div className="flex items-center gap-5 dashed-box p-4 w-full md:max-w-md">
+              <div className="relative h-12 w-12 shrink-0 overflow-hidden">
+                <Image
+                  src="/images/team/pekka.avif"
+                  alt="Pekka"
+                  fill
+                  className="object-cover object-top"
+                  sizes="48px"
+                />
+              </div>
+              <div className="flex flex-col gap-0">
+                <p className="font-display text-[0.9375rem] font-bold tracking-[-0.02em] text-w-white">{t("pekka.name")}</p>
+                <p className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-30">{t("pekka.role")}</p>
+              </div>
+              <div className="ml-auto">
+                <a href="tel:+358445066448" className="btn-outline inline-flex">
+                  <span className="btn-label">+358 44 506 6448</span>
+                  <span className="btn-arrow text-w-white-30">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -239,7 +242,7 @@ export function OtaYhteyttaPage() {
             <h2 className="font-display text-[clamp(1.5rem,3vw,2.5rem)] font-normal tracking-[-0.03em] text-w-white">
               {fi ? "Rakennetaan jotain merkittävää." : "Let's build something significant."}
             </h2>
-            <button onClick={() => setModalOpen(true)} className="btn-primary shrink-0">
+            <button onClick={() => setModalOpen(true)} className="btn-primary shrink-0 self-start">
               <span className="btn-label">{fi ? "Ota yhteyttä" : "Get in touch"}</span>
               <span className="btn-arrow text-w-black/40">→</span>
             </button>

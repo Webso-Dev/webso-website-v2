@@ -19,7 +19,7 @@ export function Lupaus() {
 
   useEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
+    if (prefersReduced || window.innerWidth < 768) return;
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>(".lupaus-card").forEach((card, i) => {
         gsap.from(card, { opacity: 0, y: 36, duration: 0.65, ease: "power2.out",

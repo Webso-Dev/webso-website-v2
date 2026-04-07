@@ -182,43 +182,68 @@ export function Yhteydenotto() {
               )}
             </div>
 
-            {/* Right: Pekka */}
-            <div className="min-w-0 flex flex-col dashed-box">
+            {/* Right: Pekka — testimonial style */}
+            <div className="min-w-0 relative dashed-box overflow-hidden">
 
-              {/* Photo top half */}
-              <div className="relative aspect-square w-full max-w-[280px] overflow-hidden">
+              {/* Mobile: photo at top */}
+              <div className="relative aspect-[4/3] w-full overflow-hidden md:hidden">
                 <Image
-                  src="/images/team/pekka.avif"
+                  src="/images/team/pekka_no_bg.avif"
                   alt="Pekka"
                   fill
                   className="object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, 400px"
+                  sizes="100vw"
                 />
                 <div className="absolute inset-0 bg-w-black/10" />
               </div>
 
-              {/* Info bottom half */}
-              <div className="flex flex-1 flex-col p-6 md:p-7 border-t border-dashed border-w-white-15">
-                <p className="font-display text-[1.125rem] font-bold tracking-[-0.02em] text-w-white">
-                  {t("pekka.name")}
-                </p>
-                <p className="mt-1 font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">
-                  {t("pekka.role")}
-                </p>
+              {/* Text content — left side */}
+              <div className="relative z-10 flex flex-col gap-5 p-6 md:p-7 md:w-[58%] md:min-h-full md:justify-center">
+                <span className="tag self-start">{fi ? "Yhteyshenkilö" : "Contact"}</span>
 
-                <div className="mt-5 flex flex-col gap-1.5">
-                  <a href={`mailto:${t("pekka.email")}`} className="font-mono text-[0.75rem] text-w-white-50 transition-colors duration-200 hover:text-w-white">
-                    {t("pekka.email")}
-                  </a>
-                  <a href={`tel:${t("pekka.phone").replace(/\s/g, "")}`} className="font-mono text-[0.75rem] text-w-white-50 transition-colors duration-200 hover:text-w-white">
-                    {t("pekka.phone")}
-                  </a>
+                <div className="flex items-stretch gap-4">
+                  <div className="shrink-0 w-px bg-w-accent" />
+                  <div className="flex flex-col gap-5">
+                    <p className="font-display text-[clamp(0.9375rem,1.4vw,1.125rem)] font-normal leading-[1.45] tracking-[-0.02em] text-w-white">
+                      &ldquo;{t("pekka.quote")}&rdquo;
+                    </p>
+                    <div>
+                      <p className="font-mono text-[0.6875rem] uppercase tracking-[0.04em] text-w-white-70">
+                        {t("pekka.name")}
+                      </p>
+                      <p className="mt-0.5 font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">
+                        {t("pekka.role")}
+                      </p>
+                      <div className="mt-3 flex flex-col gap-1">
+                        <a href={`mailto:${t("pekka.email")}`}
+                          className="font-mono text-[0.6875rem] text-w-white-30 transition-colors duration-200 hover:text-w-white">
+                          {t("pekka.email")}
+                        </a>
+                        <a href={`tel:${t("pekka.phone").replace(/\s/g, "")}`}
+                          className="font-mono text-[0.6875rem] text-w-white-30 transition-colors duration-200 hover:text-w-white">
+                          {t("pekka.phone")}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
-                <p className="mt-auto pt-6 text-[0.875rem] leading-[1.6] text-w-white-30 font-display tracking-[-0.01em]">
-                  &ldquo;{t("pekka.quote")}&rdquo;
-                </p>
               </div>
+
+              {/* Photo — absolute right side, desktop only */}
+              <div className="hidden md:block absolute inset-y-0 right-0 w-[48%] overflow-hidden">
+                <Image
+                  src="/images/team/pekka_no_bg.avif"
+                  alt="Pekka"
+                  fill
+                  className="object-cover object-top"
+                  sizes="25vw"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(to right, rgba(3,4,10,1) 0px, rgba(3,4,10,0.7) 40%, rgba(3,4,10,0) 100%)" }}
+                />
+              </div>
+
             </div>
 
           </div>

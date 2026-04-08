@@ -20,17 +20,17 @@ const vals = {
 };
 
 const team = [
-  { name: "Pekka Mattinen",  role: { fi: "CEO, Co-Founder",               en: "CEO, Co-Founder" },               image: "/images/team/pekka.avif" },
-  { name: "Vellu",           role: { fi: "Senior ohjelmistokehittäjä",     en: "Senior Software Developer" },     image: "/images/team/vellu.webp" },
-  { name: "Miikka",          role: { fi: "Ohjelmistokehittäjä",            en: "Software Developer" },            image: "/images/team/miikka.webp" },
-  { name: "Leevi",           role: { fi: "Ohjelmistokehittäjä",            en: "Software Developer" },            image: "/images/team/leevi.webp" },
-  { name: "Roope",           role: { fi: "Myynti",                         en: "Sales" },                         image: "/images/team/roope.webp" },
-  { name: "Aleksi",          role: { fi: "Junior ohjelmistokehittäjä",     en: "Junior Software Developer" },     image: "/images/team/aleksi.webp" },
-  { name: "Paavo",           role: { fi: "Ohjelmistokehittäjä",            en: "Software Developer" },            image: "/images/team/paavo.webp" },
-  { name: "Paulus",          role: { fi: "Ohjelmistokehittäjä",            en: "Software Developer" },            image: "/images/team/paulus.webp" },
-  { name: "Pekko Pesonen",   role: { fi: "Junior ohjelmistokehittäjä",     en: "Junior Software Developer" },     image: "/images/team/pekko.webp" },
-  { name: "Juuso",           role: { fi: "Head of Design",                 en: "Head of Design" },               image: "/images/team/pekko.webp" },
-  { name: "Kim",             role: { fi: "Head of Finance",                en: "Head of Finance" },               image: "/images/team/pekko.webp" },
+  { name: "Pekka Mattinen",  role: { fi: "CEO, Co-Founder",                        en: "CEO, Co-Founder" },                        image: "/images/team/pekka.avif" },
+  { name: "Vellu",           role: { fi: "Senior ohjelmistokehittäjä, Co-Founder", en: "Senior Software Developer, Co-Founder" }, image: "/images/team/vellu.webp" },
+  { name: "Miikka",          role: { fi: "Ohjelmistokehittäjä, Partner",           en: "Software Developer, Partner" },           image: "/images/team/miikka.webp" },
+  { name: "Leevi",           role: { fi: "Ohjelmistokehittäjä, Partner",           en: "Software Developer, Partner" },           image: "/images/team/leevi.webp" },
+  { name: "Roope",           role: { fi: "Myynti, Partner",                        en: "Sales, Partner" },                        image: "/images/team/roope.webp" },
+  { name: "Aleksi",          role: { fi: "Partner",                                en: "Partner" },                               image: "/images/team/aleksi.webp" },
+  { name: "Paavo",           role: { fi: "Senior ohjelmistokehittäjä, Partner",    en: "Senior Software Developer, Partner" },    image: "/images/team/paavo.webp" },
+  { name: "Paulus",          role: { fi: "Ohjelmistokehittäjä",                    en: "Software Developer" },                    image: "/images/team/paulus.webp" },
+  { name: "Pekko Pesonen",   role: { fi: "Junior ohjelmistokehittäjä",             en: "Junior Software Developer" },             image: "/images/team/pekko.webp" },
+  { name: "Juuso",           role: { fi: "Design",                                 en: "Design" },                                image: "/images/team/pekko.webp" },
+  { name: "Kim",             role: { fi: "Head of Finance",                        en: "Head of Finance" },                       image: "/images/team/pekko.webp" },
 ];
 
 export function MeistaPage() {

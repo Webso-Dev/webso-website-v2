@@ -106,10 +106,6 @@ export function UraPage() {
             <div className="flex-1 py-10 md:pb-24 md:pt-10 md:pl-10">
               {items.map((item, i) => (
                 <div key={item.number} className={`dashed-box p-5 sm:p-8 md:p-10 ${i < items.length - 1 ? "mb-4" : ""}`}>
-                  <div className="flex items-center gap-4 mb-5">
-                    <span className="h-px w-5 bg-w-accent block shrink-0" />
-                    <span className="font-mono text-[0.75rem] tracking-[0.05em] text-w-accent">{item.number}</span>
-                  </div>
                   <h3 className="font-mono text-[clamp(1.125rem,2vw,1.5rem)] font-normal uppercase leading-[1.15] tracking-[0.01em] text-w-white">{item.title}</h3>
                   <p className="mt-3 text-[0.9375rem] leading-[1.7] text-white/70">{item.description}</p>
                 </div>

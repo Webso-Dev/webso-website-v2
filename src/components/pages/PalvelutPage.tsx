@@ -59,8 +59,8 @@ export function PalvelutPage() {
             </h1>
             <p className="mt-5 max-w-xl text-[1rem] leading-[1.7] text-white/70">
               {fi
-                ? "Tekoäly on integroitu jokaiseen vaiheeseen: suunnitteluun, koodaukseen ja testaukseen. Toimitus on nopeampaa ja laatu on parempi."
-                : "AI is integrated into every stage: planning, coding and testing. Faster delivery, better quality."}
+                ? "Tekoäly on integroitu jokaiseen vaiheeseen: suunnitteluun, koodaukseen ja testaukseen. Toimitus on nopeampaa, laatu on parempi, parempi investointi."
+                : "AI is integrated into every stage: planning, coding and testing. Faster delivery, better quality, better investment."}
             </p>
             <div className="mt-10">
               <button type="button" onClick={scrollToYhteysSection} className="btn-primary cursor-pointer">

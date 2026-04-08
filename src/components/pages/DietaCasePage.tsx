@@ -325,8 +325,8 @@ export function DietaCasePage() {
               </p>
               <p className="mt-4 text-[1rem] leading-[1.75] text-w-white-70">
                 {isFi
-                  ? "Projektin onnistumisen kannalta tärkeintä oli tiimien sulautuminen yhteen. Dietan digitiimi ja Webson iskuryhmä tekivät töitä rinta rinnan koko projektin ajan. Aikataulu sekä budjetti eivät olisi pysyneet hallinnassa ilman erinomaista synergiaa tiimien välillä."
-                  : "The key to the project's success was the fusion of both teams. Dieta's digital team and Webso's strike team worked side by side throughout the entire project. Timeline and budget would not have remained under control without excellent synergy between the teams."}
+                  ? "Projektin onnistumisen kannalta tärkeintä oli tiimien sulautuminen yhteen. Dietan digitiimi ja Webson iskuryhmä tekivät töitä rinta rinnan koko projektin ajan. Erinomainen synergia tiimien välillä mahdollisti projektin tavoitteiden saavuttamisen aikataulussa."
+                  : "The key to the project's success was the fusion of both teams. Dieta's digital team and Webso's strike team worked side by side throughout the entire project. Excellent synergy between the teams made it possible to deliver on every project goal on schedule."}
               </p>
             </div>
           </div>

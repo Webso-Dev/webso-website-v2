@@ -123,7 +123,7 @@ export function Yhteistyot() {
 
                 {/* Learn more */}
                 <div className="mt-8">
-                  <Link href={`/${locale}/yhteistyot`} className="btn-outline inline-flex">
+                  <Link href={c.id === "dieta" ? `/${locale}/yhteistyot/dieta` : c.id === "bongariliitto" ? `/${locale}/yhteistyot/bongariliitto` : `/${locale}/yhteistyot`} className="btn-outline inline-flex">
                     <span className="btn-label">{locale === "fi" ? "Lue lisää" : "Learn more"}</span>
                     <span className="btn-arrow text-w-white-30">→</span>
                   </Link>

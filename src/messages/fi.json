@@ -8,7 +8,7 @@
   },
   "hero": {
     "headline": "AI-natiivi tiimi toimittaa enemmän, \nnopeammin ja paremmalla laadulla.",
-    "subheadline": "Tekoäly on osa jokaista projektia. Nopeampi toimitus, parempi laatu, pienempi budjetti.",
+    "subheadline": "Tekoäly on osa jokaista projektia. Nopeampi toimitus, parempi laatu, parempi investointi.",
     "ctaPrimary": "Ota yhteyttä",
     "ctaSecondary": "Tutustu palveluihin"
   },
@@ -16,18 +16,18 @@
     "items": [
       {
         "number": "01",
-        "title": "AI-natiivi prosessi",
-        "description": "Tekoäly on sisäänrakennettu työtapaamme ei jälkikäteen lisätty. Tämä tarkoittaa nopeampaa kehitystä ja parempaa laatua."
+        "title": "AI-natiivi kehitys",
+        "description": "Tekoäly on sisäänrakennettu työtapaamme. Tämä tarkoittaa nopeampaa kehitystä ja parempaa laatua jokaisessa projektissa."
       },
       {
         "number": "02",
-        "title": "Suomen terävintä osaamista",
-        "description": "Jokainen konsulttimme on läpäissyt vaativan rekrytointiprosessin. Ei kompromisseja osaamisen suhteen."
+        "title": "Huippuosaaminen",
+        "description": "Jokainen konsulttimme on läpäissyt vaativan rekrytointiprosessin. Tiimimme koostuu alan parhaimmistosta."
       },
       {
         "number": "03",
-        "title": "Kumppani, ei toimittaja",
-        "description": "Emme vain toteuta tikettejä. Ymmärrämme liiketoimintaasi ja rakennamme ratkaisuja jotka tuottavat kilpailuetua."
+        "title": "Kumppani joka luo arvoa",
+        "description": "Ymmärrämme liiketoimintaasi ja rakennamme ratkaisuja jotka tuottavat kilpailuetua."
       }
     ]
   },
@@ -35,7 +35,7 @@
     "title": "Mitä teemme",
     "pillar1": {
       "title": "AI-natiivi sovelluskehitys",
-      "description": "Rakennamme yritysten tietojärjestelmiä. Verkkokaupoista taustajärjestelmä infrastruktuuriin - ilman kompromisseja laadussa.",
+      "description": "Rakennamme yritysten tietojärjestelmiä täydessä laajuudessaan. Oli kyseessä verkkokauppa, toiminnanohjausjärjestelmä tai liiketoimintakriittinen infrastruktuuri, tuomme jokaiseen projektiin parhaimmat osaajat.",
       "items": [
         "Web, mobile & backend",
         "Tietojärjestelmät",
@@ -79,22 +79,22 @@
     ]
   },
   "ura": {
-    "title": "Haluatko rakentaa ohjelmistoja tavalla, jota ei vielä opeteta kouluissa?",
+    "title": "Teemme ohjelmistokehitystä eri tavalla. Liity mukaan.",
     "items": [
       {
         "number": "01",
-        "title": "Uusimmat työkalut",
-        "description": "AI-natiivit kehitystyökalut ovat arkipäiväämme. Täällä pääset käyttämään huomisen teknologiaa tänään."
+        "title": "Eturivin kehitysympäristö",
+        "description": "Tekoäly on osa jokaista projektia. Kehität osaamistasi ympäristössä, jossa alan parhaat menetelmät ovat arkipäivää."
       },
       {
         "number": "02",
-        "title": "Vaativa tiimi",
-        "description": "Työkaverit jotka nostavat rimaasi. Meillä ei pärjää keskinkertaisuudella."
+        "title": "Vaativat haasteet",
+        "description": "Tiimimme ratkoo liiketoimintakriittisiä järjestelmiä vaativille asiakkaille. Yksinkertaisia tehtäviä ei ole tarjolla."
       },
       {
         "number": "03",
-        "title": "Kasvava firma",
-        "description": "Pääset vaikuttamaan suuntaan ja kulttuuriin. Tämä ei ole iso koneisto tämä on kasvutarina."
+        "title": "Vaikutus näkyy",
+        "description": "Jokainen projekti näkyy asiakkaan liiketoiminnassa. Rakennat järjestelmiä, joilla on oikeasti merkitystä."
       }
     ],
     "cta": "Katso avoimet paikat"
@@ -116,7 +116,7 @@
       "email": "pekka@webso.fi",
       "phone": "+358 44 506 6448",
       "note": "Voit myös soittaa suoraan.",
-      "quote": "Hypätään suoraan asiaan, nakkaa mulle viestiä."
+      "quote": "Kiinnostunut? Ota yhteyttä."
     }
   },
   "footer": {
@@ -128,7 +128,7 @@
     "tag": "Ilmainen konsultaatio",
     "step1": {
       "headline": "Rakennetaan parempi järjestelmä yhdessä.",
-      "sub": "Varaa 30 minuutin maksuton kartoituspuhelu. Ei sitoumuksia, ei myyntipuhetta. Vain rehellinen keskustelu siitä, miten voimme auttaa.",
+      "sub": "Varaa 30 minuutin maksuton kartoituspuhelu. Rehellinen keskustelu siitä, miten voimme auttaa.",
       "cta": "Varaa maksuton aika",
       "stat1value": "60+",
       "stat1label": "Toteutettua projektia",
@@ -167,7 +167,7 @@
       "cta": "Lähetä pyyntö",
       "sending": "Lähetetään...",
       "back": "Takaisin",
-      "trust": "Ei sitoumuksia. Vastaamme 24h sisällä."
+      "trust": "Vastaamme 24h sisällä."
     },
     "step4": {
       "tag": "Lähetetty",

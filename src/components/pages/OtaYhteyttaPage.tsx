@@ -2,27 +2,46 @@
 
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { FormSuccess } from "@/components/FormSuccess";
 import Image from "next/image";
 import { Lupaus } from "@/components/Lupaus";
 import { Yhteistyot } from "@/components/Yhteistyot";
 import { Suosittelijat } from "@/components/Suosittelijat";
+
+function contactFailureMessage(res: Response, body: unknown, fi: boolean): string {
+  const apiErr =
+    typeof body === "object" && body !== null && "error" in body && typeof (body as { error: unknown }).error === "string"
+      ? (body as { error: string }).error
+      : null;
+  if (res.status === 400) {
+    return fi ? "Tarkista puuttuvat tai virheelliset kentät." : "Please check missing or invalid fields.";
+  }
+  if (res.status >= 500) {
+    return fi ? "Lähetys epäonnistui. Yritä uudelleen." : "Could not send. Please try again.";
+  }
+  if (apiErr && fi) return apiErr;
+  return fi ? "Lähetys epäonnistui. Yritä uudelleen." : "Could not send your message. Please try again.";
+}
 
 export function OtaYhteyttaPage() {
   const t = useTranslations("yhteydenotto");
   const locale = useLocale();
   const fi = locale === "fi";
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [values, setValues] = useState({ nimi: "", sahkoposti: "", viesti: "", yritys: "" });
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [modalOpen, setModalOpen] = useState(false);
   const [mValues, setMValues] = useState({ nimi: "", sahkoposti: "", viesti: "", yritys: "" });
   const [mTouched, setMTouched] = useState<Record<string, boolean>>({});
   const [mStatus, setMStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [mSubmitError, setMSubmitError] = useState<string | null>(null);
 
   const validators: Record<string, (v: string) => boolean> = {
     nimi: (v) => v.trim().length >= 2,
     sahkoposti: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
     viesti: (v) => v.trim().length >= 10,
+    yritys: (v) => v.trim().length >= 1,
   };
 
   const fieldOk = (k: string) => touched[k] && validators[k]?.(values[k as keyof typeof values] ?? "");
@@ -30,12 +49,36 @@ export function OtaYhteyttaPage() {
 
   const isComplete = Object.entries(validators).every(([k, fn]) => fn(values[k as keyof typeof values] ?? ""));
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setTouched({ nimi: true, sahkoposti: true, viesti: true });
+    setTouched({ nimi: true, sahkoposti: true, viesti: true, yritys: true });
     if (!isComplete) return;
+    setSubmitError(null);
     setStatus("sending");
-    setTimeout(() => setStatus("sent"), 1500);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...values, source: "Ota yhteyttä -sivu" }),
+      });
+      let data: unknown = null;
+      try {
+        data = await res.json();
+      } catch {
+        /* non-JSON body */
+      }
+      if (!res.ok) {
+        setSubmitError(contactFailureMessage(res, data, fi));
+        setStatus("idle");
+        return;
+      }
+      setStatus("sent");
+    } catch {
+      setSubmitError(
+        fi ? "Verkkovirhe. Tarkista yhteys ja yritä uudelleen." : "Network error. Check your connection and try again.",
+      );
+      setStatus("idle");
+    }
   };
 
   const mIsComplete = Object.entries(validators).every(([k, fn]) => fn(mValues[k as keyof typeof mValues] ?? ""));
@@ -44,12 +87,36 @@ export function OtaYhteyttaPage() {
   const mInputCls = (k: string) =>
     `w-full bg-transparent px-3 py-2.5 text-[0.875rem] text-w-white outline-none transition-all duration-200 placeholder:text-white/25 dashed-box${mFieldErr(k) ? " opacity-80" : ""}`;
 
-  const handleModalSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleModalSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setMTouched({ nimi: true, sahkoposti: true, viesti: true });
+    setMTouched({ nimi: true, sahkoposti: true, viesti: true, yritys: true });
     if (!mIsComplete) return;
+    setMSubmitError(null);
     setMStatus("sending");
-    setTimeout(() => setMStatus("sent"), 1500);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...mValues, source: "Ota yhteyttä -sivu (modaali)" }),
+      });
+      let data: unknown = null;
+      try {
+        data = await res.json();
+      } catch {
+        /* non-JSON body */
+      }
+      if (!res.ok) {
+        setMSubmitError(contactFailureMessage(res, data, fi));
+        setMStatus("idle");
+        return;
+      }
+      setMStatus("sent");
+    } catch {
+      setMSubmitError(
+        fi ? "Verkkovirhe. Tarkista yhteys ja yritä uudelleen." : "Network error. Check your connection and try again.",
+      );
+      setMStatus("idle");
+    }
   };
 
   const inputCls = (k: string) =>
@@ -72,22 +139,47 @@ export function OtaYhteyttaPage() {
               </h1>
               <p className="mt-6 text-[1rem] leading-[1.65] text-w-white-50">
                 {fi
-                  ? "Ei pitkiä myyntiputkia. Vastaamme 24 tunnin sisällä, tarjous viidessä arkipäivässä."
-                  : "No lengthy sales cycles. We respond within 24 hours, proposal in five business days."}
+                  ? "Vastaamme 24 tunnin sisällä. Tarjous viidessä arkipäivässä."
+                  : "We respond within 24 hours. Proposal in five business days."}
               </p>
+
+              <div className="mt-8">
+                <p className="mb-3 font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-30">
+                  {fi ? "tai ota suoraan yhteyttä" : "or reach out directly"}
+                </p>
+                <div className="@container dashed-box p-4 w-full md:max-w-md">
+                  <div className="flex flex-col items-start gap-3 @min-[22rem]:flex-row @min-[22rem]:items-center @min-[22rem]:gap-5">
+                    <div className="flex min-w-0 w-full flex-1 items-center gap-5 @min-[22rem]:w-auto">
+                      <div className="relative h-12 w-12 shrink-0 overflow-hidden">
+                        <Image
+                          src="/images/team/pekka.avif"
+                          alt="Pekka"
+                          fill
+                          className="object-cover object-top"
+                          sizes="48px"
+                        />
+                      </div>
+                      <div className="min-w-0 flex flex-col gap-0">
+                        <p className="font-display text-[0.9375rem] font-bold tracking-[-0.02em] text-w-white">{t("pekka.name")}</p>
+                        <p className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-30">{t("pekka.role")}</p>
+                      </div>
+                    </div>
+                    <div className="shrink-0 @min-[22rem]:ml-auto">
+                      <a href="tel:+358445066448" className="btn-outline inline-flex">
+                        <span className="btn-label whitespace-nowrap">+358 44 506 6448</span>
+                        <span className="btn-arrow text-w-white-30">→</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Right: form */}
-            <div className="dashed-box p-5 sm:p-7">
+            <div className="dashed-box @container p-5 sm:p-7">
               {status === "sent" ? (
-                <div className="flex h-full min-h-[18rem] flex-col items-start justify-center gap-4">
-                  <span className="tag-accent">{fi ? "Lähetetty" : "Sent"}</span>
-                  <p className="font-display text-[1.5rem] font-normal tracking-[-0.025em] text-w-white">
-                    {fi ? "Kiitos! Palaamme asiaan pian." : "Thanks! We'll be in touch soon."}
-                  </p>
-                  <p className="text-[0.875rem] leading-[1.65] text-w-white-30">
-                    {fi ? "Vastaamme yleensä saman päivän aikana." : "We typically respond the same day."}
-                  </p>
+                <div className="flex h-full min-h-[18rem] flex-col justify-center" role="status" aria-live="polite">
+                  <FormSuccess fi={fi} />
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -148,23 +240,18 @@ export function OtaYhteyttaPage() {
                     </div>
                     <textarea
                       name="message" rows={4}
-                      placeholder={fi ? "Kerro lyhyesti projektistasi tai haasteestasi..." : "Briefly describe your project or challenge..."}
+                      placeholder={fi ? "Kerro lyhyesti projektista tai liiketoiminta mahdollisuudesta." : "Briefly describe the project or business opportunity."}
                       value={values.viesti}
                       onChange={(e) => setValues((v) => ({ ...v, viesti: e.target.value }))}
                       onBlur={() => setTouched((t) => ({ ...t, viesti: true }))}
                       className={`${inputCls("viesti")} resize-none`}
                     />
-                    {fieldErr("viesti") && (
-                      <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">
-                        {fi ? "Kirjoita ainakin muutama sana" : "Write at least a few words"}
-                      </p>
-                    )}
                   </div>
 
-                  {/* Company optional, shown last */}
+                  {/* Company */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
-                      {t("form.yritys")} <span className="normal-case">{fi ? "valinnainen" : "optional"}</span>
+                      {t("form.yritys")} *
                     </label>
                     <input
                       name="yritys" type="text" autoComplete="organization"
@@ -176,11 +263,11 @@ export function OtaYhteyttaPage() {
                   </div>
 
                   {/* Submit */}
-                  <div className="mt-1 flex items-center gap-4">
+                  <div className="mt-1 flex flex-col items-start gap-3 @min-[22rem]:flex-row @min-[22rem]:items-center @min-[22rem]:gap-4">
                     <button
                       type="submit"
                       disabled={status === "sending"}
-                      className="btn-primary disabled:opacity-40"
+                      className="btn-primary shrink-0 disabled:opacity-40 disabled:cursor-not-allowed"
                     >
                       <span className="btn-label">
                         {status === "sending"
@@ -193,39 +280,16 @@ export function OtaYhteyttaPage() {
                       {fi ? "Vastaamme 24h sisällä." : "We respond within 24h."}
                     </span>
                   </div>
+                  {submitError && (
+                    <p role="alert" className="font-mono text-[0.75rem] leading-snug text-red-300/95">
+                      {submitError}
+                    </p>
+                  )}
 
                 </form>
               )}
             </div>
 
-          </div>
-
-          {/* Pekka card — below form on all screen sizes */}
-          <div className="pt-8 border-t border-dashed border-w-white-15">
-            <p className="mb-3 font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-30">
-              {fi ? "tai ota suoraan yhteyttä" : "or reach out directly"}
-            </p>
-            <div className="flex items-center gap-5 dashed-box p-4 w-full md:max-w-md">
-              <div className="relative h-12 w-12 shrink-0 overflow-hidden">
-                <Image
-                  src="/images/team/pekka.avif"
-                  alt="Pekka"
-                  fill
-                  className="object-cover object-top"
-                  sizes="48px"
-                />
-              </div>
-              <div className="flex flex-col gap-0">
-                <p className="font-display text-[0.9375rem] font-bold tracking-[-0.02em] text-w-white">{t("pekka.name")}</p>
-                <p className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-30">{t("pekka.role")}</p>
-              </div>
-              <div className="ml-auto">
-                <a href="tel:+358445066448" className="btn-outline inline-flex">
-                  <span className="btn-label">+358 44 506 6448</span>
-                  <span className="btn-arrow text-w-white-30">→</span>
-                </a>
-              </div>
-            </div>
           </div>
 
         </div>
@@ -242,7 +306,7 @@ export function OtaYhteyttaPage() {
             <h2 className="font-display text-[clamp(1.5rem,3vw,2.5rem)] font-normal tracking-[-0.03em] text-w-white">
               {fi ? "Rakennetaan jotain merkittävää." : "Let's build something significant."}
             </h2>
-            <button onClick={() => setModalOpen(true)} className="btn-primary shrink-0 self-start">
+            <button type="button" onClick={() => setModalOpen(true)} className="btn-primary shrink-0 self-start">
               <span className="btn-label">{fi ? "Ota yhteyttä" : "Get in touch"}</span>
               <span className="btn-arrow text-w-black/40">→</span>
             </button>
@@ -257,8 +321,9 @@ export function OtaYhteyttaPage() {
           style={{ background: "rgba(3,4,10,0.85)", backdropFilter: "blur(4px)" }}
           onClick={(e) => { if (e.target === e.currentTarget) setModalOpen(false); }}
         >
-          <div className="dashed-box bg-w-black w-full max-w-lg p-6 sm:p-8 relative">
+          <div className="dashed-box @container bg-w-black w-full max-w-lg p-6 sm:p-8 relative">
             <button
+              type="button"
               onClick={() => setModalOpen(false)}
               className="absolute right-4 top-4 font-mono text-[0.75rem] text-w-white-30 hover:text-w-white transition-colors"
             >
@@ -266,14 +331,8 @@ export function OtaYhteyttaPage() {
             </button>
 
             {mStatus === "sent" ? (
-              <div className="flex flex-col items-start gap-4 py-6">
-                <span className="tag-accent">{fi ? "Lähetetty" : "Sent"}</span>
-                <p className="font-display text-[1.5rem] font-normal tracking-[-0.025em] text-w-white">
-                  {fi ? "Kiitos! Palaamme asiaan pian." : "Thanks! We'll be in touch soon."}
-                </p>
-                <p className="text-[0.875rem] leading-[1.65] text-w-white-30">
-                  {fi ? "Vastaamme yleensä saman päivän aikana." : "We typically respond the same day."}
-                </p>
+              <div role="status" aria-live="polite">
+                <FormSuccess fi={fi} />
               </div>
             ) : (
               <>
@@ -318,17 +377,16 @@ export function OtaYhteyttaPage() {
                     </div>
                     <textarea
                       rows={3}
-                      placeholder={fi ? "Kerro lyhyesti projektistasi..." : "Briefly describe your project..."}
+                      placeholder={fi ? "Kerro lyhyesti projektista tai liiketoiminta mahdollisuudesta." : "Briefly describe the project or business opportunity."}
                       value={mValues.viesti}
                       onChange={(e) => setMValues((v) => ({ ...v, viesti: e.target.value }))}
                       onBlur={() => setMTouched((t) => ({ ...t, viesti: true }))}
                       className={`${mInputCls("viesti")} resize-none`}
                     />
-                    {mFieldErr("viesti") && <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">{fi ? "Kirjoita ainakin muutama sana" : "Write at least a few words"}</p>}
                   </div>
                   <div>
                     <label className="mb-1.5 block font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
-                      {t("form.yritys")} <span className="normal-case">{fi ? "valinnainen" : "optional"}</span>
+                      {t("form.yritys")} *
                     </label>
                     <input
                       type="text" autoComplete="organization"
@@ -338,8 +396,12 @@ export function OtaYhteyttaPage() {
                       className={mInputCls("yritys")}
                     />
                   </div>
-                  <div className="mt-1 flex items-center gap-4">
-                    <button type="submit" disabled={mStatus === "sending"} className="btn-primary disabled:opacity-40">
+                  <div className="mt-1 flex flex-col items-start gap-3 @min-[22rem]:flex-row @min-[22rem]:items-center @min-[22rem]:gap-4">
+                    <button
+                      type="submit"
+                      disabled={mStatus === "sending"}
+                      className="btn-primary shrink-0 disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
                       <span className="btn-label">{mStatus === "sending" ? "..." : fi ? "Lähetä viesti" : "Send message"}</span>
                       <span className="btn-arrow text-w-black/40">→</span>
                     </button>
@@ -347,6 +409,11 @@ export function OtaYhteyttaPage() {
                       {fi ? "Vastaamme 24h sisällä." : "We respond within 24h."}
                     </span>
                   </div>
+                  {mSubmitError && (
+                    <p role="alert" className="font-mono text-[0.75rem] leading-snug text-red-300/95">
+                      {mSubmitError}
+                    </p>
+                  )}
                 </form>
               </>
             )}

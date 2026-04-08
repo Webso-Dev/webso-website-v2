@@ -8,7 +8,7 @@
   },
   "hero": {
     "headline": "An AI-native team delivers more, \nfaster and at higher quality.",
-    "subheadline": "AI is woven into every project. Faster delivery, higher quality, lower cost.",
+    "subheadline": "AI is woven into every project. Faster delivery, higher quality, better investment.",
     "ctaPrimary": "Get in touch",
     "ctaSecondary": "Explore services"
   },
@@ -16,18 +16,18 @@
     "items": [
       {
         "number": "01",
-        "title": "AI-native process",
-        "description": "AI is built into how we work not added as an afterthought. This means faster development and higher quality."
+        "title": "AI-native development",
+        "description": "AI is built into how we work. This means faster development and higher quality in every project."
       },
       {
         "number": "02",
-        "title": "Finland's sharpest talent",
-        "description": "Every consultant has passed a rigorous hiring process. No compromises on expertise."
+        "title": "Top-tier expertise",
+        "description": "Every consultant has passed a demanding recruitment process. Our team is made up of the best in the field."
       },
       {
         "number": "03",
-        "title": "Partner, not vendor",
-        "description": "We don't just execute tickets. We understand your business and build solutions that create competitive advantage."
+        "title": "Partner that creates value",
+        "description": "We understand your business and build solutions that create competitive advantage."
       }
     ]
   },
@@ -35,7 +35,7 @@
     "title": "What we do",
     "pillar1": {
       "title": "AI-native software development",
-      "description": "We build enterprise information systems. From e-commerce to backend infrastructure no compromises on quality.",
+      "description": "We build enterprise information systems in their full scope. Whether it's e-commerce, an ERP or business-critical infrastructure, we bring the best talent to every project.",
       "items": [
         "Web, mobile & backend",
         "Information systems",
@@ -79,22 +79,22 @@
     ]
   },
   "ura": {
-    "title": "Want to build software in a way that isn't taught in schools yet?",
+    "title": "We do software development differently. Join us.",
     "items": [
       {
         "number": "01",
-        "title": "The latest tools",
-        "description": "AI-native development tools are our everyday. Here you get to use tomorrow's technology today."
+        "title": "Frontier development environment",
+        "description": "AI is part of every project. You grow your skills in an environment where the industry's best methods are everyday practice."
       },
       {
         "number": "02",
-        "title": "Demanding team",
-        "description": "Colleagues who raise your bar. Mediocrity doesn't survive here."
+        "title": "Demanding challenges",
+        "description": "Our team solves business-critical systems for demanding clients. There are no simple tasks on offer."
       },
       {
         "number": "03",
-        "title": "Growing company",
-        "description": "Shape the direction and culture. This isn't a big machine this is a growth story."
+        "title": "Impact you can see",
+        "description": "Every project shows up in the client's business. You build systems that actually matter."
       }
     ],
     "cta": "See open positions"
@@ -116,7 +116,7 @@
       "email": "pekka@webso.fi",
       "phone": "+358 44 506 6448",
       "note": "You can also call directly.",
-      "quote": "Let's skip the formalities just drop me a message."
+      "quote": "Interested? Get in touch."
     }
   },
   "footer": {
@@ -128,7 +128,7 @@
     "tag": "Free consultation",
     "step1": {
       "headline": "Let's build something better, together.",
-      "sub": "Book a free 30-minute discovery call. No commitment, no pitch. Just an honest conversation about how we can help.",
+      "sub": "Book a free 30-minute discovery call. An honest conversation about how we can help.",
       "cta": "Book your free call",
       "stat1value": "60+",
       "stat1label": "Projects delivered",
@@ -167,7 +167,7 @@
       "cta": "Send request",
       "sending": "Sending...",
       "back": "Back",
-      "trust": "No commitment. We respond within 24 hours."
+      "trust": "We respond within 24 hours."
     },
     "step4": {
       "tag": "Sent",

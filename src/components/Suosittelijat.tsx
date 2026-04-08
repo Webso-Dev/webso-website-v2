@@ -11,11 +11,11 @@ gsap.registerPlugin(ScrollTrigger);
 const testimonials = [
   {
     quoteFi:
-      "Lopputulos on moderni ja visuaalisesti miellyttävä, mutta ennen kaikkea teknisesti huippuluokkaa.",
+      "Yhteinen projekti sujui ketterästi ja tehokkaasti, ja pystyimme ratkomaan haasteita nopeasti. Lopputulos on moderni ja visuaalisesti miellyttävä, mutta ennen kaikkea teknisesti huippuluokkaa.",
     quoteEn:
-      "The end result is modern and visually appealing, but above all technically top-notch.",
+      "The joint project ran agile and efficiently, and we were able to resolve challenges quickly. The result is modern and visually appealing, but above all technically top-notch.",
     name: "Jukka Poméll",
-    role: "Director",
+    role: "PMO",
     company: "Dieta",
     logo: "/images/logos/dieta.avif",
     image: "/images/cases/dieta-testimonial.avif",
@@ -48,12 +48,14 @@ export function Suosittelijat() {
       ref={sectionRef}
       className="border-b border-dashed border-w-white-15 bg-w-black overflow-hidden"
     >
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10 md:h-[300px]">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
         {testimonials.map((t) => (
-          <div key={t.name} className="testimonial-card relative flex md:h-[300px]">
-
-            {/* Left: text content — 50% width, 20px padding top/bottom */}
-            <div className="w-full md:w-1/2 py-5 flex flex-col gap-5 relative z-10 justify-center">
+          <div
+            key={t.name}
+            className="testimonial-card relative flex items-stretch md:min-h-[300px]"
+          >
+            {/* Left: text only gets vertical inset — image stays flush to section top/bottom */}
+            <div className="relative z-10 flex w-full flex-col justify-start gap-5 py-5 md:w-1/2 md:py-5">
               {/* Reference label */}
               <span className="tag inline-block self-start">
                 {locale === "fi" ? "Referenssi" : "Testimonial"}
@@ -93,20 +95,24 @@ export function Suosittelijat() {
               </div>
             </div>
 
-            {/* Right: image — fills right 50%, flush to section right border */}
+            {/* Right: full vertical bleed of the row (no outer py); horizontal bleed into px gutter */}
             {t.image && (
-              <div className="hidden md:block absolute top-0 bottom-0 w-1/2 overflow-hidden" style={{ right: "-2.5rem" }}>
+              <div
+                className="absolute inset-y-0 hidden w-1/2 overflow-hidden md:block"
+                style={{ right: "-2.5rem" }}
+              >
                 <Image
                   src={t.image}
                   alt={t.company}
                   fill
+                  sizes="(min-width: 768px) 50vw, 0"
                   className="object-cover"
                 />
-                {/* Gradient: 45deg angle, exponential curve from bottom-left to transparent at top-right */}
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: "linear-gradient(to right, rgba(3,4,10,1) 0px, rgba(3,4,10,1) 50px, rgba(3,4,10,0) 100%)",
+                    background:
+                      "linear-gradient(to right, rgba(3,4,10,1) 0px, rgba(3,4,10,1) 50px, rgba(3,4,10,0) 100%)",
                   }}
                 />
               </div>

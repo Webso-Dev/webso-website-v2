@@ -17,17 +17,6 @@ const allCases = [
     year: "2024",
   },
   {
-    id: "evolver",
-    titleFi: "AI-pohjainen prosessiautomaatio",
-    titleEn: "AI-powered process automation",
-    descFi: "Rakensimme AI-agentin joka automatisoi manuaalisen datan käsittelyn. Toistuva työ poistui tiimi pystyi keskittymään olennaiseen.",
-    descEn: "We built an AI agent that automates manual data processing. Repetitive work eliminated the team could focus on what matters.",
-    image: "/images/cases/dieta-detail.webp",
-    logo: null,
-    tag: "AI Engineering",
-    year: "2024",
-  },
-  {
     id: "bongariliitto",
     titleFi: "Lintuhavaintojärjestelmän modernisointi",
     titleEn: "Birdwatching system modernisation",
@@ -41,10 +30,10 @@ const allCases = [
 ];
 
 const testimonial = {
-  quoteFi: "Lopputulos on moderni ja visuaalisesti miellyttävä, mutta ennen kaikkea teknisesti huippuluokkaa.",
-  quoteEn: "The end result is modern and visually appealing, but above all technically top-notch.",
+  quoteFi: "Yhteinen projekti sujui ketterästi ja tehokkaasti, ja pystyimme ratkomaan haasteita nopeasti. Lopputulos on moderni ja visuaalisesti miellyttävä, mutta ennen kaikkea teknisesti huippuluokkaa.",
+  quoteEn: "The joint project ran agile and efficiently, and we were able to resolve challenges quickly. The result is modern and visually appealing, but above all technically top-notch.",
   name: "Jukka Poméll",
-  role: "Director",
+  role: "PMO",
   company: "Dieta",
   logo: "/images/logos/dieta.avif",
 };
@@ -135,7 +124,7 @@ export function YhteistyotPage() {
 
                   {/* Learn more */}
                   <div className="mt-8">
-                    <Link href={`/${locale}/yhteistyot`} className="btn-outline inline-flex">
+                    <Link href={c.id === "dieta" ? `/${locale}/yhteistyot/dieta` : c.id === "bongariliitto" ? `/${locale}/yhteistyot/bongariliitto` : `/${locale}/yhteistyot`} className="btn-outline inline-flex">
                       <span className="btn-label">{locale === "fi" ? "Lue lisää" : "Learn more"}</span>
                       <span className="btn-arrow text-w-white-30">→</span>
                     </Link>

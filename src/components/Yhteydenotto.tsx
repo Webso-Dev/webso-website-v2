@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { FormSuccess } from "@/components/FormSuccess";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -33,18 +34,29 @@ export function Yhteydenotto() {
     nimi: (v) => v.trim().length >= 2,
     sahkoposti: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
     viesti: (v) => v.trim().length >= 10,
+    yritys: (v) => v.trim().length >= 1,
   };
 
   const fieldOk = (k: string) => touched[k] && validators[k]?.(values[k] ?? "");
   const fieldErr = (k: string) => touched[k] && validators[k] && !validators[k](values[k] ?? "");
   const isComplete = Object.entries(validators).every(([k, fn]) => fn(values[k] ?? ""));
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setTouched({ nimi: true, sahkoposti: true, viesti: true });
+    setTouched({ nimi: true, sahkoposti: true, viesti: true, yritys: true });
     if (!isComplete) return;
     setStatus("sending");
-    setTimeout(() => setStatus("sent"), 1500);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...values, source: "Etusivu – Yhteydenotto" }),
+      });
+      if (!res.ok) throw new Error("Failed");
+      setStatus("sent");
+    } catch {
+      setStatus("idle");
+    }
   };
 
   const inputCls = (k: string) =>
@@ -80,7 +92,7 @@ export function Yhteydenotto() {
               <div className="absolute bottom-0 left-0 right-0 z-10 p-6 md:p-8">
                 <div className="flex flex-col gap-4">
                   <p className="font-display text-[clamp(1.5rem,2.8vw,2.5rem)] font-normal leading-[1.25] tracking-[-0.03em] text-w-white">
-                    Hypätään suoraan asiaan,<br />nakkaa mulle viestiä.
+                    {t("pekka.quote")}
                   </p>
                   <div>
                     <p className="font-mono text-[0.8125rem] uppercase tracking-[0.04em] text-w-white-70">
@@ -114,14 +126,8 @@ export function Yhteydenotto() {
               <p className="mt-1.5 text-[0.8125rem] text-w-white-30">{t("subtitle")}</p>
 
               {status === "sent" ? (
-                <div className="mt-10 flex flex-col items-start gap-4">
-                  <span className="tag-accent">{fi ? "Lähetetty" : "Sent"}</span>
-                  <p className="font-display text-[1.5rem] font-normal tracking-[-0.025em] text-w-white">
-                    {fi ? "Kiitos! Palaamme asiaan pian." : "Thanks! We'll be in touch soon."}
-                  </p>
-                  <p className="text-[0.875rem] leading-[1.65] text-w-white-30">
-                    {fi ? "Vastaamme yleensä saman päivän aikana." : "We typically respond the same day."}
-                  </p>
+                <div className="mt-6">
+                  <FormSuccess fi={fi} />
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-4">
@@ -182,23 +188,18 @@ export function Yhteydenotto() {
                     </div>
                     <textarea
                       name="message" rows={4}
-                      placeholder={fi ? "Kerro lyhyesti projektistasi tai haasteestasi..." : "Briefly describe your project or challenge..."}
+                      placeholder={fi ? "Kerro lyhyesti projektista tai liiketoiminta mahdollisuudesta." : "Briefly describe the project or business opportunity."}
                       value={values.viesti}
                       onChange={(e) => setValues((v) => ({ ...v, viesti: e.target.value }))}
                       onBlur={() => setTouched((t) => ({ ...t, viesti: true }))}
                       className={`${inputCls("viesti")} resize-none`}
                     />
-                    {fieldErr("viesti") && (
-                      <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">
-                        {fi ? "Kirjoita ainakin muutama sana" : "Write at least a few words"}
-                      </p>
-                    )}
                   </div>
 
-                  {/* Company optional */}
+                  {/* Company */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
-                      {t("form.yritys")} <span className="normal-case">{fi ? "valinnainen" : "optional"}</span>
+                      {t("form.yritys")} *
                     </label>
                     <input
                       name="yritys" type="text" autoComplete="organization"

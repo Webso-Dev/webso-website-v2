@@ -139,7 +139,7 @@ export function Footer() {
                   { l: t("nav.meista"), h: `/${locale}/meista` },
                   { l: t("nav.ura"), h: `/${locale}/ura` },
                   { l: t("nav.otaYhteytta"), h: `/${locale}/ota-yhteytta` },
-                  { l: t("footer.tietosuoja"), h: "#" },
+                  { l: t("footer.tietosuoja"), h: `/${locale}/tietosuoja` },
                 ].map((n) => (
                   <Link
                     key={n.h}
@@ -187,7 +187,7 @@ export function Footer() {
       </footer>
 
       {/* Spacer: same height as fixed WEBSO — creates scroll room to reveal it */}
-      <div ref={spacerRef} />
+      <div ref={spacerRef} data-webso-spacer aria-hidden />
     </>
   );
 }

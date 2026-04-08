@@ -21,9 +21,28 @@ const supplyMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Webso",
+  title: {
+    default: "Webso — AI-natiivi ohjelmistokehitys",
+    template: "%s — Webso",
+  },
   description:
-    "Rakennamme yritysten tietojärjestelmiä hyödyntäen tekoälyn koko potentiaalin.",
+    "Rakennamme yritysten tietojärjestelmiä hyödyntäen tekoälyn koko potentiaalin. AI-natiivi tiimi toimittaa enemmän, nopeammin ja paremmalla laadulla.",
+  metadataBase: new URL("https://webso.fi"),
+  openGraph: {
+    type: "website",
+    siteName: "Webso",
+    title: "Webso — AI-natiivi ohjelmistokehitys",
+    description:
+      "Rakennamme yritysten tietojärjestelmiä hyödyntäen tekoälyn koko potentiaalin.",
+    images: [{ url: "/images/og.png", width: 1200, height: 630, alt: "Webso" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Webso — AI-natiivi ohjelmistokehitys",
+    description:
+      "Rakennamme yritysten tietojärjestelmiä hyödyntäen tekoälyn koko potentiaalin.",
+    images: ["/images/og.png"],
+  },
   icons: {
     icon: "/favicon.png",
   },

@@ -233,15 +233,27 @@ function StepForm({
     setValues((v) => ({ ...v, [k]: e.target.value }));
   const blur = (k: string) => () => setTouched((p) => ({ ...p, [k]: true }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setTouched({ nimi: true, sahkoposti: true, puhelin: true });
     if (!isComplete) return;
     setSending(true);
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...values,
+          painPoint: painLabels[locale]?.[painPoint] ?? painPoint,
+          source: "Ilmainen konsultaatio -funnel",
+        }),
+      });
+      if (!res.ok) throw new Error("Failed");
       setSending(false);
       onSubmit(values);
-    }, 1400);
+    } catch {
+      setSending(false);
+    }
   };
 
   const painLabels: Record<string, Record<string, string>> = {

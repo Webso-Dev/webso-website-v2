@@ -6,16 +6,16 @@ import Link from "next/link";
 
 const vals = {
   fi: [
-    { n: "01", t: "Substanssi.", d: "Työn laatu puhuu puolestaan. Asiakkaamme arvioivat meidät tulosten perusteella." },
-    { n: "02", t: "Nopeus ja tarkkuus.", d: "Toimitamme tehokkaasti. Jokainen yksityiskohta on viimeistelty ja aikatauluissa pysytään." },
-    { n: "03", t: "Iso vaikutus.", d: "Optimoimme tuloksia. Liiketoiminnalle merkityksellinen muutos on ainoa mittari, joka ratkaisee." },
-    { n: "04", t: "Aina eturintamassa.", d: "Uudet työkalut ja menetelmät otetaan käyttöön heti. Asiakkaamme hyötyvät aina uusimmasta teknologiasta." },
+    { n: "01", t: "Substanssi.", d: "Työn laatu puhuu puolestaan." },
+    { n: "02", t: "Nopeus ja tarkkuus.", d: "Toimitamme tehokkaasti, jokainen yksityiskohta viimeisteltynä." },
+    { n: "03", t: "Iso vaikutus.", d: "Keskitymme tuloksiin, jotka ovat merkityksellisiä liiketoiminnalle." },
+    { n: "04", t: "Aina eturintamassa.", d: "Uudet työkalut ja menetelmät otetaan käyttöön heti." },
   ],
   en: [
-    { n: "01", t: "Substance.", d: "The quality of our work speaks for itself. Clients judge us on results." },
-    { n: "02", t: "Speed and precision.", d: "We deliver efficiently. Every detail finished, every deadline met." },
-    { n: "03", t: "Big impact.", d: "We optimise outcomes. Meaningful change for the business is the only metric that matters." },
-    { n: "04", t: "Always on the frontier.", d: "New tools and methods adopted immediately. Our clients always benefit from the latest technology." },
+    { n: "01", t: "Substance.", d: "The quality of our work speaks for itself." },
+    { n: "02", t: "Speed and precision.", d: "We deliver efficiently, every detail finished." },
+    { n: "03", t: "Big impact.", d: "We focus on outcomes that are meaningful to the business." },
+    { n: "04", t: "Always on the frontier.", d: "New tools and methods adopted immediately." },
   ],
 };
 

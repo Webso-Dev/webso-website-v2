@@ -75,11 +75,11 @@
       { "value": "60", "suffix": "+", "label": "Toteutettua projektia" },
       { "value": "15", "suffix": "+", "label": "Konsulttia" },
       { "value": "2020", "suffix": "", "label": "Perustettu" },
-      { "value": "98", "suffix": "%", "label": "Asiakas retentio" }
+      { "value": "98", "suffix": "%", "label": "Asiakasretentio" }
     ]
   },
   "ura": {
-    "title": "Teemme ohjelmistokehitystä eri tavalla. Liity mukaan.",
+    "title": "Teemme sovelluskehitystä eri tavalla. Liity mukaan.",
     "items": [
       {
         "number": "01",
@@ -133,7 +133,7 @@
       "stat1value": "60+",
       "stat1label": "Toteutettua projektia",
       "stat2value": "98%",
-      "stat2label": "Asiakas retentio",
+      "stat2label": "Asiakasretentio",
       "stat3value": "24h",
       "stat3label": "Vastausaika"
     },

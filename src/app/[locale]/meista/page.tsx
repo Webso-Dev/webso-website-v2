@@ -6,11 +6,11 @@ import { MeistaPage } from "@/components/pages/MeistaPage";
 export const metadata: Metadata = {
   title: "Meistä",
   description:
-    "Webso on suomalainen AI-natiivi ohjelmistokehitysyritys. Tutustuu tiimimme, arvoihimme ja siihen miksi rakennamme ohjelmistoja eri tavalla.",
+    "Webso on suomalainen AI-natiivi sovelluskehitysyritys. Tutustuu tiimimme, arvoihimme ja siihen miksi rakennamme sovelluksia eri tavalla.",
   openGraph: {
     title: "Meistä — Webso",
     description:
-      "Suomalainen AI-natiivi ohjelmistokehitysyritys. Tiimi, arvot ja tarina.",
+      "Suomalainen AI-natiivi sovelluskehitysyritys. Tiimi, arvot ja tarina.",
   },
 };
 

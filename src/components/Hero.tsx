@@ -12,19 +12,6 @@ export function Hero() {
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const sectionRef2 = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const setHeight = () => {
-      const nav = document.querySelector("nav");
-      if (nav && sectionRef2.current) {
-        sectionRef2.current.style.height = `${window.innerHeight - nav.offsetHeight}px`;
-      }
-    };
-    setHeight();
-    window.addEventListener("resize", setHeight);
-    return () => window.removeEventListener("resize", setHeight);
-  }, []);
 
   useEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -83,9 +70,8 @@ export function Hero() {
 
   return (
     <section
-      ref={sectionRef2}
       className="relative flex flex-col justify-start overflow-hidden border-b border-dashed border-w-white-15 bg-w-black"
-      style={{ minHeight: "32rem" }}
+      style={{ height: "calc((100dvh - var(--nav-h)) * 1.5)", minHeight: "48rem" }}
     >
       {/* Arcs background — anchored to bottom-right, pushed down on mobile */}
       <div className="pointer-events-none absolute inset-0">

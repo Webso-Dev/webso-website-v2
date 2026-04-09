@@ -22,7 +22,7 @@ const supplyMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Webso — AI-natiivi ohjelmistokehitys",
+    default: "Webso — AI-natiivi sovelluskehitys",
     template: "%s — Webso",
   },
   description:
@@ -31,14 +31,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Webso",
-    title: "Webso — AI-natiivi ohjelmistokehitys",
+    title: "Webso — AI-natiivi sovelluskehitys",
     description:
       "Rakennamme yritysten tietojärjestelmiä hyödyntäen tekoälyn koko potentiaalin.",
     images: [{ url: "/images/og.png", width: 1200, height: 630, alt: "Webso" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Webso — AI-natiivi ohjelmistokehitys",
+    title: "Webso — AI-natiivi sovelluskehitys",
     description:
       "Rakennamme yritysten tietojärjestelmiä hyödyntäen tekoälyn koko potentiaalin.",
     images: ["/images/og.png"],
@@ -70,12 +70,12 @@ export default async function LocaleLayout({
     >
       <body className="min-h-screen antialiased">
         {/* Vertical wireframe guide lines — fixed overlay, hidden on mobile */}
-        <div className="pointer-events-none fixed inset-y-0 left-0 right-0 z-[999] mx-auto hidden max-w-[1800px] md:block" aria-hidden="true">
+        <div className="pointer-events-none fixed inset-y-0 left-0 right-0 z-[999] mx-auto hidden max-w-[1640px] md:block" aria-hidden="true">
           <div className="absolute inset-y-0 left-[100px]" style={{ width: "1px", background: "var(--dash-v)" }} />
           <div className="absolute inset-y-0 right-[100px]" style={{ width: "1px", background: "var(--dash-v)" }} />
         </div>
         {/* Content box — slab that slides up to reveal fixed WEBSO behind it */}
-        <div className="relative z-10 bg-w-black mx-auto max-w-[1800px] md:px-[100px]">
+        <div className="relative z-10 bg-w-black mx-auto max-w-[1640px] md:px-[100px]">
           <NextIntlClientProvider locale={locale} messages={messages}>
             {children}
           </NextIntlClientProvider>

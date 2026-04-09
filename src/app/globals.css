@@ -24,6 +24,8 @@
 :root {
   --dash-h: repeating-linear-gradient(to right,  rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 2px);
   --dash-v: repeating-linear-gradient(to bottom, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px, transparent 1px, transparent 2px);
+  /* Nav height: py-6 (1.5rem × 2) + logo height (1.625rem) */
+  --nav-h: 4.625rem;
 }
 
 body {

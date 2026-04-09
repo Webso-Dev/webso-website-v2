@@ -6,7 +6,7 @@ import { UraPage } from "@/components/pages/UraPage";
 export const metadata: Metadata = {
   title: "Ura",
   description:
-    "Liity Webson tiimiin. Teemme ohjelmistokehitystä eri tavalla — AI on osa jokaista projektia. Katso avoimet paikat.",
+    "Liity Webson tiimiin. Teemme sovelluskehitystä eri tavalla — AI on osa jokaista projektia. Katso avoimet paikat.",
   openGraph: {
     title: "Ura — Webso",
     description:

@@ -21,14 +21,14 @@ const vals = {
 
 const team = [
   { name: "Pekka Mattinen",  role: { fi: "CEO, Co-Founder",                        en: "CEO, Co-Founder" },                        image: "/images/team/pekka.avif" },
-  { name: "Vellu",           role: { fi: "Senior ohjelmistokehittäjä, Co-Founder", en: "Senior Software Developer, Co-Founder" }, image: "/images/team/vellu.webp" },
-  { name: "Miikka",          role: { fi: "Ohjelmistokehittäjä, Partner",           en: "Software Developer, Partner" },           image: "/images/team/miikka.webp" },
-  { name: "Leevi",           role: { fi: "Ohjelmistokehittäjä, Partner",           en: "Software Developer, Partner" },           image: "/images/team/leevi.webp" },
+  { name: "Vellu",           role: { fi: "Senior sovelluskehittäjä, Co-Founder", en: "Senior Software Developer, Co-Founder" }, image: "/images/team/vellu.webp" },
+  { name: "Miikka",          role: { fi: "Sovelluskehittäjä, Partner",           en: "Software Developer, Partner" },           image: "/images/team/miikka.webp" },
+  { name: "Leevi",           role: { fi: "Sovelluskehittäjä, Partner",           en: "Software Developer, Partner" },           image: "/images/team/leevi.webp" },
   { name: "Roope",           role: { fi: "Myynti, Partner",                        en: "Sales, Partner" },                        image: "/images/team/roope.webp" },
   { name: "Aleksi",          role: { fi: "Partner",                                en: "Partner" },                               image: "/images/team/aleksi.webp" },
-  { name: "Paavo",           role: { fi: "Senior ohjelmistokehittäjä, Partner",    en: "Senior Software Developer, Partner" },    image: "/images/team/paavo.webp" },
-  { name: "Paulus",          role: { fi: "Ohjelmistokehittäjä",                    en: "Software Developer" },                    image: "/images/team/paulus.webp" },
-  { name: "Pekko Pesonen",   role: { fi: "Junior ohjelmistokehittäjä",             en: "Junior Software Developer" },             image: "/images/team/pekko.webp" },
+  { name: "Paavo",           role: { fi: "Senior sovelluskehittäjä, Partner",    en: "Senior Software Developer, Partner" },    image: "/images/team/paavo.webp" },
+  { name: "Paulus",          role: { fi: "Sovelluskehittäjä",                    en: "Software Developer" },                    image: "/images/team/paulus.webp" },
+  { name: "Pekko Pesonen",   role: { fi: "Junior sovelluskehittäjä",             en: "Junior Software Developer" },             image: "/images/team/pekko.webp" },
   { name: "Juuso",           role: { fi: "Design",                                 en: "Design" },                                image: "/images/team/pekko.webp" },
   { name: "Kim",             role: { fi: "Head of Finance",                        en: "Head of Finance" },                       image: "/images/team/pekko.webp" },
 ];
@@ -64,11 +64,11 @@ export function MeistaPage() {
             <div className="shrink-0 border-b border-dashed border-w-white-15 py-10 md:sticky md:top-[4.25rem] md:w-[36%] md:self-start md:border-b-0 md:py-0 md:pb-24 md:pt-10 md:pr-14">
               <span className="tag mb-8 inline-block">{locale === "fi" ? "Yritys" : "Company"}</span>
               <h2 className="font-display text-[clamp(1.5rem,3vw,2.75rem)] font-normal leading-[1.1] tracking-[-0.03em] text-w-white">
-                {locale === "fi" ? "Teemme ohjelmistokehitystä paremmin." : "We do software development better."}
+                {locale === "fi" ? "Teemme sovelluskehitystä paremmin." : "We do software development better."}
               </h2>
               <p className="mt-5 text-[1rem] leading-[1.75] text-w-white-50">
                 {locale === "fi"
-                  ? "Webso syntyi tarpeesta tehdä ohjelmistokehitystä paremmin. Tekoäly on sisäänrakennettu työtapaamme — tämä tarkoittaa nopeampaa kehitystä ja parempaa laatua."
+                  ? "Webso syntyi tarpeesta tehdä sovelluskehitystä paremmin. Tekoäly on sisäänrakennettu työtapaamme — tämä tarkoittaa nopeampaa kehitystä ja parempaa laatua."
                   : "Webso was born from the need to do software development better. AI is built into how we work — this means faster development and higher quality."}
               </p>
             </div>

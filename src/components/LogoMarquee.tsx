@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 /** Tweak visual weight: logos with lots of empty space in the asset vs. very wide marks. */

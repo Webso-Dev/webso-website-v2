@@ -11,11 +11,11 @@ import { Yhteydenotto } from "@/components/Yhteydenotto";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Webso — AI-natiivi ohjelmistokehitys",
+  title: "Webso — AI-natiivi sovelluskehitys",
   description:
     "AI-natiivi tiimi toimittaa enemmän, nopeammin ja paremmalla laadulla. Rakennamme yritysten tietojärjestelmiä hyödyntäen tekoälyn koko potentiaalin.",
   openGraph: {
-    title: "Webso — AI-natiivi ohjelmistokehitys",
+    title: "Webso — AI-natiivi sovelluskehitys",
     description:
       "AI-natiivi tiimi toimittaa enemmän, nopeammin ja paremmalla laadulla.",
     url: "https://webso.fi",

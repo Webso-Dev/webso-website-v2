@@ -78,8 +78,8 @@ export function UraPage() {
             </h1>
             <p className="mt-5 max-w-lg text-[1rem] leading-[1.7] text-white/70">
               {locale === "fi"
-                ? "Etsimme huippuosaajia jotka haluavat tehdä ohjelmistokehitystä tavalla, joka määrittelee alan suunnan."
-                : "We're looking for top talent who want to do software engineering in a way that defines the direction of the industry."}
+                ? "Etsimme huippuosaajia jotka haluavat tehdä sovelluskehitystä tavalla, joka määrittelee alan suunnan."
+                : "We're looking for top talent who want to do software development in a way that defines the direction of the industry."}
             </p>
           </div>
         </div>
@@ -136,7 +136,7 @@ export function UraPage() {
                     </h3>
                     <p className="mt-3 max-w-xl text-[0.9375rem] leading-[1.7] text-white/70">
                       {locale === "fi"
-                        ? "Etsimme kokenutta ohjelmistokehittäjää, joka haluaa rakentaa vaativia järjestelmiä tekoälyn avustuksella. Sinulla on vahva tekninen pohja ja halu viedä alaa eteenpäin."
+                        ? "Etsimme kokenutta sovelluskehittäjää, joka haluaa rakentaa vaativia järjestelmiä tekoälyn avustuksella. Sinulla on vahva tekninen pohja ja halu viedä alaa eteenpäin."
                         : "We're looking for an experienced software developer who wants to build demanding systems with AI assistance. You have a strong technical foundation and the drive to push the industry forward."}
                     </p>
                   </div>

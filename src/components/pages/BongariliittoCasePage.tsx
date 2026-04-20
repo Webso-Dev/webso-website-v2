@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { FormSuccess } from "@/components/FormSuccess";
+import { Yhteydenotto } from "@/components/Yhteydenotto";
 
 const outcomes = [
   { fi: "Reaaliaikainen\nlaskenta", en: "Real-time\ncalculation" },
@@ -50,50 +50,28 @@ export function BongariliittoCasePage() {
   const locale = useLocale();
   const isFi = locale === "fi";
 
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
-  const [values, setValues] = useState({ nimi: "", sahkoposti: "", viesti: "", yritys: "" });
-  const [touched, setTouched] = useState<Record<string, boolean>>({});
-
-  const validators: Record<string, (v: string) => boolean> = {
-    nimi: (v) => v.trim().length >= 2,
-    sahkoposti: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
-    viesti: (v) => v.trim().length >= 10,
-    yritys: (v) => v.trim().length >= 1,
-  };
-  const fieldOk = (k: string) => touched[k] && validators[k]?.(values[k as keyof typeof values] ?? "");
-  const fieldErr = (k: string) => touched[k] && validators[k] && !validators[k](values[k as keyof typeof values] ?? "");
-  const isComplete = Object.entries(validators).every(([k, fn]) => fn(values[k as keyof typeof values] ?? ""));
-  const inputCls = (k: string) =>
-    `w-full bg-transparent px-3 py-2.5 text-[0.875rem] text-w-white outline-none transition-all duration-200 placeholder:text-white/25 dashed-box${fieldErr(k) ? " opacity-80" : ""}`;
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setTouched({ nimi: true, sahkoposti: true, viesti: true, yritys: true });
-    if (!isComplete) return;
-    setStatus("sending");
-    setTimeout(() => setStatus("sent"), 1500);
-  };
-
   return (
     <main className="bg-w-black">
 
       {/* ── Hero ── */}
-      <section className="relative h-[60vh] min-h-[480px] w-full overflow-hidden md:h-[72vh]">
+      <section className="relative h-[80vh] min-h-[520px] w-full overflow-hidden md:h-[72vh]">
         <Image
           src="/images/cases/bongariliitto-hero.webp"
           alt="Bongariliitto"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover md:object-center" style={{ objectPosition: "50% 25%" }}
           sizes="100vw"
         />
-        {/* Gradient overlay */}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #03040a 0%, #03040a 18%, rgba(3,4,10,0.9) 30%, rgba(3,4,10,0) 47%)" }} />
+        {/* Gradient overlay — taller on mobile */}
+        <div className="absolute inset-0 md:hidden" style={{ background: "linear-gradient(to top, #03040a 0%, #03040a 30%, rgba(3,4,10,0.95) 44%, rgba(3,4,10,0.7) 58%, rgba(3,4,10,0.3) 72%, rgba(3,4,10,0) 85%)" }} />
+        <div className="absolute inset-0 hidden md:block" style={{ background: "linear-gradient(to top, #03040a 0%, #03040a 18%, rgba(3,4,10,0.95) 28%, rgba(3,4,10,0.7) 40%, rgba(3,4,10,0.3) 52%, rgba(3,4,10,0) 65%)" }} />
 
         {/* Hero content */}
         <div className="absolute inset-0 flex flex-col justify-end">
-          <div className="mx-auto w-full max-w-[90rem] px-6 pb-12 md:px-10 md:pb-16">
+          <div className="mx-auto w-full max-w-[90rem] px-6 pb-6 md:px-10 md:pb-10">
             {/* Breadcrumb */}
-            <div className="mb-6 flex items-center gap-2">
+            <div className="mb-3 flex items-center gap-2">
               <Link
                 href={`/${locale}/yhteistyot`}
                 className="font-mono text-[0.625rem] uppercase tracking-[0.06em] text-w-white-50 transition-colors hover:text-w-white"
@@ -107,7 +85,7 @@ export function BongariliittoCasePage() {
             </div>
 
             {/* Logo */}
-            <div className="mb-5">
+            <div className="mb-3">
               <Image
                 src="/images/logos/bongariliitto.avif"
                 alt="Bongariliitto"
@@ -125,7 +103,7 @@ export function BongariliittoCasePage() {
             </h1>
 
             {/* Tags */}
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-6 flex flex-wrap gap-2">
               <span className="tag">Sovelluskehitys</span>
               <span className="tag">UI/UX Design</span>
               <span className="tag">Architecture Design</span>
@@ -137,25 +115,23 @@ export function BongariliittoCasePage() {
 
       {/* ── Outcomes bar ── */}
       <section className="border-t border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
-          <div className="flex">
-            {outcomes.map((o, i) => (
-              <React.Fragment key={i}>
-                {i > 0 && <div className="w-px shrink-0 self-stretch" style={{ background: "var(--dash-v)" }} />}
-                <div className="flex-1 py-8 text-center md:py-12">
-                  <p className="font-mono text-[clamp(1.125rem,2vw,1.5rem)] font-normal uppercase leading-[1.2] tracking-[0.01em] text-w-white whitespace-pre-line">
-                    {isFi ? o.fi : o.en}
-                  </p>
-                </div>
-              </React.Fragment>
-            ))}
-          </div>
+        <div className="flex flex-col md:flex-row">
+          {outcomes.map((o, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <div className="h-px w-full shrink-0 md:h-auto md:w-px md:self-stretch" style={{ background: "var(--dash-v)" }} />}
+              <div className="flex-1 py-8 text-center md:py-12">
+                <p className="font-mono text-[clamp(1.125rem,2vw,1.5rem)] font-normal uppercase leading-[1.2] tracking-[0.01em] text-w-white whitespace-pre-line">
+                  {isFi ? o.fi : o.en}
+                </p>
+              </div>
+            </React.Fragment>
+          ))}
         </div>
       </section>
 
       {/* ── Intro ── */}
       <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
           <div className="grid grid-cols-1 gap-0 py-16 md:grid-cols-[1fr_2fr] md:gap-16 md:py-24">
             {/* Left label */}
             <div>
@@ -170,7 +146,7 @@ export function BongariliittoCasePage() {
             </div>
 
             {/* Right text */}
-            <div>
+            <div className="mt-5 md:mt-0">
               <p className="font-display text-[clamp(1.125rem,2vw,1.5rem)] font-normal leading-[1.55] tracking-[-0.015em] text-w-white-90">
                 {isFi
                   ? "Suomen Bongariliitto ry on toiminut jo vuosikymmeniä suomalaisten lintuharrastajien keskeisenä yhteisönä, tarjoten jäsenilleen monipuolisia palveluita harrastuksen tukemiseksi."
@@ -188,7 +164,7 @@ export function BongariliittoCasePage() {
 
       {/* ── Haaste ── */}
       <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
           <div className="py-16 md:py-24">
             <span className="tag mb-10 inline-block">{isFi ? "Haaste" : "Challenge"}</span>
 
@@ -233,7 +209,7 @@ export function BongariliittoCasePage() {
 
       {/* ── Esiselvitys ── */}
       <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
           <div className="py-16 md:py-24">
             <span className="tag mb-10 inline-block">{isFi ? "Esiselvitys" : "Discovery"}</span>
 
@@ -280,7 +256,7 @@ export function BongariliittoCasePage() {
 
       {/* ── Tech Stack ── */}
       <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
           <div className="py-16 md:py-24">
             <span className="tag mb-10 inline-block">{isFi ? "Stack & Arkkitehtuuri" : "Stack & Architecture"}</span>
 
@@ -328,7 +304,7 @@ export function BongariliittoCasePage() {
 
       {/* ── Implementaatio ── */}
       <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
           <div className="py-16 md:py-24">
             <span className="tag mb-10 inline-block">{isFi ? "Implementaatio" : "Implementation"}</span>
 
@@ -396,161 +372,7 @@ export function BongariliittoCasePage() {
         </div>
       </section>
 
-      {/* ── Contact CTA ── */}
-      <section className="border-b border-dashed border-w-white-15 overflow-hidden">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
-          <div className="py-10 md:py-16">
-
-            {/* Section label + heading */}
-            <div className="mb-8 md:mb-12">
-              <span className="tag mb-6 inline-block">{isFi ? "Ota yhteyttä" : "Get in touch"}</span>
-              <h2 className="font-display text-[clamp(1.75rem,3.5vw,3rem)] font-normal leading-[1.08] tracking-[-0.03em] text-w-white">
-                {isFi
-                  ? "Kiinnostaako vastaava projekti?"
-                  : "Interested in a similar project?"}
-              </h2>
-              <p className="mt-4 whitespace-nowrap text-[1rem] leading-[1.65] text-w-white-50">
-                {isFi
-                  ? "Vastaamme 24 tunnin sisällä. Tarjous viidessä arkipäivässä."
-                  : "We respond within 24 hours. Proposal in five business days."}
-              </p>
-            </div>
-
-            {/* 2-col: Pekka left, form right */}
-            <div className="grid gap-4 md:grid-cols-2">
-
-              {/* Left: Pekka photo + quote */}
-              <div className="relative min-h-[480px] overflow-hidden md:min-h-0">
-                <Image
-                  src="/images/team/pekka_no_bg.avif"
-                  alt="Pekka"
-                  fill
-                  className="object-contain"
-                  style={{ objectPosition: "center calc(100% - 80px)" }}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{ background: "linear-gradient(to top, rgba(3,4,10,1) 0%, rgba(3,4,10,0.95) 18%, rgba(3,4,10,0.4) 38%, rgba(3,4,10,0) 55%)" }}
-                />
-                <div className="absolute bottom-0 left-0 right-0 z-10 p-6 md:p-8">
-                  <p className="font-display text-[clamp(1.5rem,2.8vw,2.5rem)] font-normal leading-[1.25] tracking-[-0.03em] text-w-white">
-                    {isFi ? "Kiinnostunut? Ota yhteyttä." : "Interested? Get in touch."}
-                  </p>
-                  <div className="mt-4">
-                    <p className="font-mono text-[0.8125rem] uppercase tracking-[0.04em] text-w-white-70">
-                      Pekka Koskinen
-                    </p>
-                    <p className="mt-0.5 font-mono text-[0.625rem] uppercase tracking-[0.06em] text-w-white-30">
-                      {isFi ? "Toimitusjohtaja" : "CEO"}, Webso
-                    </p>
-                    <div className="mt-3 flex flex-col gap-1">
-                      <a href="mailto:pekka@webso.fi" className="font-mono text-[0.75rem] text-w-white-30 transition-colors hover:text-w-white">
-                        pekka@webso.fi
-                      </a>
-                      <a href="tel:+358445066448" className="font-mono text-[0.75rem] text-w-white-30 transition-colors hover:text-w-white">
-                        +358 44 506 6448
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right: form */}
-              <div className="dashed-box p-5 sm:p-7">
-                {status === "sent" ? (
-                  <div className="flex h-full min-h-[18rem] flex-col justify-center">
-                    <FormSuccess fi={isFi} />
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-
-                    <div>
-                      <div className="mb-1.5 flex items-center justify-between">
-                        <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
-                          {isFi ? "Nimi" : "Name"} *
-                        </label>
-                        {fieldOk("nimi") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
-                      </div>
-                      <input
-                        name="nimi" type="text" autoComplete="name"
-                        placeholder={isFi ? "Etunimi Sukunimi" : "First Last"}
-                        value={values.nimi}
-                        onChange={(e) => setValues((v) => ({ ...v, nimi: e.target.value }))}
-                        onBlur={() => setTouched((t) => ({ ...t, nimi: true }))}
-                        className={inputCls("nimi")}
-                      />
-                      {fieldErr("nimi") && <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">{isFi ? "Syötä nimesi" : "Enter your name"}</p>}
-                    </div>
-
-                    <div>
-                      <div className="mb-1.5 flex items-center justify-between">
-                        <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
-                          {isFi ? "Sähköposti" : "Email"} *
-                        </label>
-                        {fieldOk("sahkoposti") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
-                      </div>
-                      <input
-                        name="sahkoposti" type="email" autoComplete="email"
-                        placeholder={isFi ? "sinä@yritys.fi" : "you@company.com"}
-                        value={values.sahkoposti}
-                        onChange={(e) => setValues((v) => ({ ...v, sahkoposti: e.target.value }))}
-                        onBlur={() => setTouched((t) => ({ ...t, sahkoposti: true }))}
-                        className={inputCls("sahkoposti")}
-                      />
-                      {fieldErr("sahkoposti") && <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">{isFi ? "Tarkista sähköpostiosoite" : "Check your email address"}</p>}
-                    </div>
-
-                    <div>
-                      <div className="mb-1.5 flex items-center justify-between">
-                        <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
-                          {isFi ? "Viesti" : "Message"} *
-                        </label>
-                        {fieldOk("viesti") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
-                      </div>
-                      <textarea
-                        name="message" rows={4}
-                        placeholder={isFi ? "Kerro lyhyesti projektista tai liiketoiminta mahdollisuudesta." : "Briefly describe the project or business opportunity."}
-                        value={values.viesti}
-                        onChange={(e) => setValues((v) => ({ ...v, viesti: e.target.value }))}
-                        onBlur={() => setTouched((t) => ({ ...t, viesti: true }))}
-                        className={`${inputCls("viesti")} resize-none`}
-                      />
-                    </div>
-
-                    <div>
-                      <label className="mb-1.5 block font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
-                        {isFi ? "Yritys" : "Company"} *
-                      </label>
-                      <input
-                        name="yritys" type="text" autoComplete="organization"
-                        placeholder={isFi ? "Yrityksen nimi" : "Company name"}
-                        value={values.yritys}
-                        onChange={(e) => setValues((v) => ({ ...v, yritys: e.target.value }))}
-                        className={inputCls("yritys")}
-                      />
-                    </div>
-
-                    <div className="mt-1 flex items-center gap-4">
-                      <button type="submit" disabled={status === "sending"} className="btn-primary disabled:opacity-40">
-                        <span className="btn-label">
-                          {status === "sending" ? "..." : isFi ? "Lähetä viesti" : "Send message"}
-                        </span>
-                        <span className="btn-arrow text-w-black/40">→</span>
-                      </button>
-                      <span className="font-mono text-[0.5625rem] tracking-[0.04em] text-w-white-30">
-                        {isFi ? "Vastaamme 24h sisällä." : "We respond within 24h."}
-                      </span>
-                    </div>
-
-                  </form>
-                )}
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
+      <Yhteydenotto />
 
     </main>
   );

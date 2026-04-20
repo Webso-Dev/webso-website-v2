@@ -25,7 +25,7 @@ const logos = [
 export function LogoMarquee() {
   return (
     <section className="border-b border-dashed border-w-white-15 bg-w-black">
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10 py-6 sm:py-10">
+      <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10 py-6 sm:py-10">
         <p className="mb-8 font-mono text-[0.6rem] uppercase tracking-[0.12em] text-w-white-30">
           Yhteistyössä
         </p>

@@ -49,10 +49,10 @@ function WebsoFixed({ spacerRef, containerRef }: { spacerRef: React.RefObject<HT
   return (
     <div
       ref={containerRef}
-      className="fixed inset-x-0 bottom-0 bg-w-black"
+      className="fixed inset-x-0 bottom-0 bg-w-black overflow-hidden"
       style={{ zIndex: -1 }}
     >
-      <div ref={ref} className="p-6 md:p-8">
+      <div ref={ref} className="py-6 md:py-8">
         <div className="flex select-none items-end justify-center leading-none">
           {"WEBSO".split("").map((ch, i) => (
             <span
@@ -104,7 +104,7 @@ export function Footer() {
 
       {/* Footer links — inside the z-10 page slab, solid bg covers WEBSO below */}
       <footer className="bg-w-black">
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
 
           <div className="grid grid-cols-1 gap-0 md:grid-cols-[1fr_1px_auto_1px_auto]">
 
@@ -117,7 +117,7 @@ export function Footer() {
                 height={26}
                 className="h-[1.25rem] w-auto brightness-0 invert"
               />
-              <p className="mt-5 max-w-[17rem] text-[0.8125rem] leading-[1.65] text-w-white-30">
+              <p className="mt-5 max-w-[17rem] text-[1rem] leading-[1.65] text-w-white-50">
                 AI-native software house. We build faster and better than traditional vendors.
               </p>
               <div className="mt-6 flex flex-col gap-1.5">
@@ -131,7 +131,7 @@ export function Footer() {
 
             {/* Navigation */}
             <div className="border-t border-dashed border-w-white-15 -mx-4 sm:-mx-8 md:mx-0 px-4 sm:px-8 py-10 md:border-t-0 md:px-8 md:py-16">
-              <p className="tag mb-6">Sivut</p>
+              <p className="tag mb-6">{t("footer.sivut")}</p>
               <nav className="flex flex-col gap-2.5">
                 {[
                   { l: t("nav.palvelut"), h: `/${locale}/palvelut` },
@@ -157,7 +157,7 @@ export function Footer() {
 
             {/* Contact */}
             <div className="border-t border-dashed border-w-white-15 -mx-4 sm:-mx-8 md:mx-0 px-4 sm:px-8 py-10 md:border-t-0 md:px-8 md:py-16">
-              <p className="tag mb-6">Yhteystiedot</p>
+              <p className="tag mb-6">{t("footer.yhteystiedot")}</p>
               <div className="flex flex-col gap-2">
                 <a
                   href="mailto:pekka@webso.fi"

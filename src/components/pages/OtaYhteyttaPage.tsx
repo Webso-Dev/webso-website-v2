@@ -127,7 +127,7 @@ export function OtaYhteyttaPage() {
 
       {/* ── Hero ────────────────────────────────────────────────────────────── */}
       <section id="yhteys" className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
           <div className="grid gap-8 py-10 md:grid-cols-2 md:gap-12 md:py-14 lg:py-16">
 
             {/* Left: text */}
@@ -135,12 +135,12 @@ export function OtaYhteyttaPage() {
               <h1 className="font-display text-[clamp(2rem,4vw,3.75rem)] font-normal leading-[1.05] tracking-[-0.03em] text-w-white whitespace-pre-line">
                 {fi
                   ? "Kerro projektistasi.\nAloitamme viikkojen sisällä."
-                  : "Tell us about your project.\nWe start within weeks."}
+                  : "Tell us about your project."}
               </h1>
               <p className="mt-6 text-[1rem] leading-[1.65] text-w-white-50">
                 {fi
                   ? "Vastaamme 24 tunnin sisällä. Tarjous viidessä arkipäivässä."
-                  : "We respond within 24 hours. Proposal in five business days."}
+                  : "We'll get back to you within 24 hours."}
               </p>
 
               <div className="mt-8">
@@ -276,7 +276,7 @@ export function OtaYhteyttaPage() {
                       </span>
                       <span className="btn-arrow text-w-black/40">→</span>
                     </button>
-                    <span className="font-mono text-[0.5625rem] tracking-[0.04em] text-w-white-30">
+                    <span className="font-mono text-[0.75rem] tracking-[0.04em] text-w-white-50">
                       {fi ? "Vastaamme 24h sisällä." : "We respond within 24h."}
                     </span>
                   </div>
@@ -301,7 +301,7 @@ export function OtaYhteyttaPage() {
 
       {/* ── CTA ─────────────────────────────────────────────────────────────── */}
       <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10 py-16 md:py-24">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10 py-16 md:py-24">
           <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
             <h2 className="font-display text-[clamp(1.5rem,3vw,2.5rem)] font-normal tracking-[-0.03em] text-w-white">
               {fi ? "Rakennetaan jotain merkittävää." : "Let's build something significant."}
@@ -405,7 +405,7 @@ export function OtaYhteyttaPage() {
                       <span className="btn-label">{mStatus === "sending" ? "..." : fi ? "Lähetä viesti" : "Send message"}</span>
                       <span className="btn-arrow text-w-black/40">→</span>
                     </button>
-                    <span className="font-mono text-[0.5625rem] tracking-[0.04em] text-w-white-30">
+                    <span className="font-mono text-[0.75rem] tracking-[0.04em] text-w-white-50">
                       {fi ? "Vastaamme 24h sisällä." : "We respond within 24h."}
                     </span>
                   </div>

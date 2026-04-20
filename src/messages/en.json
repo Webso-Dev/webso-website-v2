@@ -13,6 +13,7 @@
     "ctaSecondary": "Explore services"
   },
   "lupaus": {
+    "heading": "Why Webso",
     "items": [
       {
         "number": "01",
@@ -35,7 +36,7 @@
     "title": "What we do",
     "pillar1": {
       "title": "AI-native software development",
-      "description": "We build enterprise information systems in their full scope. Whether it's e-commerce, an ERP or business-critical infrastructure, we bring the best talent to every project.",
+      "description": "We build your information systems in their full scope. Whether it's e-commerce, an ERP or business-critical infrastructure, we bring the best talent to every project.",
       "items": [
         "Web, mobile & backend",
         "Information systems",
@@ -45,7 +46,7 @@
     },
     "pillar2": {
       "title": "Applied AI Engineering",
-      "description": "We help companies integrate AI into their existing systems, products and services.",
+      "description": "We help you integrate AI into your existing systems, products and services.",
       "items": [
         "AI agents",
         "AI integrations",
@@ -122,7 +123,9 @@
   "footer": {
     "address": "Itämerenkatu 3A, 00180 Helsinki",
     "ytunnus": "Business ID: 3143089-8",
-    "tietosuoja": "Privacy policy"
+    "tietosuoja": "Privacy policy",
+    "sivut": "Pages",
+    "yhteystiedot": "Contact"
   },
   "funnel": {
     "tag": "Free consultation",

@@ -32,7 +32,7 @@ export function Nav() {
   return (
     <>
       <nav className="sticky top-0 z-50 border-b border-dashed border-w-white-15 bg-w-black/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-[90rem] items-center justify-between px-4 py-6 sm:px-8 md:px-10">
+        <div className="mx-auto flex max-w-[90rem] items-center justify-between px-4 py-6 min-[1000px]:px-10">
           <Link href={`/${locale}`}>
             <Image
               src="/images/webso-logo.svg"
@@ -45,7 +45,7 @@ export function Nav() {
           </Link>
 
           {/* Desktop */}
-          <div className="hidden items-center gap-[15px] md:flex">
+          <div className="hidden items-center gap-[15px] min-[1000px]:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -100,7 +100,7 @@ export function Nav() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
+            className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-[5px] min-[1000px]:hidden"
             aria-label="Menu"
           >
             <span className={`block h-px w-5 bg-w-white transition-all duration-300 ${mobileOpen ? "translate-y-[3px] rotate-45" : ""}`} />
@@ -117,12 +117,12 @@ export function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 flex flex-col bg-w-black md:hidden"
+            className="fixed inset-0 z-40 flex flex-col bg-w-black min-[1000px]:hidden"
           >
             {/* Top spacing to clear nav bar */}
             <div className="h-[4.25rem] shrink-0" />
 
-            <div className="flex flex-1 flex-col justify-between px-4 sm:px-8 pb-10">
+            <div className="flex flex-1 flex-col justify-between px-4 pb-10">
               {/* Links */}
               <div className="flex flex-col pt-6">
                 {navLinks.map((link, i) => (

@@ -8,11 +8,12 @@
   },
   "hero": {
     "headline": "AI-natiivi tiimi toimittaa enemmän, \nnopeammin ja paremmalla laadulla.",
-    "subheadline": "Tekoäly on osa jokaista projektia. Nopeampi toimitus, parempi laatu, parempi investointi.",
+    "subheadline": "Tekoäly on osa jokaista projektia. Nopeampi toimitus, parempi laatu, parempi tuotto.",
     "ctaPrimary": "Ota yhteyttä",
     "ctaSecondary": "Tutustu palveluihin"
   },
   "lupaus": {
+    "heading": "Miksi Webso",
     "items": [
       {
         "number": "01",
@@ -35,7 +36,7 @@
     "title": "Mitä teemme",
     "pillar1": {
       "title": "AI-natiivi sovelluskehitys",
-      "description": "Rakennamme yritysten tietojärjestelmiä täydessä laajuudessaan. Oli kyseessä verkkokauppa, toiminnanohjausjärjestelmä tai liiketoimintakriittinen infrastruktuuri, tuomme jokaiseen projektiin parhaimmat osaajat.",
+      "description": "Rakennamme sinulle tietojärjestelmiä täydessä laajuudessaan. Oli kyseessä verkkokauppa, toiminnanohjausjärjestelmä tai liiketoimintakriittinen infrastruktuuri, tuomme jokaiseen projektiin parhaimmat osaajat.",
       "items": [
         "Web, mobile & backend",
         "Tietojärjestelmät",
@@ -45,7 +46,7 @@
     },
     "pillar2": {
       "title": "Applied AI Engineering",
-      "description": "Autamme yrityksiä integroimaan AI:n osaksi olemassa olevia järjestelmiä, tuotteita ja palveluita.",
+      "description": "Autamme sinua integroimaan AI:n osaksi olemassa olevia järjestelmiä, tuotteita ja palveluita.",
       "items": [
         "AI-agentit",
         "AI-integraatiot",
@@ -122,7 +123,9 @@
   "footer": {
     "address": "Itämerenkatu 3A, 00180 Helsinki",
     "ytunnus": "Y-tunnus: 3143089-8",
-    "tietosuoja": "Tietosuojaseloste"
+    "tietosuoja": "Tietosuojaseloste",
+    "sivut": "Sivut",
+    "yhteystiedot": "Yhteystiedot"
   },
   "funnel": {
     "tag": "Ilmainen konsultaatio",

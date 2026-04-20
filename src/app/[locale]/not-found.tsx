@@ -8,7 +8,7 @@ export default function NotFound() {
       <Nav />
       <main>
         <section className="border-b border-dashed border-w-white-15">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
+          <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
             <div className="flex min-h-[60vh] flex-col justify-center py-24">
               <span className="tag mb-8 inline-block">404</span>
               <h1 className="font-display text-[clamp(3rem,8vw,7rem)] font-bold tracking-[-0.04em] text-w-white leading-[1] mb-6">

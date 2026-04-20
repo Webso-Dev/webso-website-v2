@@ -9,7 +9,7 @@ import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function Yhteydenotto() {
+export function Yhteydenotto({ headingFi, headingEn }: { headingFi?: string; headingEn?: string } = {}) {
   const t = useTranslations("yhteydenotto");
   const locale = useLocale();
   const fi = locale === "fi";
@@ -64,7 +64,7 @@ export function Yhteydenotto() {
 
   return (
     <section ref={sectionRef} className="overflow-hidden border-b border-dashed border-w-white-15 bg-w-black">
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
+      <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
         <div className="contact-block py-10 sm:py-16 md:py-24">
 
           <div className="grid overflow-hidden gap-4 md:grid-cols-2">
@@ -95,19 +95,19 @@ export function Yhteydenotto() {
                     {t("pekka.quote")}
                   </p>
                   <div>
-                    <p className="font-mono text-[0.8125rem] uppercase tracking-[0.04em] text-w-white-70">
+                    <p className="font-mono text-[1rem] uppercase tracking-[0.04em] text-w-white">
                       {t("pekka.name")}
                     </p>
-                    <p className="mt-0.5 font-mono text-[0.625rem] uppercase tracking-[0.06em] text-w-white-30">
+                    <p className="mt-0.5 font-mono text-[0.75rem] uppercase tracking-[0.06em] text-w-white-50">
                       {t("pekka.role")}
                     </p>
                     <div className="mt-3 flex flex-col gap-1">
                       <a href={`mailto:${t("pekka.email")}`}
-                        className="font-mono text-[0.75rem] text-w-white-30 transition-colors duration-200 hover:text-w-white">
+                        className="font-mono text-[0.875rem] text-w-white-50 transition-colors duration-200 hover:text-w-white">
                         {t("pekka.email")}
                       </a>
                       <a href={`tel:${t("pekka.phone").replace(/\s/g, "")}`}
-                        className="font-mono text-[0.75rem] text-w-white-30 transition-colors duration-200 hover:text-w-white">
+                        className="font-mono text-[0.875rem] text-w-white-50 transition-colors duration-200 hover:text-w-white">
                         {t("pekka.phone")}
                       </a>
                     </div>
@@ -119,11 +119,11 @@ export function Yhteydenotto() {
 
             {/* Right: Form box */}
             <div className="min-w-0 dashed-box p-4 sm:p-6 md:p-7">
-              <span className="tag mb-5 inline-block">Ota yhteyttä</span>
+              <span className="tag mb-5 inline-block">{fi ? "Ota yhteyttä" : "Contact"}</span>
               <h2 className="font-display text-[clamp(1.25rem,2.5vw,1.875rem)] font-bold tracking-[-0.03em] text-w-white">
-                {t("title")}
+                {fi ? (headingFi ?? t("title")) : (headingEn ?? t("title"))}
               </h2>
-              <p className="mt-1.5 text-[0.8125rem] text-w-white-30">{t("subtitle")}</p>
+              <p className="mt-1.5 text-[1rem] text-w-white-50">{t("subtitle")}</p>
 
               {status === "sent" ? (
                 <div className="mt-6">
@@ -135,7 +135,7 @@ export function Yhteydenotto() {
                   {/* Name */}
                   <div>
                     <div className="mb-1.5 flex items-center justify-between">
-                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-70">
                         {t("form.nimi")} *
                       </label>
                       {fieldOk("nimi") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
@@ -149,7 +149,7 @@ export function Yhteydenotto() {
                       className={inputCls("nimi")}
                     />
                     {fieldErr("nimi") && (
-                      <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">
+                      <p className="mt-1 font-mono text-[0.625rem] text-w-white-50">
                         {fi ? "Syötä nimesi" : "Enter your name"}
                       </p>
                     )}
@@ -158,7 +158,7 @@ export function Yhteydenotto() {
                   {/* Email */}
                   <div>
                     <div className="mb-1.5 flex items-center justify-between">
-                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-70">
                         {t("form.sahkoposti")} *
                       </label>
                       {fieldOk("sahkoposti") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
@@ -172,7 +172,7 @@ export function Yhteydenotto() {
                       className={inputCls("sahkoposti")}
                     />
                     {fieldErr("sahkoposti") && (
-                      <p className="mt-1 font-mono text-[0.5rem] text-w-white-30">
+                      <p className="mt-1 font-mono text-[0.625rem] text-w-white-50">
                         {fi ? "Tarkista sähköpostiosoite" : "Check your email address"}
                       </p>
                     )}
@@ -181,7 +181,7 @@ export function Yhteydenotto() {
                   {/* Message */}
                   <div>
                     <div className="mb-1.5 flex items-center justify-between">
-                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
+                      <label className="font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-70">
                         {t("form.viesti")} *
                       </label>
                       {fieldOk("viesti") && <span className="font-mono text-[0.5625rem] text-w-accent">✓</span>}
@@ -198,7 +198,7 @@ export function Yhteydenotto() {
 
                   {/* Company */}
                   <div>
-                    <label className="mb-1.5 block font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-50">
+                    <label className="mb-1.5 block font-mono text-[0.6875rem] uppercase tracking-[0.06em] text-w-white-70">
                       {t("form.yritys")} *
                     </label>
                     <input
@@ -222,7 +222,7 @@ export function Yhteydenotto() {
                       </span>
                       <span className="btn-arrow text-w-black/40">→</span>
                     </button>
-                    <span className="font-mono text-[0.5625rem] tracking-[0.04em] text-w-white-30">
+                    <span className="font-mono text-[0.75rem] tracking-[0.04em] text-w-white-50">
                       {fi ? "Vastaamme 24h sisällä." : "We respond within 24h."}
                     </span>
                   </div>

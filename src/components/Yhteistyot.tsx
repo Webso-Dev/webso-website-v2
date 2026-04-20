@@ -18,8 +18,10 @@ const cases = [
     descEn: "Modular e-commerce system replacing an outdated platform faster delivery, lower maintenance costs.",
     image: "/images/cases/dieta-hero.webp",
     logo: "/images/logos/dieta.avif",
-    tag: "Sovelluskehitys",
+    tagFi: "Sovelluskehitys",
+    tagEn: "Software Development",
     year: "2024",
+    slug: "/case/dieta-commerce",
   },
   {
     id: "bongariliitto",
@@ -29,8 +31,10 @@ const cases = [
     descEn: "Observation system rebuilt on a modern stack performance multiplied.",
     image: "/images/cases/bongariliitto-hero.webp",
     logo: "/images/logos/bongariliitto.avif",
-    tag: "Sovelluskehitys",
+    tagFi: "Sovelluskehitys",
+    tagEn: "Software Development",
     year: "2021",
+    slug: "/case/bongariliitto",
   },
 ];
 
@@ -56,7 +60,7 @@ export function Yhteistyot() {
 
   return (
     <section ref={sectionRef} className="border-b border-dashed border-w-white-15 bg-w-black">
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
+      <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
         <div className="py-6 md:py-10">
 
           {/* Header */}
@@ -90,10 +94,10 @@ export function Yhteistyot() {
               </div>
 
               {/* Content */}
-              <div className="flex flex-1 flex-col justify-between px-5 py-6 sm:px-8 sm:py-8 md:px-10 md:py-10">
+              <div className="flex flex-1 flex-col justify-between px-5 pt-8 pb-6 sm:px-8 sm:pt-8 sm:pb-8 md:px-10 md:py-10">
                 <div>
                   {/* Logo */}
-                  <div className="mb-3">
+                  <div className="mb-1">
                     <Image
                       src={c.logo}
                       alt={c.id}
@@ -105,13 +109,13 @@ export function Yhteistyot() {
 
                   {/* Meta row */}
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">{c.tag}</span>
+                    <span className="font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">{locale === "fi" ? c.tagFi : c.tagEn}</span>
                     <span className="text-w-white-15">·</span>
                     <span className="font-mono text-[0.5625rem] uppercase tracking-[0.06em] text-w-white-30">{c.year}</span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="mt-4 font-mono text-[clamp(1.25rem,2.2vw,1.75rem)] font-normal uppercase leading-[1.12] tracking-[0.01em] text-w-white">
+                  <h3 className="mt-2 font-mono text-[clamp(1.25rem,2.2vw,1.75rem)] font-normal uppercase leading-[1.12] tracking-[0.01em] text-w-white">
                     {locale === "fi" ? c.titleFi : c.titleEn}
                   </h3>
 
@@ -123,7 +127,7 @@ export function Yhteistyot() {
 
                 {/* Learn more */}
                 <div className="mt-8">
-                  <Link href={c.id === "dieta" ? `/${locale}/yhteistyot/dieta` : c.id === "bongariliitto" ? `/${locale}/yhteistyot/bongariliitto` : `/${locale}/yhteistyot`} className="btn-outline inline-flex">
+                  <Link href={`/${locale}${c.slug}`} className="btn-outline inline-flex">
                     <span className="btn-label">{locale === "fi" ? "Lue lisää" : "Learn more"}</span>
                     <span className="btn-arrow text-w-white-30">→</span>
                   </Link>

@@ -91,7 +91,7 @@ export default function AnimationsPage() {
 
         {/* Header */}
         <section className="border-b border-dashed border-w-white-15">
-          <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+          <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
             <div className="py-16 md:py-24">
               <span className="tag mb-8 inline-block">Illustrations</span>
               <h1 className="font-display text-[clamp(2rem,3.8vw,3.75rem)] font-normal leading-[1.05] tracking-[-0.03em] text-w-white">
@@ -106,7 +106,7 @@ export default function AnimationsPage() {
 
         {/* Lupaus replacements */}
         <section className="border-b border-dashed border-w-white-15">
-          <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+          <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
             <div className="py-10 md:py-14">
               <p className="tag mb-8 inline-block">Lupaus cards</p>
               <IllustGrid items={LUPAUS} />
@@ -116,7 +116,7 @@ export default function AnimationsPage() {
 
         {/* Data & AI pack */}
         <section>
-          <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+          <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
             <div className="py-10 md:py-14">
               <p className="tag mb-8 inline-block">Data &amp; AI pack</p>
               <IllustGrid items={DATA_AI} />

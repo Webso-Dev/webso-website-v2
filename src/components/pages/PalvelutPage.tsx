@@ -49,18 +49,18 @@ export function PalvelutPage() {
 
       {/* Header */}
       <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
-          <div className="py-24 md:py-32">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
+          <div className="py-14 md:py-20">
             <span className="tag mb-8 inline-block">{t("title")}</span>
             <h1 className="font-display text-[clamp(2rem,3.8vw,3.75rem)] font-normal leading-[1.05] tracking-[-0.03em] text-w-white md:max-w-[60%]">
               {fi
-                ? "Rakennamme järjestelmiä, jotka tuottavat kilpailuetua. Ei vuosien päästä vaan nyt."
-                : "We build systems that create competitive advantage. Not in years. Now."}
+                ? "Rakennamme järjestelmiä, jotka tuottavat kilpailuetua."
+                : "We build systems that create competitive advantage."}
             </h1>
             <p className="mt-5 max-w-xl text-[1rem] leading-[1.7] text-white/70">
               {fi
-                ? "Tekoäly on integroitu jokaiseen vaiheeseen: suunnitteluun, koodaukseen ja testaukseen. Toimitus on nopeampaa, laatu on parempi, parempi investointi."
-                : "AI is integrated into every stage: planning, coding and testing. Faster delivery, better quality, better investment."}
+                ? "Tekoäly on integroitu jokaiseen vaiheeseen: suunnitteluun, koodaukseen ja testaukseen. Toimitus on nopeampaa, laatu on parempi, investointi on parempi."
+                : "AI is integrated into every stage: planning, coding and testing. Delivery is faster, quality is better, investment is better."}
             </p>
             <div className="mt-10">
               <button type="button" onClick={scrollToYhteysSection} className="btn-primary cursor-pointer">
@@ -74,7 +74,7 @@ export function PalvelutPage() {
 
       {/* Pillars */}
       <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
           <div className="flex flex-col md:flex-row">
             {/* Sticky left */}
             <div className="shrink-0 border-b border-dashed border-w-white-15 py-10 md:sticky md:top-[4.25rem] md:w-[36%] md:self-start md:border-b-0 md:py-0 md:pb-24 md:pt-10 md:pr-14">
@@ -121,7 +121,7 @@ export function PalvelutPage() {
 
       {/* Contact section */}
       <section id="yhteys" className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
           <div className="grid gap-4 py-10 md:grid-cols-2 md:py-16 lg:py-20">
 
             {/* Left: Pekka photo + quote overlay */}
@@ -278,7 +278,7 @@ export function PalvelutPage() {
                       </span>
                       <span className="btn-arrow text-w-black/40">→</span>
                     </button>
-                    <span className="font-mono text-[0.5625rem] tracking-[0.04em] text-w-white-30">
+                    <span className="font-mono text-[0.75rem] tracking-[0.04em] text-w-white-50">
                       {fi ? "Vastaamme 24h sisällä." : "We respond within 24h."}
                     </span>
                   </div>

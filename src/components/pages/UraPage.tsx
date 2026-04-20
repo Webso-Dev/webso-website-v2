@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { FormSuccess } from "@/components/FormSuccess";
 import Link from "next/link";
+import { Yhteydenotto } from "@/components/Yhteydenotto";
 
 export function UraPage() {
   const t = useTranslations("ura");
@@ -63,15 +64,15 @@ export function UraPage() {
   };
 
   const inputCls = (k: string) =>
-    `w-full bg-transparent px-3 py-2.5 text-[0.875rem] text-w-white outline-none transition-all duration-200 placeholder:text-white/25 dashed-box${fieldErr(k) ? " opacity-80" : ""}`;
+    `w-full bg-transparent px-3 py-2.5 text-[1rem] md:text-[0.875rem] text-w-white outline-none transition-all duration-200 placeholder:text-white/25 dashed-box${fieldErr(k) ? " opacity-80" : ""}`;
 
   return (
     <main className="bg-w-black">
 
       {/* Header */}
       <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
-          <div className="py-24 md:py-32">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
+          <div className="py-14 md:py-20">
             <span className="tag mb-8 inline-block">{locale === "fi" ? "Ura" : "Careers"}</span>
             <h1 className="font-display text-[clamp(2rem,3.8vw,3.75rem)] font-normal leading-[1.05] tracking-[-0.03em] text-w-white">
               {t("title")}
@@ -87,7 +88,7 @@ export function UraPage() {
 
       {/* Reasons matches homepage Palvelut two-column pattern */}
       <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
           <div className="flex flex-col md:flex-row">
             <div className="shrink-0 border-b border-dashed border-w-white-15 py-10 md:sticky md:top-[4.25rem] md:w-[36%] md:self-start md:border-b-0 md:py-0 md:pb-24 md:pt-10 md:pr-14">
               <span className="tag mb-8 inline-block">{locale === "fi" ? "Miksi Webso" : "Why Webso"}</span>
@@ -117,7 +118,7 @@ export function UraPage() {
 
       {/* Open roles */}
       <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
           <div className="py-16 md:py-20">
             <span className="tag mb-8 inline-block">{locale === "fi" ? "Avoimet paikat" : "Open positions"}</span>
 
@@ -178,7 +179,7 @@ export function UraPage() {
 
       {/* Open application */}
       <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10 py-16 md:py-20">
+        <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10 py-16 md:py-20">
           <div className="dashed-box p-5 sm:p-8 md:p-10">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
@@ -192,7 +193,7 @@ export function UraPage() {
                     : "Don't see a fitting role? Send an open application we'll reach out when the right position opens."}
                 </p>
               </div>
-              <button type="button" onClick={() => setModalOpen(true)} className="btn-outline shrink-0 inline-flex">
+              <button type="button" onClick={() => setModalOpen(true)} className="btn-outline shrink-0 inline-flex self-start">
                 <span className="btn-label">{fi ? "Hae paikkaa" : "Apply"}</span>
                 <span className="btn-arrow text-w-white-30">→</span>
               </button>
@@ -201,20 +202,10 @@ export function UraPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="border-b border-dashed border-w-white-15">
-        <div className="mx-auto max-w-[90rem] px-6 md:px-10 py-16 md:py-28">
-          <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-            <h2 className="font-display text-[clamp(1.25rem,3vw,2rem)] font-bold tracking-[-0.03em] text-w-white">
-              {locale === "fi" ? "Kuulostaako hyvältä?" : "Sound good?"}
-            </h2>
-            <Link href={`/${locale}/ota-yhteytta`} className="btn-primary shrink-0">
-              <span className="btn-label">{locale === "fi" ? "Ota yhteyttä" : "Get in touch"}</span>
-              <span className="btn-arrow text-w-black/40">→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <Yhteydenotto
+        headingFi="Kuulostaako hyvältä? Otetaan yhteyttä."
+        headingEn="Sound good? Let's talk."
+      />
 
       {/* Application modal */}
       {modalOpen && (
@@ -290,7 +281,7 @@ export function UraPage() {
                       placeholder={fi ? "+358 40 000 0000" : "+1 000 000 0000"}
                       value={values.puhelin}
                       onChange={(e) => setValues((v) => ({ ...v, puhelin: e.target.value }))}
-                      className="w-full bg-transparent px-3 py-2.5 text-[0.875rem] text-w-white outline-none transition-all duration-200 placeholder:text-white/25 dashed-box"
+                      className="w-full bg-transparent px-3 py-2.5 text-[1rem] md:text-[0.875rem] text-w-white outline-none transition-all duration-200 placeholder:text-white/25 dashed-box"
                     />
                   </div>
 
@@ -305,7 +296,7 @@ export function UraPage() {
                       placeholder={fi ? "Kerro osaamisestasi ja mistä rooleista olet kiinnostunut." : "Tell us about your skills and what roles interest you."}
                       value={values.viesti}
                       onChange={(e) => setValues((v) => ({ ...v, viesti: e.target.value }))}
-                      className="w-full resize-none bg-transparent px-3 py-2.5 text-[0.875rem] text-w-white outline-none transition-all duration-200 placeholder:text-white/25 dashed-box"
+                      className="w-full resize-none bg-transparent px-3 py-2.5 text-[1rem] md:text-[0.875rem] text-w-white outline-none transition-all duration-200 placeholder:text-white/25 dashed-box"
                     />
                   </div>
 

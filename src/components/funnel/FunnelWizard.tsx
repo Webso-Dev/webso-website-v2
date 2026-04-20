@@ -542,7 +542,7 @@ export function FunnelWizard() {
       {/* Step indicator bar */}
       {step !== "confirm" && (
         <div className="shrink-0 border-b border-dashed border-w-white-15">
-          <div className="mx-auto flex max-w-[90rem] px-4 sm:px-8 md:px-10">
+          <div className="mx-auto flex max-w-[90rem] px-4 min-[1000px]:px-10">
             {visibleSteps.map((s, i) => {
               const idx = STEP_ORDER.indexOf(s);
               const isActive = s === step;

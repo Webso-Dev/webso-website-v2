@@ -40,7 +40,7 @@ export function Palvelut() {
 
   return (
     <section ref={sectionRef} className="border-b border-dashed border-w-white-15 bg-w-black">
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
+      <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
         <div className="flex flex-col md:flex-row">
 
           {/* Left column gradient spans full height, content is sticky */}

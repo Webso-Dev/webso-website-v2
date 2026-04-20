@@ -48,7 +48,7 @@ export function Suosittelijat() {
       ref={sectionRef}
       className="border-b border-dashed border-w-white-15 bg-w-black overflow-hidden"
     >
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
+      <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
         {testimonials.map((t) => (
           <div
             key={t.name}

@@ -25,6 +25,10 @@ export function Hero() {
       const tl = gsap.timeline({ delay: 0.15 });
 
       if (headline) {
+        // Lock height and hide before DOM manipulation — prevents collapse-induced layout shift
+        headline.style.height = `${headline.offsetHeight}px`;
+        headline.style.visibility = "hidden";
+
         const text = headline.textContent || "";
         const doc = document;
         // Clear existing children
@@ -53,6 +57,9 @@ export function Hero() {
           if (wi < words.length - 1) headline.appendChild(doc.createTextNode(" "));
         });
 
+        // Unlock height and reveal — words are clipped by overflow-hidden until animated in
+        headline.style.height = "";
+        gsap.set(headline, { visibility: "visible" });
         tl.to(".hw", { y: 0, duration: 0.7, stagger: 0.055, ease: "power3.out" });
       }
 
@@ -71,7 +78,7 @@ export function Hero() {
   return (
     <section
       className="relative flex flex-col justify-start overflow-hidden border-b border-dashed border-w-white-15 bg-w-black"
-      style={{ height: "calc((100dvh - var(--nav-h)) * 1.5)", minHeight: "48rem" }}
+      style={{ height: "70dvh", minHeight: "32rem" }}
     >
       {/* Arcs background — anchored to bottom-right, pushed down on mobile */}
       <div className="pointer-events-none absolute inset-0">
@@ -83,7 +90,7 @@ export function Hero() {
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-40" style={{ background: "linear-gradient(to top, #03040a 0%, transparent 100%)" }} />
 
       {/* Content — top left */}
-      <div className="relative z-10 mx-auto w-full max-w-[90rem] px-4 pt-10 sm:px-8 md:px-10">
+      <div className="relative z-10 mx-auto w-full max-w-[90rem] px-4 pt-10 min-[1000px]:px-10">
         <h1
           ref={headlineRef}
           className="font-display text-[clamp(2rem,3.8vw,3.75rem)] font-normal leading-[1.05] tracking-[-0.03em] text-w-white md:w-[72%]"

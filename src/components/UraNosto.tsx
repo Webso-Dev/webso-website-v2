@@ -30,7 +30,7 @@ export function UraNosto() {
 
   return (
     <section ref={sectionRef} className="border-b border-dashed border-w-white-15 bg-w-black">
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-8 md:px-10">
+      <div className="mx-auto max-w-[90rem] px-4 min-[1000px]:px-10">
         <div className="py-16 md:py-36">
           <span className="tag mb-10 inline-block">{locale === "fi" ? "Ura" : "Careers"}</span>
 

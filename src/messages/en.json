@@ -74,7 +74,7 @@
   "luvut": {
     "items": [
       { "value": "60", "suffix": "+", "label": "Projects delivered" },
-      { "value": "15", "suffix": "+", "label": "Consultants" },
+      { "value": "10", "suffix": "+", "label": "Consultants" },
       { "value": "2020", "suffix": "", "label": "Founded" },
       { "value": "98", "suffix": "%", "label": "Client retention" }
     ]

@@ -215,7 +215,7 @@ export function Yhteydenotto({ headingFi, headingEn }: { headingFi?: string; hea
                     <button
                       type="submit"
                       disabled={status === "sending"}
-                      className="btn-primary disabled:opacity-40"
+                      className="btn-primary shrink-0 disabled:opacity-40"
                     >
                       <span className="btn-label">
                         {status === "sending" ? "..." : fi ? "Lähetä viesti" : "Send message"}

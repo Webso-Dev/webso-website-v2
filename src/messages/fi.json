@@ -74,7 +74,7 @@
   "luvut": {
     "items": [
       { "value": "60", "suffix": "+", "label": "Toteutettua projektia" },
-      { "value": "15", "suffix": "+", "label": "Konsulttia" },
+      { "value": "10", "suffix": "+", "label": "Konsulttia" },
       { "value": "2020", "suffix": "", "label": "Perustettu" },
       { "value": "98", "suffix": "%", "label": "Asiakasretentio" }
     ]
